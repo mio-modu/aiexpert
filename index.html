@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-World AI Utilization Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+            overflow-x: hidden;
+        }
+
+        /* Slide styles */
+        .slide {
+            min-height: 100vh;
+            padding: 4rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            scroll-snap-align: start;
+            opacity: 1;
+            transform: none;
+            transition: none;
+            position: relative;
+            background-color: white;
+        }
+
+        #presentation {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        .slide-content {
+            max-width: 90%;
+            margin: 0 auto;
+            opacity: 1;
+            transform: none;
+            transition: none;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        /* Language styles */
+        [lang="ko"] {
+            display: none;
+        }
+
+        [lang="ko"].active {
+            display: block;
+        }
+
+        [lang="en"].active {
+            display: block;
+        }
+
+        [lang="en"] {
+            display: block;
+        }
+
+        /* Navigation styles */
+        .nav-container {
+            position: fixed;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #CBD5E1;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .nav-dot.active {
+            background-color: #2563EB;
+            transform: scale(1.3);
+        }
+
+        .nav-dot:hover {
+            background-color: #93C5FD;
+        }
+
+        .nav-dot::after {
+            content: attr(data-title);
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #1E293B;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-dot:hover::after {
+            opacity: 1;
+        }
+
+        /* Language toggle styles */
+        .language-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 101;
+            background-color: white;
+            border-radius: 8px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-width: 150px;
+            justify-content: space-between;
+        }
+
+        .language-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .language-toggle span {
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .language-toggle span.active {
+            color: white;
+            background-color: #2563EB;
+        }
+
+        .language-toggle span:not(.active) {
+            color: #6b7280;
+        }
+
+        /* Audio toggle styles */
+        .audio-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 100;
+            background-color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .audio-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .audio-toggle.active {
+            background-color: #2563EB;
+            color: white;
+        }
+
+        /* Text styles */
+        .gradient-text {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            font-size: 2.8rem;
+            line-height: 1.4;
+            margin-bottom: 2.5rem;
+            padding: 0.5rem 0;
+            white-space: nowrap;
+        }
+
+        .text-4xl {
+            font-size: 3rem;
+            line-height: 1.4;
+            margin-bottom: 2rem;
+            padding: 0.5rem 0;
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .text-2xl {
+            font-size: 2rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            padding: 0.25rem 0;
+        }
+
+        .text-xl {
+            font-size: 1.75rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            padding: 0.25rem 0;
+        }
+
+        .text-lg {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+            padding: 0.25rem 0;
+        }
+
+        .text-gray-600, .text-gray-700 {
+            font-size: 1.5rem;
+        }
+
+        .text-sm {
+            font-size: 1.25rem;
+        }
+
+        /* Grid and layout styles */
+        .grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .grid-cols-1 {
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 768px) {
+            .md\:grid-cols-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .md\:grid-cols-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .space-x-4 > * + * {
+            margin-left: 1rem;
+        }
+
+        .space-y-6 > * + * {
+            margin-top: 1.5rem;
+        }
+
+        .gap-4 {
+            gap: 1rem;
+        }
+
+        .gap-8 {
+            gap: 2rem;
+        }
+
+        /* Utility classes */
+        .bg-white {
+            background-color: white;
+        }
+
+        .bg-gray-50 {
+            background-color: #f9fafb;
+        }
+
+        .bg-blue-100 {
+            background-color: #dbeafe;
+        }
+
+        .text-blue-600 {
+            color: #2563eb;
+        }
+
+        .text-gray-600 {
+            color: #4b5563;
+        }
+
+        .text-gray-700 {
+            color: #374151;
+        }
+
+        .text-gray-800 {
+            color: #1f2937;
+        }
+
+        .rounded-xl {
+            border-radius: 0.75rem;
+        }
+
+        .rounded-lg {
+            border-radius: 0.5rem;
+        }
+
+        .rounded-full {
+            border-radius: 9999px;
+        }
+
+        .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .p-4 {
+            padding: 1rem;
+        }
+
+        .p-6 {
+            padding: 1.5rem;
+        }
+
+        .p-8 {
+            padding: 2rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-6 {
+            margin-bottom: 1.5rem;
+        }
+
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+
+        .mt-8 {
+            margin-top: 2rem;
+        }
+
+        .mt-12 {
+            margin-top: 3rem;
+        }
+
+        .w-5 {
+            width: 1.25rem;
+        }
+
+        .h-5 {
+            height: 1.25rem;
+        }
+
+        .w-8 {
+            width: 2rem;
+        }
+
+        .h-8 {
+            height: 2rem;
+        }
+
+        .w-12 {
+            width: 3rem;
+        }
+
+        .h-12 {
+            height: 3rem;
+        }
+
+        .max-w-4xl {
+            max-width: 56rem;
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .font-bold {
+            font-weight: 700;
+        }
+
+        .font-semibold {
+            font-weight: 600;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .md\:flex {
+                display: flex;
+            }
+        }
+
+        /* FAQ styles */
+        .faq-question {
+            position: relative;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .faq-question:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question h3 {
+            padding-left: 2.5rem;
+            font-size: 1.25rem;
+            color: #1f2937;
+            transition: color 0.2s ease;
+            text-align: left;
+        }
+
+        .faq-question:hover h3 {
+            color: #2563eb;
+        }
+
+        .faq-question svg {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1.5rem;
+            height: 1.5rem;
+            color: #6b7280;
+            transition: all 0.2s ease;
+        }
+
+        .faq-question:hover svg {
+            color: #2563eb;
+        }
+
+        .faq-answer {
+            padding: 1rem 0 1rem 2.5rem;
+            color: #4b5563;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: left;
+            width: 100%;
+            overflow: hidden;
+            transition: all 0.3s ease-out;
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer.hidden {
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .faq-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .faq-container:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+
+        .faq-wrapper {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <button class="language-toggle" id="languageToggle" style="display: none;">
+        <span class="en active">English</span>
+        <span class="ko">한국어</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+    </button>
+
+    <!-- Audio Toggle -->
+    <button class="audio-toggle" id="audioToggle" title="Toggle transition sound">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.414 1.414m2.828-9.9a9 9 0 012.728-2.728"/>
+        </svg>
+    </button>
+
+    <!-- Navigation Dots -->
+    <div class="nav-container hidden md:flex flex-col space-y-3">
+        <div class="nav-dot active" data-target="intro" data-title="Introduction"></div>
+        <div class="nav-dot" data-target="challenge" data-title="The Challenge"></div>
+        <div class="nav-dot" data-target="approach" data-title="Our Approach"></div>
+        <div class="nav-dot" data-target="success" data-title="Success Stories"></div>
+        <div class="nav-dot" data-target="implementation" data-title="Implementation"></div>
+        <div class="nav-dot" data-target="conclusion" data-title="Conclusion"></div>
+        <div class="nav-dot" data-target="faq" data-title="FAQ"></div>
+    </div>
+
+    <div class="h-screen overflow-y-scroll snap-y snap-mandatory" id="presentation">
+        <!-- Introduction Slide -->
+        <section id="intro" class="slide active flex items-center justify-center p-8 parallax-bg" style="background-image: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), url('https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1920&q=80')">
+            <div class="slide-content max-w-4xl mx-auto text-center">
+                <h1 class="gradient-text">Real-World AI Utilization Projects</h1>
+                <h2 class="text-2xl text-gray-600 mb-8">How AI Strategy Experts Execute High-Impact Automation</h2>
+                <p class="text-lg text-gray-700">Lumain Inc. - Expanding Human Potential Through AI</p>
+            </div>
+        </section>
+
+        <!-- Problem Statement Slide -->
+        <section id="challenge" class="slide flex items-center justify-center p-8 parallax-bg" style="background-image: linear-gradient(rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.94)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1920&q=80')">
+            <div class="slide-content max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold mb-8 text-gray-800">The Challenge</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="p-6 bg-gray-50 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-700">Bridging the Gap</h3>
+                        <p class="text-gray-600">Many teams struggle with connecting AI capabilities to real-world execution</p>
+                    </div>
+                    <div class="p-6 bg-gray-50 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-700">Missing Framework</h3>
+                        <p class="text-gray-600">Lack of actionable frameworks, scalable tools, and proven results</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Slide -->
+        <section id="approach" class="slide flex items-center justify-center p-8 parallax-bg" style="background-image: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), url('https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&w=1920&q=80')">
+            <div class="slide-content max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold mb-8 text-gray-800">Our Approach</h2>
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-800">Human-Centered AI Design</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">Combining human expertise with AI capabilities for optimal results</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <h4 class="font-semibold mb-2">GPT-based Content</h4>
+                            <p class="text-sm text-gray-600">Intelligent content generation</p>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <h4 class="font-semibold mb-2">Monetization</h4>
+                            <p class="text-sm text-gray-600">Optimized revenue structures</p>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <h4 class="font-semibold mb-2">Operational Flow</h4>
+                            <p class="text-sm text-gray-600">Streamlined processes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Examples Slide -->
+        <section id="success" class="slide flex items-center justify-center p-8 parallax-bg" style="background-image: linear-gradient(rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.94)), url('https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1920&q=80')">
+            <div class="slide-content max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold mb-8 text-gray-800">Success Stories</h2>
+                <div class="space-y-6">
+                    <div class="p-6 bg-gray-50 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-700">YouTube Creator AI Automation</h3>
+                        <div class="flex items-center space-x-4 text-gray-600">
+                            <span>→ 1M views/month</span>
+                            <span>→ $5K revenue/month</span>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-gray-50 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-700">SaaS Product Funnel Automation</h3>
+                        <div class="flex items-center space-x-4 text-gray-600">
+                            <span>→ CAC down by 50%</span>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-gray-50 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-700">Enterprise Knowledge AI Structuring</h3>
+                        <div class="flex items-center space-x-4 text-gray-600">
+                            <span>→ 200% faster onboarding</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementation Blueprint Slide -->
+        <section id="implementation" class="slide flex items-center justify-center p-8 parallax-bg" style="background-image: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1920&q=80')">
+            <div class="slide-content max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold mb-8 text-gray-800">Implementation Blueprint</h2>
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold">1</div>
+                            <span class="text-gray-700">AI Unit Planning</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold">2</div>
+                            <span class="text-gray-700">Workflow Mapping</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold">3</div>
+                            <span class="text-gray-700">Revenue Loop Design</span>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-700">Tools We Use</h3>
+                        <div class="flex flex-wrap gap-4">
+                            <span class="px-4 py-2 bg-gray-100 rounded-full text-gray-700">GPT</span>
+                            <span class="px-4 py-2 bg-gray-100 rounded-full text-gray-700">Cursor</span>
+                            <span class="px-4 py-2 bg-gray-100 rounded-full text-gray-700">Notion AI</span>
+                            <span class="px-4 py-2 bg-gray-100 rounded-full text-gray-700">Zapier</span>
+                            <span class="px-4 py-2 bg-gray-100 rounded-full text-gray-700">Framer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion Slide -->
+        <section id="conclusion" class="slide flex items-center justify-center p-8 parallax-bg" style="background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1920&q=80')">
+            <div class="slide-content max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-8 text-gray-800">The Future is Now</h2>
+                <div class="space-y-6">
+                    <p class="text-xl text-gray-600">AI is no longer experimental—it's operational</p>
+                    <p class="text-xl text-gray-600">With the right design, it becomes a business engine</p>
+                </div>
+                <div class="mt-12">
+                    <p class="text-gray-500">Lumain Inc. - Transforming Ideas into Reality</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Slide -->
+        <section id="faq" class="slide flex items-center justify-center p-8 parallax-bg" style="background-image: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), url('https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1920&q=80')">
+            <div class="slide-content max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold mb-8 text-gray-800 text-left">Frequently Asked Questions</h2>
+                <div class="faq-wrapper">
+                    <div class="faq-container bg-white rounded-xl shadow-sm">
+                        <div class="faq-question cursor-pointer" onclick="toggleFAQ(this)">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 5l7 7-7 7z"/>
+                            </svg>
+                            <h3>Can non-technical people participate?</h3>
+                        </div>
+                        <div class="faq-answer hidden">
+                            <p>Yes, absolutely. Our curriculum is designed to explain everything from the basics, making it easy for those without AI or programming experience to follow along.</p>
+                        </div>
+                    </div>
+                    <div class="faq-container bg-white rounded-xl shadow-sm">
+                        <div class="faq-question cursor-pointer" onclick="toggleFAQ(this)">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 5l7 7-7 7z"/>
+                            </svg>
+                            <h3>What is the practical application success rate?</h3>
+                        </div>
+                        <div class="faq-answer hidden">
+                            <p>97% of our students have provided positive feedback about successfully applying the educational content in their work. Our project-based education, tailored to real work environments, shows high application rates.</p>
+                        </div>
+                    </div>
+                    <div class="faq-container bg-white rounded-xl shadow-sm">
+                        <div class="faq-question cursor-pointer" onclick="toggleFAQ(this)">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 5l7 7-7 7z"/>
+                            </svg>
+                            <h3>How can I get detailed consultation?</h3>
+                        </div>
+                        <div class="faq-answer hidden">
+                            <p>Please contact us via email (ai.expert.edu@email.com) or KakaoTalk (AI실전교육). We will respond within 24 hours. Free video consultation is also available depending on your inquiry.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <audio id="transitionSound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Global configuration
+        const CONFIG = {
+            languages: ['en'],
+            defaultLanguage: 'en',
+            slideTransition: {
+                duration: 100,
+                threshold: 0.5
+            }
+        };
+
+        // Application state
+        const AppState = (function() {
+            let state = {
+                currentSlide: 0,
+                isScrolling: false,
+                isAudioEnabled: false,
+                currentLanguage: CONFIG.defaultLanguage,
+                elements: null
+            };
+
+            return {
+                get: function(key) {
+                    return state[key];
+                },
+                set: function(key, value) {
+                    if (key in state) {
+                        state[key] = value;
+                    }
+                },
+                update: function(updates) {
+                    Object.assign(state, updates);
+                }
+            };
+        })();
+
+        // FAQ toggle functionality
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const arrow = element.querySelector('svg');
+            
+            // Toggle answer visibility
+            answer.classList.toggle('hidden');
+            
+            // Change triangle direction
+            if (answer.classList.contains('hidden')) {
+                arrow.innerHTML = '<path d="M12 5l7 7-7 7z"/>';
+            } else {
+                arrow.innerHTML = '<path d="M5 12h14l-7 7z"/>';
+            }
+        }
+
+        // Initialize application
+        function initializeApp() {
+            try {
+                if (!initializeElements()) {
+                    throw new Error('Failed to initialize elements');
+                }
+
+                const elements = AppState.get('elements');
+                
+                // Initialize navigation dots
+                elements.navDots.forEach((dot) => {
+                    dot.addEventListener('click', function() {
+                        const targetId = this.getAttribute('data-target');
+                        const targetSection = document.getElementById(targetId);
+                        
+                        if (targetSection) {
+                            targetSection.scrollIntoView({ behavior: 'smooth' });
+                            
+                            // Update active state
+                            elements.navDots.forEach((d) => {
+                                d.classList.toggle('active', d === this);
+                            });
+                            
+                            // Update current slide
+                            const index = Array.from(elements.navDots).indexOf(this);
+                            AppState.set('currentSlide', index);
+                        }
+                    });
+                });
+
+                // Audio toggle
+                elements.audioToggle.addEventListener('click', () => {
+                    const isAudioEnabled = !AppState.get('isAudioEnabled');
+                    AppState.set('isAudioEnabled', isAudioEnabled);
+                    elements.audioToggle.classList.toggle('active', isAudioEnabled);
+                });
+
+                // Scroll event handler
+                let scrollTimeout;
+                elements.presentation.addEventListener('scroll', () => {
+                    if (AppState.get('isScrolling')) return;
+
+                    clearTimeout(scrollTimeout);
+                    AppState.set('isScrolling', true);
+
+                    scrollTimeout = setTimeout(() => {
+                        const sections = elements.slides;
+                        const scrollPosition = elements.presentation.scrollTop;
+                        const windowHeight = window.innerHeight;
+                        
+                        // Find the current section
+                        const currentSection = Array.from(sections).findIndex(section => {
+                            const rect = section.getBoundingClientRect();
+                            return rect.top >= 0 && rect.top <= windowHeight / 2;
+                        });
+
+                        if (currentSection >= 0) {
+                            AppState.set('currentSlide', currentSection);
+                            elements.navDots.forEach((dot, i) => {
+                                dot.classList.toggle('active', i === currentSection);
+                            });
+                        }
+                        
+                        AppState.set('isScrolling', false);
+                    }, 100);
+                });
+
+                // Initialize first slide
+                elements.navDots[0].classList.add('active');
+
+            } catch (error) {
+                console.error('Error initializing application:', error);
+            }
+        }
+
+        // DOM element initialization
+        function initializeElements() {
+            const elements = {
+                presentation: document.getElementById('presentation'),
+                slides: document.querySelectorAll('.slide'),
+                navDots: document.querySelectorAll('.nav-dot'),
+                audioToggle: document.getElementById('audioToggle'),
+                transitionSound: document.getElementById('transitionSound')
+            };
+
+            // Validate required elements
+            const missingElements = Object.entries(elements)
+                .filter(([_, element]) => !element)
+                .map(([key]) => key);
+
+            if (missingElements.length > 0) {
+                console.error('Missing required elements:', missingElements);
+                return false;
+            }
+
+            AppState.update({ elements });
+            return true;
+        }
+
+        // Start the application when the DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeApp);
+        } else {
+            initializeApp();
+        }
+    </script>
+</body>
+</html> 

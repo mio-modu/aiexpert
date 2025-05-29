@@ -1,0 +1,14 @@
+{
+  "name": "ai-presentation",
+  "version": "1.0.0",
+  "description": "Modern AI-powered presentation layout",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "http": "^0.0.1-security",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  }
+} 
