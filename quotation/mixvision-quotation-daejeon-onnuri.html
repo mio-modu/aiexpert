@@ -5,69 +5,59 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Noto Sans KR','Malgun Gothic','맑은 고딕',sans-serif;background:#8a8a8a;padding:24px 0;color:#000;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.sheet{width:210mm;min-height:297mm;background:#fff;margin:0 auto 24px;padding:13mm 11mm 10mm;position:relative;
-  box-shadow:0 2px 14px rgba(0,0,0,.35);display:flex;flex-direction:column}
-.head{display:flex;align-items:flex-start;justify-content:space-between;position:relative;margin-bottom:10px}
-.logo{font-family:Arial,Helvetica,sans-serif;font-weight:900;font-size:34px;letter-spacing:-1.5px;line-height:1;padding-top:4px}
+body{font-family:'Noto Sans KR','Malgun Gothic','맑은 고딕',sans-serif;background:#8a8a8a;padding:20px 0;color:#000;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact}
+.sheet{width:210mm;height:297mm;background:#fff;margin:0 auto;padding:10mm 10mm 7mm;
+  box-shadow:0 2px 14px rgba(0,0,0,.35);display:flex;flex-direction:column;overflow:hidden}
+.head{display:flex;align-items:flex-start;justify-content:space-between;position:relative;margin-bottom:7px}
+.logo{font-family:Arial,Helvetica,sans-serif;font-weight:900;font-size:32px;letter-spacing:-1.5px;line-height:1;padding-top:3px}
 .logo .mix{color:#0b2a6b}.logo .vis{color:#1f4fa0}
-.ttl{position:absolute;left:0;right:0;text-align:center;pointer-events:none}
-.ttl .t1{font-size:25px;font-weight:700;letter-spacing:6px}
-.ttl .t2{font-size:10px;letter-spacing:3px;margin-top:3px}
-.pageno{font-size:10px;color:#444;padding-top:8px;font-weight:500}
-.meta{display:flex;justify-content:space-between;gap:14px;margin-bottom:12px}
-.metaL{font-size:11px;border-collapse:collapse}
-.metaL th{text-align:left;font-weight:700;padding:1.5px 10px 1.5px 0;white-space:nowrap;vertical-align:top}
-.metaL td{padding:1.5px 0;white-space:nowrap}
-.metaR{font-size:11px;border-collapse:collapse;width:300px}
-.metaR td{border-bottom:1px solid #000;padding:2.5px 2px;white-space:nowrap;position:relative}
+.ttl{position:absolute;left:0;right:0;text-align:center}
+.ttl .t1{font-size:24px;font-weight:700;letter-spacing:6px}
+.ttl .t2{font-size:9.5px;letter-spacing:3px;margin-top:2px}
+.meta{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px}
+.metaL{font-size:10.5px;border-collapse:collapse}
+.metaL th{text-align:left;font-weight:700;padding:1px 10px 1px 0;white-space:nowrap;vertical-align:top}
+.metaL td{padding:1px 0;white-space:nowrap}
+.metaR{font-size:10.5px;border-collapse:collapse;width:295px}
+.metaR td{border-bottom:1px solid #000;padding:2px;white-space:nowrap;position:relative}
 .metaR .co{font-weight:700}
-.metaR .ceo{border-bottom:1px solid #000}
-.seal{position:absolute;right:16px;top:-12px;width:42px;height:42px;border:2px solid #d3202a;border-radius:50%;
+.seal{position:absolute;right:14px;top:-11px;width:40px;height:40px;border:2px solid #d3202a;border-radius:50%;
   display:flex;flex-direction:column;align-items:center;justify-content:center;color:#d3202a;opacity:.82;
-  font-size:6.5px;font-weight:700;line-height:1.25;transform:rotate(-8deg)}
+  font-size:6px;font-weight:700;line-height:1.25;transform:rotate(-8deg)}
 .seal i{font-style:normal}
-.grand{display:flex;align-items:center;justify-content:space-between;border:2px solid #000;padding:7px 10px;margin-bottom:9px}
-.grand .gl{font-size:14.5px;font-weight:700;letter-spacing:.4px}
-.grand .gr{font-size:10px;font-weight:500}
-table.items{width:100%;border-collapse:collapse;font-size:10px;table-layout:fixed}
-table.items th{border:1px solid #000;background:#efefef;padding:4px 2px;font-weight:700;font-size:10.5px;letter-spacing:.5px}
-table.items td{border:1px solid #000;padding:3.2px 4px;height:19px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.grand{display:flex;align-items:center;justify-content:space-between;border:2px solid #000;padding:6px 9px;margin-bottom:7px}
+.grand .gl{font-size:14px;font-weight:700;letter-spacing:.3px}
+.grand .gr{font-size:9.5px;font-weight:500}
+table.items{width:100%;border-collapse:collapse;font-size:9px;table-layout:fixed}
+table.items th{border:1px solid #000;background:#efefef;padding:2.5px 2px;font-weight:700;font-size:9.5px;letter-spacing:.4px}
+table.items td{border:1px solid #000;padding:1.6px 4px;height:15.2px;line-height:1.15;
+  overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 td.c{text-align:center}td.r{text-align:right}td.l{text-align:left}
-td.b{font-weight:700}td.sm{font-size:9px}
-tr.grp td{background:#fafafa;font-weight:700}
-tr.pad td{height:19px}
-tr.sum td{background:#e3e3e3;font-weight:700;height:21px}
-tr.sum .sumlbl{letter-spacing:4px;font-size:11px}
-tr.total td{background:#cfcfcf;font-size:11.5px}
-tr.total.big td{font-size:12.5px;height:26px}
-table.cmp td{white-space:normal}
-.save{margin-top:11px;border:1px solid #000}
-.save .sv1{background:#efefef;border-bottom:1px solid #000;padding:4px 8px;font-size:10.5px;font-weight:700}
-.svt{width:100%;border-collapse:collapse;font-size:10px}
-.svt td{padding:4px 8px;border-bottom:1px solid #ddd}
-.svt td.r{text-align:right;font-weight:500;width:130px}
-.svt tr:last-child td{border-bottom:none}
-.svt .svtot td{background:#e3e3e3;font-weight:700;font-size:11px}
-.note{margin-top:auto;border:1px solid #000;min-height:72px;padding:5px 8px;font-size:9.5px;line-height:1.65}
-.note .nt{font-weight:700;text-decoration:underline;margin-bottom:3px;font-size:10px}
-.note ul{margin:0;padding-left:15px}
-.note li{margin-bottom:1.5px}
+td.b{font-weight:700}td.sm{font-size:8.3px}
+tr.grp td{background:#f2f2f2;font-weight:700;font-size:9.5px}
+tr.ssum td{background:#fbfbfb;font-weight:700}
+tr.ssum .sl{padding-right:8px;letter-spacing:.5px}
+tr.sum td{background:#e3e3e3;font-weight:700;height:17px}
+tr.sum .sumlbl{letter-spacing:4px;font-size:10.5px}
+tr.total td{background:#cfcfcf;font-size:11.5px;height:19px}
+.note{margin-top:auto;border:1px solid #000;padding:4px 8px;font-size:8.6px;line-height:1.6}
+.note .nt{font-weight:700;text-decoration:underline;margin-bottom:2px;font-size:9.5px}
+.note ul{margin:0;padding-left:14px}
+.cmp{margin-top:5px;display:flex;gap:0;border:1px solid #000;font-size:9px}
+.cmp div{flex:1;padding:4px 7px;border-right:1px solid #000}
+.cmp div:last-child{border-right:0;background:#fff3cf}
+.cmp b{font-size:11px}
 @page{size:A4;margin:0}
-@media print{
-  body{background:#fff;padding:0}
-  .sheet{box-shadow:none;margin:0;page-break-after:always;break-after:page}
-  .sheet:last-child{page-break-after:auto;break-after:auto}
-  .bar{display:none}
-}
+@media print{body{background:#fff;padding:0}.sheet{box-shadow:none;margin:0}.bar{display:none}}
 .bar{position:fixed;top:0;left:0;right:0;background:#111;color:#fff;font-size:12px;padding:8px 16px;z-index:9;
-  display:flex;gap:16px;align-items:center;justify-content:center}
+  display:flex;gap:14px;align-items:center;justify-content:center}
 .bar b{color:#ffd24a}
 .bar button{background:#ffd24a;border:0;padding:5px 14px;border-radius:4px;font-weight:700;cursor:pointer;font-family:inherit}
 </style></head>
 <body>
-<div class="bar">㈜믹스비젼 견적서 · 대전온누리교회 · 전 6페이지 &nbsp;|&nbsp;
-  분리발주 <b>₩28,506,500</b> → 일괄발주 <b>₩27,000,000</b> · 절감 <b>₩1,506,500</b>
+<div class="bar">㈜믹스비젼 견적서 · 대전온누리교회 · A4 1페이지 &nbsp;|&nbsp;
+  개별발주 <b>₩28,506,500</b> → 일괄발주 <b>₩27,000,000</b> · 절감 <b>₩1,506,500</b>
   <button onclick="window.print()">PDF로 저장 / 인쇄</button></div>
 <div style="height:40px"></div>
 
@@ -75,275 +65,7 @@ table.cmp td{white-space:normal}
   <div class="head">
     <div class="logo"><span class="mix">Mix</span><span class="vis">Vision</span></div>
     <div class="ttl"><div class="t1">견 &nbsp;적 &nbsp;서</div><div class="t2">( Q U O T A T I O N )</div></div>
-    <div class="pageno">1 / 6</div>
-  </div>
-
-  <div class="meta">
-    <table class="metaL">
-      <tr><th>견적일:</th><td>2026년 10월 3일</td></tr>
-      <tr><th>수 &nbsp;신:</th><td>대전온누리교회</td></tr>
-      <tr><th>참 &nbsp;조:</th><td>김형석간사님</td></tr>
-      <tr><th>담당자:</th><td>박성민실장(010-3932-6808)</td></tr>
-      <tr><th>견적명:</th><td>본당 조명설치 1차 공사 (전원·DMX 배관배선 및 장치바턴)</td></tr>
-    </table>
-    <table class="metaR">
-      <tr><td class="co">㈜ 믹스비젼</td></tr>
-      <tr><td>경기도 하남시 미사강변한강로135 스카이폴리스 나동 474호</td></tr>
-      <tr><td>사업자등록번호 : 545-88-03473</td></tr>
-      <tr><td>TEL : 070-4821-5600/ mixvision2026@naver.com</td></tr>
-      <tr><td class="ceo">대표이사 : 박성민<span class="seal"><i>㈜믹스비젼</i><i>대표이사</i><i>박성민</i></span></td></tr>
-    </table>
-  </div>
-
-  <div class="grand">
-    <div class="gl">합 계 금 액 : &nbsp;一金육백칠십삼만칠천오백원整(₩6,737,500)</div>
-    <div class="gr">VAT포함</div>
-  </div>
-
-  <table class="items">
-    <colgroup><col style="width:5%"><col style="width:20%"><col style="width:23%"><col style="width:5%">
-      <col style="width:6%"><col style="width:11%"><col style="width:13%"><col style="width:17%"></colgroup>
-    <thead><tr>
-      <th>No.</th><th>품 &nbsp; &nbsp; &nbsp; 명</th><th>내 &nbsp; &nbsp; &nbsp; 역</th><th>단위</th>
-      <th>수량</th><th>단 &nbsp;가</th><th>금 &nbsp; &nbsp;액</th><th>비 &nbsp;고</th>
-    </tr></thead>
-    <tbody>
-<tr class="grp"><td class="c">A</td><td class="l b">1차 조명공사</td><td class="c">전원·DMX 배관배선 및 장치바턴</td><td></td><td></td><td></td><td class="r">&ndash;</td><td></td></tr>
-<tr><td class="c"></td><td class="c">고정식 장치바턴 봉</td><td class="c sm">6M /220V(6) / DMX (2)</td><td class="c">SET</td><td class="c">1</td><td class="r">2,500,000</td><td class="r">2,500,000</td><td class="c sm">흰색</td></tr>
-<tr><td class="c"></td><td class="c">전원케이블</td><td class="c sm">CVV 2.5SQ X7C (3회로)</td><td class="c">M</td><td class="c">50</td><td class="r">6,500</td><td class="r">325,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">DMX케이블</td><td class="c sm">110 OHMS</td><td class="c">M</td><td class="c">150</td><td class="r">2,000</td><td class="r">300,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">전원케이블</td><td class="c sm">CVV 1.5SQ X3C</td><td class="c">M</td><td class="c">100</td><td class="r">2,000</td><td class="r">200,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">RD 전원분기함</td><td class="c sm">Main 50A +30A X3(RD 3회로)</td><td class="c">식</td><td class="c">1</td><td class="r">500,000</td><td class="r">500,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">DMX 스플리터</td><td class="c sm">DMX 1:8</td><td class="c">EA</td><td class="c">1</td><td class="r">200,000</td><td class="r">200,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">바닥 조명단자</td><td class="c sm">전원및 DMX</td><td class="c">식</td><td class="c">2</td><td class="r">150,000</td><td class="r">300,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">설치인건비</td><td class="c sm">배관배선</td><td class="c">EA</td><td class="c">4</td><td class="r">300,000</td><td class="r">1,200,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">고소작업대</td><td class="c sm">렌트및 셋업철수</td><td class="c">식</td><td class="c">1</td><td class="r">600,000</td><td class="r">600,000</td><td class="c sm"></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="sum"><td colspan="6" class="c sumlbl">소 &nbsp; &nbsp; 계</td><td class="r">6,125,000</td><td class="c sm"></td></tr><tr class="sum"><td colspan="6" class="c sumlbl">V &nbsp;A&nbsp; T</td><td class="r">612,500</td><td class="c sm"></td></tr><tr class="sum total"><td colspan="6" class="c sumlbl">합 &nbsp; &nbsp; 계</td><td class="r">6,737,500</td><td class="c sm"></td></tr>
-    </tbody>
-  </table>
-
-  <div class="note"><div class="nt">NOTE</div><ul><li>본 견적은 <b>1차 조명공사만 개별 발주</b>할 경우의 금액입니다.</li><li>고소작업대 렌트 및 셋업·철수 비용(₩600,000)이 본 차수에 포함되어 있습니다.</li><li>배관배선 인건비 4인 기준이며, 현장 여건에 따라 변동될 수 있습니다.</li></ul></div>
-</section>
-<section class="sheet">
-  <div class="head">
-    <div class="logo"><span class="mix">Mix</span><span class="vis">Vision</span></div>
-    <div class="ttl"><div class="t1">견 &nbsp;적 &nbsp;서</div><div class="t2">( Q U O T A T I O N )</div></div>
-    <div class="pageno">2 / 6</div>
-  </div>
-
-  <div class="meta">
-    <table class="metaL">
-      <tr><th>견적일:</th><td>2026년 10월 3일</td></tr>
-      <tr><th>수 &nbsp;신:</th><td>대전온누리교회</td></tr>
-      <tr><th>참 &nbsp;조:</th><td>김형석간사님</td></tr>
-      <tr><th>담당자:</th><td>박성민실장(010-3932-6808)</td></tr>
-      <tr><th>견적명:</th><td>본당 조명설치 2차 공사 (강대상 LED 조명기구)</td></tr>
-    </table>
-    <table class="metaR">
-      <tr><td class="co">㈜ 믹스비젼</td></tr>
-      <tr><td>경기도 하남시 미사강변한강로135 스카이폴리스 나동 474호</td></tr>
-      <tr><td>사업자등록번호 : 545-88-03473</td></tr>
-      <tr><td>TEL : 070-4821-5600/ mixvision2026@naver.com</td></tr>
-      <tr><td class="ceo">대표이사 : 박성민<span class="seal"><i>㈜믹스비젼</i><i>대표이사</i><i>박성민</i></span></td></tr>
-    </table>
-  </div>
-
-  <div class="grand">
-    <div class="gl">합 계 금 액 : &nbsp;一金구백팔십오만육천원整(₩9,856,000)</div>
-    <div class="gr">VAT포함</div>
-  </div>
-
-  <table class="items">
-    <colgroup><col style="width:5%"><col style="width:20%"><col style="width:23%"><col style="width:5%">
-      <col style="width:6%"><col style="width:11%"><col style="width:13%"><col style="width:17%"></colgroup>
-    <thead><tr>
-      <th>No.</th><th>품 &nbsp; &nbsp; &nbsp; 명</th><th>내 &nbsp; &nbsp; &nbsp; 역</th><th>단위</th>
-      <th>수량</th><th>단 &nbsp;가</th><th>금 &nbsp; &nbsp;액</th><th>비 &nbsp;고</th>
-    </tr></thead>
-    <tbody>
-<tr class="grp"><td class="c">B</td><td class="l b">2차 조명공사</td><td class="c">강대상 LED 조명기구 설치</td><td></td><td></td><td></td><td class="r">&ndash;</td><td></td></tr>
-<tr><td class="c"></td><td class="c">LED Profile SPOT</td><td class="c sm">JEG-1323-2</td><td class="c">EA</td><td class="c">2</td><td class="r">975,000</td><td class="r">1,950,000</td><td class="c sm">흰색</td></tr>
-<tr><td class="c"></td><td class="c">LED WASH</td><td class="c sm">JEG-1320M</td><td class="c">EA</td><td class="c">4</td><td class="r">1,060,000</td><td class="r">4,240,000</td><td class="c sm">흰색</td></tr>
-<tr><td class="c"></td><td class="c">LED Color ZOOM</td><td class="c sm">JEG-1718C</td><td class="c">EA</td><td class="c">2</td><td class="r">750,000</td><td class="r">1,500,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">설치인건비</td><td class="c sm">기기설치및 메모리</td><td class="c">EA</td><td class="c">3</td><td class="r">340,000</td><td class="r">1,020,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">고소작업대 재투입</td><td class="c sm">렌트및 셋업철수 (반일)</td><td class="c">식</td><td class="c">1</td><td class="r">250,000</td><td class="r">250,000</td><td class="c sm">차수 추가</td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="sum"><td colspan="6" class="c sumlbl">소 &nbsp; &nbsp; 계</td><td class="r">8,960,000</td><td class="c sm"></td></tr><tr class="sum"><td colspan="6" class="c sumlbl">V &nbsp;A&nbsp; T</td><td class="r">896,000</td><td class="c sm"></td></tr><tr class="sum total"><td colspan="6" class="c sumlbl">합 &nbsp; &nbsp; 계</td><td class="r">9,856,000</td><td class="c sm"></td></tr>
-    </tbody>
-  </table>
-
-  <div class="note"><div class="nt">NOTE</div><ul><li>본 견적은 <b>2차 조명공사만 개별 발주</b>할 경우의 금액입니다.</li><li>차수 분리 발주에 따라 <b>고소작업대 재투입비(₩250,000)가 추가 발생</b>합니다.</li><li>1차 공사에서 시공된 전원·DMX 배선이 완료된 상태를 전제로 합니다.</li></ul></div>
-</section>
-<section class="sheet">
-  <div class="head">
-    <div class="logo"><span class="mix">Mix</span><span class="vis">Vision</span></div>
-    <div class="ttl"><div class="t1">견 &nbsp;적 &nbsp;서</div><div class="t2">( Q U O T A T I O N )</div></div>
-    <div class="pageno">3 / 6</div>
-  </div>
-
-  <div class="meta">
-    <table class="metaL">
-      <tr><th>견적일:</th><td>2026년 10월 3일</td></tr>
-      <tr><th>수 &nbsp;신:</th><td>대전온누리교회</td></tr>
-      <tr><th>참 &nbsp;조:</th><td>김형석간사님</td></tr>
-      <tr><th>담당자:</th><td>박성민실장(010-3932-6808)</td></tr>
-      <tr><th>견적명:</th><td>본당 조명설치 3차 공사 (무빙 조명 및 제어 시스템)</td></tr>
-    </table>
-    <table class="metaR">
-      <tr><td class="co">㈜ 믹스비젼</td></tr>
-      <tr><td>경기도 하남시 미사강변한강로135 스카이폴리스 나동 474호</td></tr>
-      <tr><td>사업자등록번호 : 545-88-03473</td></tr>
-      <tr><td>TEL : 070-4821-5600/ mixvision2026@naver.com</td></tr>
-      <tr><td class="ceo">대표이사 : 박성민<span class="seal"><i>㈜믹스비젼</i><i>대표이사</i><i>박성민</i></span></td></tr>
-    </table>
-  </div>
-
-  <div class="grand">
-    <div class="gl">합 계 금 액 : &nbsp;一金칠백이십구만삼천원整(₩7,293,000)</div>
-    <div class="gr">VAT포함</div>
-  </div>
-
-  <table class="items">
-    <colgroup><col style="width:5%"><col style="width:20%"><col style="width:23%"><col style="width:5%">
-      <col style="width:6%"><col style="width:11%"><col style="width:13%"><col style="width:17%"></colgroup>
-    <thead><tr>
-      <th>No.</th><th>품 &nbsp; &nbsp; &nbsp; 명</th><th>내 &nbsp; &nbsp; &nbsp; 역</th><th>단위</th>
-      <th>수량</th><th>단 &nbsp;가</th><th>금 &nbsp; &nbsp;액</th><th>비 &nbsp;고</th>
-    </tr></thead>
-    <tbody>
-<tr class="grp"><td class="c">C</td><td class="l b">3차 조명공사</td><td class="c">무빙 조명 및 제어 시스템</td><td></td><td></td><td></td><td class="r">&ndash;</td><td></td></tr>
-<tr><td class="c"></td><td class="c">LED BEAM SPOT WASH Moving</td><td class="c sm">H320</td><td class="c">EA</td><td class="c">2</td><td class="r">1,850,000</td><td class="r">3,700,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">조명컨트롤러</td><td class="c sm">FOX1024 / NET.do</td><td class="c">EA</td><td class="c">1</td><td class="r">2,000,000</td><td class="r">2,000,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">설치인건비</td><td class="c sm">기기설치및 메모리</td><td class="c">EA</td><td class="c">2</td><td class="r">340,000</td><td class="r">680,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">고소작업대 재투입</td><td class="c sm">렌트및 셋업철수 (반일)</td><td class="c">식</td><td class="c">1</td><td class="r">250,000</td><td class="r">250,000</td><td class="c sm">차수 추가</td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="sum"><td colspan="6" class="c sumlbl">소 &nbsp; &nbsp; 계</td><td class="r">6,630,000</td><td class="c sm"></td></tr><tr class="sum"><td colspan="6" class="c sumlbl">V &nbsp;A&nbsp; T</td><td class="r">663,000</td><td class="c sm"></td></tr><tr class="sum total"><td colspan="6" class="c sumlbl">합 &nbsp; &nbsp; 계</td><td class="r">7,293,000</td><td class="c sm"></td></tr>
-    </tbody>
-  </table>
-
-  <div class="note"><div class="nt">NOTE</div><ul><li>본 견적은 <b>3차 조명공사만 개별 발주</b>할 경우의 금액입니다.</li><li>차수 분리 발주에 따라 <b>고소작업대 재투입비(₩250,000)가 추가 발생</b>합니다.</li><li>조명컨트롤러 메모리 및 씬(Scene) 프로그래밍 포함 금액입니다.</li></ul></div>
-</section>
-<section class="sheet">
-  <div class="head">
-    <div class="logo"><span class="mix">Mix</span><span class="vis">Vision</span></div>
-    <div class="ttl"><div class="t1">견 &nbsp;적 &nbsp;서</div><div class="t2">( Q U O T A T I O N )</div></div>
-    <div class="pageno">4 / 6</div>
-  </div>
-
-  <div class="meta">
-    <table class="metaL">
-      <tr><th>견적일:</th><td>2026년 10월 3일</td></tr>
-      <tr><th>수 &nbsp;신:</th><td>대전온누리교회</td></tr>
-      <tr><th>참 &nbsp;조:</th><td>김형석간사님</td></tr>
-      <tr><th>담당자:</th><td>박성민실장(010-3932-6808)</td></tr>
-      <tr><th>견적명:</th><td>본당 음향보수 (데스크및 음향)</td></tr>
-    </table>
-    <table class="metaR">
-      <tr><td class="co">㈜ 믹스비젼</td></tr>
-      <tr><td>경기도 하남시 미사강변한강로135 스카이폴리스 나동 474호</td></tr>
-      <tr><td>사업자등록번호 : 545-88-03473</td></tr>
-      <tr><td>TEL : 070-4821-5600/ mixvision2026@naver.com</td></tr>
-      <tr><td class="ceo">대표이사 : 박성민<span class="seal"><i>㈜믹스비젼</i><i>대표이사</i><i>박성민</i></span></td></tr>
-    </table>
-  </div>
-
-  <div class="grand">
-    <div class="gl">합 계 금 액 : &nbsp;一金사백육십이만원整(₩4,620,000)</div>
-    <div class="gr">VAT포함</div>
-  </div>
-
-  <table class="items">
-    <colgroup><col style="width:5%"><col style="width:20%"><col style="width:23%"><col style="width:5%">
-      <col style="width:6%"><col style="width:11%"><col style="width:13%"><col style="width:17%"></colgroup>
-    <thead><tr>
-      <th>No.</th><th>품 &nbsp; &nbsp; &nbsp; 명</th><th>내 &nbsp; &nbsp; &nbsp; 역</th><th>단위</th>
-      <th>수량</th><th>단 &nbsp;가</th><th>금 &nbsp; &nbsp;액</th><th>비 &nbsp;고</th>
-    </tr></thead>
-    <tbody>
-<tr class="grp"><td class="c">D</td><td class="l b">본당 음향보수</td><td class="c">테이블및 음향</td><td></td><td></td><td></td><td class="r">&ndash;</td><td></td></tr>
-<tr><td class="c"></td><td class="c">안테나 케이블 + 고정 스텐드</td><td class="c sm">50 OHMS / Canare</td><td class="c">SET</td><td class="c">2</td><td class="r">80,000</td><td class="r">160,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">챔버용 바닥 마이크 박스</td><td class="c sm">4구 신형</td><td class="c">EA</td><td class="c">1</td><td class="r">80,000</td><td class="r">80,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">마이크 케이블</td><td class="c sm">4채널 / BELDEN</td><td class="c">M</td><td class="c">50</td><td class="r">6,000</td><td class="r">300,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">방송실 데스크</td><td class="c sm">포밍테이블 1800 X 600</td><td class="c">식</td><td class="c">2</td><td class="r">100,000</td><td class="r">200,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">데스크 상판보강</td><td class="c sm">원목 1800 X 600</td><td class="c">식</td><td class="c">2</td><td class="r">80,000</td><td class="r">160,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">데스크 상부랙</td><td class="c sm">2RU</td><td class="c">식</td><td class="c">2</td><td class="r">300,000</td><td class="r">600,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">커넥터및 잡자재</td><td class="c sm">전원및 커넥터등</td><td class="c">식</td><td class="c">1</td><td class="r">300,000</td><td class="r">300,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">설치인건비</td><td class="c sm">기기철수및 라벨링</td><td class="c">식</td><td class="c">1</td><td class="r">900,000</td><td class="r">900,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">설치인건비</td><td class="c sm">데스크재설치및 테스트</td><td class="c">식</td><td class="c">1</td><td class="r">1,500,000</td><td class="r">1,500,000</td><td class="c sm"></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="pad"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="sum"><td colspan="6" class="c sumlbl">소 &nbsp; &nbsp; 계</td><td class="r">4,200,000</td><td class="c sm"></td></tr><tr class="sum"><td colspan="6" class="c sumlbl">V &nbsp;A&nbsp; T</td><td class="r">420,000</td><td class="c sm"></td></tr><tr class="sum total"><td colspan="6" class="c sumlbl">합 &nbsp; &nbsp; 계</td><td class="r">4,620,000</td><td class="c sm"></td></tr>
-    </tbody>
-  </table>
-
-  <div class="note"><div class="nt">NOTE</div><ul><li>본 견적은 <b>본당 음향보수만 개별 발주</b>할 경우의 금액입니다.</li><li>기기철수·라벨링 및 데스크 재설치·테스트 인건비가 포함되어 있습니다.</li></ul></div>
-</section>
-<section class="sheet">
-  <div class="head">
-    <div class="logo"><span class="mix">Mix</span><span class="vis">Vision</span></div>
-    <div class="ttl"><div class="t1">견 &nbsp;적 &nbsp;서</div><div class="t2">( Q U O T A T I O N )</div></div>
-    <div class="pageno">5 / 6</div>
+    <div></div>
   </div>
 
   <div class="meta">
@@ -359,7 +81,7 @@ table.cmp td{white-space:normal}
       <tr><td>경기도 하남시 미사강변한강로135 스카이폴리스 나동 474호</td></tr>
       <tr><td>사업자등록번호 : 545-88-03473</td></tr>
       <tr><td>TEL : 070-4821-5600/ mixvision2026@naver.com</td></tr>
-      <tr><td class="ceo">대표이사 : 박성민<span class="seal"><i>㈜믹스비젼</i><i>대표이사</i><i>박성민</i></span></td></tr>
+      <tr><td>대표이사 : 박성민<span class="seal"><i>㈜믹스비젼</i><i>대표이사</i><i>박성민</i></span></td></tr>
     </table>
   </div>
 
@@ -369,118 +91,63 @@ table.cmp td{white-space:normal}
   </div>
 
   <table class="items">
-    <colgroup><col style="width:5%"><col style="width:20%"><col style="width:23%"><col style="width:5%">
+    <colgroup><col style="width:4.5%"><col style="width:20%"><col style="width:23.5%"><col style="width:5%">
       <col style="width:6%"><col style="width:11%"><col style="width:13%"><col style="width:17%"></colgroup>
     <thead><tr>
       <th>No.</th><th>품 &nbsp; &nbsp; &nbsp; 명</th><th>내 &nbsp; &nbsp; &nbsp; 역</th><th>단위</th>
       <th>수량</th><th>단 &nbsp;가</th><th>금 &nbsp; &nbsp;액</th><th>비 &nbsp;고</th>
     </tr></thead>
     <tbody>
-<tr class="grp"><td class="c">A</td><td class="l b">강대상 조명</td><td class="c">1차~3차 조명공사 일괄</td><td></td><td></td><td></td><td class="r">&ndash;</td><td></td></tr>
-<tr><td class="c"></td><td class="c">고정식 장치바턴 봉</td><td class="c sm">6M /220V(6) / DMX (2)</td><td class="c">SET</td><td class="c">1</td><td class="r">2,500,000</td><td class="r">2,500,000</td><td class="c sm">흰색</td></tr>
-<tr><td class="c"></td><td class="c">전원케이블</td><td class="c sm">CVV 2.5SQ X7C (3회로)</td><td class="c">M</td><td class="c">50</td><td class="r">6,500</td><td class="r">325,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">DMX케이블</td><td class="c sm">110 OHMS</td><td class="c">M</td><td class="c">150</td><td class="r">2,000</td><td class="r">300,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">전원케이블</td><td class="c sm">CVV 1.5SQ X3C</td><td class="c">M</td><td class="c">100</td><td class="r">2,000</td><td class="r">200,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">RD 전원분기함</td><td class="c sm">Main 50A +30A X3(RD 3회로)</td><td class="c">식</td><td class="c">1</td><td class="r">500,000</td><td class="r">500,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">DMX 스플리터</td><td class="c sm">DMX 1:8</td><td class="c">EA</td><td class="c">1</td><td class="r">200,000</td><td class="r">200,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">바닥 조명단자</td><td class="c sm">전원및 DMX</td><td class="c">식</td><td class="c">2</td><td class="r">150,000</td><td class="r">300,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">LED Profile SPOT</td><td class="c sm">JEG-1323-2</td><td class="c">EA</td><td class="c">2</td><td class="r">975,000</td><td class="r">1,950,000</td><td class="c sm">흰색</td></tr>
-<tr><td class="c"></td><td class="c">LED WASH</td><td class="c sm">JEG-1320M</td><td class="c">EA</td><td class="c">4</td><td class="r">1,060,000</td><td class="r">4,240,000</td><td class="c sm">흰색</td></tr>
-<tr><td class="c"></td><td class="c">LED Color ZOOM</td><td class="c sm">JEG-1718C</td><td class="c">EA</td><td class="c">2</td><td class="r">750,000</td><td class="r">1,500,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">LED BEAM SPOT WASH Moving</td><td class="c sm">H320</td><td class="c">EA</td><td class="c">2</td><td class="r">1,850,000</td><td class="r">3,700,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">조명컨트롤러</td><td class="c sm">FOX1024 / NET.do</td><td class="c">EA</td><td class="c">1</td><td class="r">2,000,000</td><td class="r">2,000,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">설치인건비</td><td class="c sm">배관배선</td><td class="c">EA</td><td class="c">4</td><td class="r">300,000</td><td class="r">1,200,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">설치인건비</td><td class="c sm">기기설치및 메모리</td><td class="c">EA</td><td class="c">5</td><td class="r">340,000</td><td class="r">1,700,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">고소작업대</td><td class="c sm">렌트및 셋업철수</td><td class="c">식</td><td class="c">1</td><td class="r">600,000</td><td class="r">600,000</td><td class="c sm">1회 투입</td></tr>
-<tr class="grp"><td class="c">B</td><td class="l b">본당 음향보수</td><td class="c">테이블및 음향</td><td></td><td></td><td></td><td class="r">&ndash;</td><td></td></tr>
-<tr><td class="c"></td><td class="c">안테나 케이블 + 고정 스텐드</td><td class="c sm">50 OHMS / Canare</td><td class="c">SET</td><td class="c">2</td><td class="r">80,000</td><td class="r">160,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">챔버용 바닥 마이크 박스</td><td class="c sm">4구 신형</td><td class="c">EA</td><td class="c">1</td><td class="r">80,000</td><td class="r">80,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">마이크 케이블</td><td class="c sm">4채널 / BELDEN</td><td class="c">M</td><td class="c">50</td><td class="r">6,000</td><td class="r">300,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">방송실 데스크</td><td class="c sm">포밍테이블 1800 X 600</td><td class="c">식</td><td class="c">2</td><td class="r">100,000</td><td class="r">200,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">데스크 상판보강</td><td class="c sm">원목 1800 X 600</td><td class="c">식</td><td class="c">2</td><td class="r">80,000</td><td class="r">160,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">데스크 상부랙</td><td class="c sm">2RU</td><td class="c">식</td><td class="c">2</td><td class="r">300,000</td><td class="r">600,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">커넥터및 잡자재</td><td class="c sm">전원및 커넥터등</td><td class="c">식</td><td class="c">1</td><td class="r">300,000</td><td class="r">300,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">설치인건비</td><td class="c sm">기기철수및 라벨링</td><td class="c">식</td><td class="c">1</td><td class="r">900,000</td><td class="r">900,000</td><td class="c sm"></td></tr>
-<tr><td class="c"></td><td class="c">설치인건비</td><td class="c sm">데스크재설치및 테스트</td><td class="c">식</td><td class="c">1</td><td class="r">1,500,000</td><td class="r">1,500,000</td><td class="c sm"></td></tr>
-<tr class="sum"><td colspan="6" class="c sumlbl">소 &nbsp; &nbsp; 계</td><td class="r">25,415,000</td><td class="c sm"></td></tr><tr class="sum"><td colspan="6" class="c sumlbl">D &nbsp;/&nbsp; C</td><td class="r">&minus; 860,000</td><td class="c sm">일괄발주 할인</td></tr><tr class="sum"><td colspan="6" class="c sumlbl">V &nbsp;A&nbsp; T</td><td class="r">2,455,500</td><td class="c sm"></td></tr><tr class="sum total"><td colspan="6" class="c sumlbl">합 &nbsp; &nbsp; 계</td><td class="r">27,000,000</td><td class="c sm">절삭</td></tr>
+<tr class="grp"><td class="c">A</td><td class="l b">조명 1차 공사</td><td class="c b">전원·DMX 배관배선 및 장치바턴</td><td colspan="5"></td></tr>
+<tr><td></td><td class="c">고정식 장치바턴 봉</td><td class="c sm">6M /220V(6) / DMX (2)</td><td class="c">SET</td><td class="c">1</td><td class="r">2,500,000</td><td class="r">2,500,000</td><td class="c sm">흰색</td></tr>
+<tr><td></td><td class="c">전원케이블</td><td class="c sm">CVV 2.5SQ X7C (3회로)</td><td class="c">M</td><td class="c">50</td><td class="r">6,500</td><td class="r">325,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">DMX케이블</td><td class="c sm">110 OHMS</td><td class="c">M</td><td class="c">150</td><td class="r">2,000</td><td class="r">300,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">전원케이블</td><td class="c sm">CVV 1.5SQ X3C</td><td class="c">M</td><td class="c">100</td><td class="r">2,000</td><td class="r">200,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">RD 전원분기함</td><td class="c sm">Main 50A +30A X3(RD 3회로)</td><td class="c">식</td><td class="c">1</td><td class="r">500,000</td><td class="r">500,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">DMX 스플리터</td><td class="c sm">DMX 1:8</td><td class="c">EA</td><td class="c">1</td><td class="r">200,000</td><td class="r">200,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">바닥 조명단자</td><td class="c sm">전원및 DMX</td><td class="c">식</td><td class="c">2</td><td class="r">150,000</td><td class="r">300,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">설치인건비</td><td class="c sm">배관배선</td><td class="c">EA</td><td class="c">4</td><td class="r">300,000</td><td class="r">1,200,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">고소작업대</td><td class="c sm">렌트및 셋업철수</td><td class="c">식</td><td class="c">1</td><td class="r">600,000</td><td class="r">600,000</td><td class="c sm"></td></tr>
+<tr class="ssum"><td colspan="6" class="r sl">A. 조명 1차 공사 소 &nbsp;계</td><td class="r">6,125,000</td><td></td></tr>
+<tr class="grp"><td class="c">B</td><td class="l b">조명 2차 공사</td><td class="c b">강대상 LED 조명기구 설치</td><td colspan="5"></td></tr>
+<tr><td></td><td class="c">LED Profile SPOT</td><td class="c sm">JEG-1323-2</td><td class="c">EA</td><td class="c">2</td><td class="r">975,000</td><td class="r">1,950,000</td><td class="c sm">흰색</td></tr>
+<tr><td></td><td class="c">LED WASH</td><td class="c sm">JEG-1320M</td><td class="c">EA</td><td class="c">4</td><td class="r">1,060,000</td><td class="r">4,240,000</td><td class="c sm">흰색</td></tr>
+<tr><td></td><td class="c">LED Color ZOOM</td><td class="c sm">JEG-1718C</td><td class="c">EA</td><td class="c">2</td><td class="r">750,000</td><td class="r">1,500,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">설치인건비</td><td class="c sm">기기설치및 메모리</td><td class="c">EA</td><td class="c">3</td><td class="r">340,000</td><td class="r">1,020,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">고소작업대 재투입</td><td class="c sm">렌트및 셋업철수 (반일)</td><td class="c">식</td><td class="c">1</td><td class="r">250,000</td><td class="r">250,000</td><td class="c sm">차수 분리시</td></tr>
+<tr class="ssum"><td colspan="6" class="r sl">B. 조명 2차 공사 소 &nbsp;계</td><td class="r">8,960,000</td><td></td></tr>
+<tr class="grp"><td class="c">C</td><td class="l b">조명 3차 공사</td><td class="c b">무빙 조명 및 제어 시스템</td><td colspan="5"></td></tr>
+<tr><td></td><td class="c">LED BEAM SPOT WASH Moving</td><td class="c sm">H320</td><td class="c">EA</td><td class="c">2</td><td class="r">1,850,000</td><td class="r">3,700,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">조명컨트롤러</td><td class="c sm">FOX1024 / NET.do</td><td class="c">EA</td><td class="c">1</td><td class="r">2,000,000</td><td class="r">2,000,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">설치인건비</td><td class="c sm">기기설치및 메모리</td><td class="c">EA</td><td class="c">2</td><td class="r">340,000</td><td class="r">680,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">고소작업대 재투입</td><td class="c sm">렌트및 셋업철수 (반일)</td><td class="c">식</td><td class="c">1</td><td class="r">250,000</td><td class="r">250,000</td><td class="c sm">차수 분리시</td></tr>
+<tr class="ssum"><td colspan="6" class="r sl">C. 조명 3차 공사 소 &nbsp;계</td><td class="r">6,630,000</td><td></td></tr>
+<tr class="grp"><td class="c">D</td><td class="l b">방송테이블 및 음향공사</td><td class="c b">본당 음향보수</td><td colspan="5"></td></tr>
+<tr><td></td><td class="c">안테나 케이블 + 고정 스텐드</td><td class="c sm">50 OHMS / Canare</td><td class="c">SET</td><td class="c">2</td><td class="r">80,000</td><td class="r">160,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">챔버용 바닥 마이크 박스</td><td class="c sm">4구 신형</td><td class="c">EA</td><td class="c">1</td><td class="r">80,000</td><td class="r">80,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">마이크 케이블</td><td class="c sm">4채널 / BELDEN</td><td class="c">M</td><td class="c">50</td><td class="r">6,000</td><td class="r">300,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">방송실 데스크</td><td class="c sm">포밍테이블 1800 X 600</td><td class="c">식</td><td class="c">2</td><td class="r">100,000</td><td class="r">200,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">데스크 상판보강</td><td class="c sm">원목 1800 X 600</td><td class="c">식</td><td class="c">2</td><td class="r">80,000</td><td class="r">160,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">데스크 상부랙</td><td class="c sm">2RU</td><td class="c">식</td><td class="c">2</td><td class="r">300,000</td><td class="r">600,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">커넥터및 잡자재</td><td class="c sm">전원및 커넥터등</td><td class="c">식</td><td class="c">1</td><td class="r">300,000</td><td class="r">300,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">설치인건비</td><td class="c sm">기기철수및 라벨링</td><td class="c">식</td><td class="c">1</td><td class="r">900,000</td><td class="r">900,000</td><td class="c sm"></td></tr>
+<tr><td></td><td class="c">설치인건비</td><td class="c sm">데스크재설치및 테스트</td><td class="c">식</td><td class="c">1</td><td class="r">1,500,000</td><td class="r">1,500,000</td><td class="c sm"></td></tr>
+<tr class="ssum"><td colspan="6" class="r sl">D. 방송테이블 및 음향공사 소 &nbsp;계</td><td class="r">4,200,000</td><td></td></tr>
+<tr class="sum"><td colspan="6" class="c sumlbl">소 &nbsp; &nbsp; 계</td><td class="r">25,915,000</td><td class="c sm">개별 발주 기준</td></tr><tr class="sum"><td colspan="6" class="c sumlbl">D &nbsp;/&nbsp; C</td><td class="r">&minus; 1,360,000</td><td class="c sm">일괄 발주 할인</td></tr><tr class="sum"><td colspan="6" class="c sumlbl">V &nbsp;A&nbsp; T</td><td class="r">2,455,500</td><td class="c sm"></td></tr><tr class="sum total"><td colspan="6" class="c sumlbl">합 &nbsp; &nbsp; 계</td><td class="r">27,000,000</td><td class="c sm">절삭</td></tr>
     </tbody>
   </table>
 
-  <div class="note"><div class="nt">NOTE</div><ul><li><b>1차~3차 조명공사 및 본당 음향보수를 일괄 발주</b>하는 조건의 견적입니다.</li><li>일괄 시공으로 고소작업대를 1회만 투입하여 <b>차수별 재투입비 ₩500,000이 발생하지 않습니다.</b></li><li>일괄 발주 조건으로 <b>D/C ₩860,000</b>을 적용하였으며, 합계 금액에서 <b>₩10,500을 절삭</b>하였습니다.</li><li>개별(분리) 발주 ₩28,506,500 대비 <b>총 ₩1,506,500의 예산 절감 효과</b>가 있습니다. (6페이지 비교표 참조)</li></ul></div>
-</section>
-<section class="sheet">
-  <div class="head">
-    <div class="logo"><span class="mix">Mix</span><span class="vis">Vision</span></div>
-    <div class="ttl"><div class="t1">발주방식 비교표</div><div class="t2">( C O S T &nbsp; C O M P A R I S O N )</div></div>
-    <div class="pageno">6 / 6</div>
-  </div>
-
-  <div class="meta">
-    <table class="metaL">
-      <tr><th>견적일:</th><td>2026년 10월 3일</td></tr>
-      <tr><th>수 &nbsp;신:</th><td>대전온누리교회</td></tr>
-      <tr><th>참 &nbsp;조:</th><td>김형석간사님</td></tr>
-      <tr><th>담당자:</th><td>박성민실장(010-3932-6808)</td></tr>
-      <tr><th>견적명:</th><td>본당 조명설치및 음향 보수(전체)</td></tr>
-    </table>
-    <table class="metaR">
-      <tr><td class="co">㈜ 믹스비젼</td></tr>
-      <tr><td>경기도 하남시 미사강변한강로135 스카이폴리스 나동 474호</td></tr>
-      <tr><td>사업자등록번호 : 545-88-03473</td></tr>
-      <tr><td>TEL : 070-4821-5600/ mixvision2026@naver.com</td></tr>
-      <tr><td class="ceo">대표이사 : 박성민<span class="seal"><i>㈜믹스비젼</i><i>대표이사</i><i>박성민</i></span></td></tr>
-    </table>
-  </div>
-
-  <div class="grand">
-    <div class="gl">예 산 절 감 액 : &nbsp;一金일백오십만육천오백원整(₩1,506,500)</div>
-    <div class="gr">VAT포함 기준</div>
-  </div>
-
-  <table class="items cmp">
-    <colgroup><col style="width:9%"><col style="width:43%"><col style="width:16%"><col style="width:14%"><col style="width:18%"></colgroup>
-    <thead><tr><th>구 분</th><th>공 &nbsp;사 &nbsp;내 &nbsp;용</th><th>공급가액</th><th>V A T</th><th>합 &nbsp;계</th></tr></thead>
-    <tbody>
-      <tr class="grp"><td class="c">1</td><td class="l b" colspan="4">개별(분리) 발주 — 차수별로 각각 계약·시공하는 경우</td></tr>
-      <tr><td class="c">1차</td><td class="l">조명공사 — 전원·DMX 배관배선 및 장치바턴</td><td class="r">6,125,000</td><td class="r">612,500</td><td class="r">6,737,500</td></tr><tr><td class="c">2차</td><td class="l">조명공사 — 강대상 LED 조명기구</td><td class="r">8,960,000</td><td class="r">896,000</td><td class="r">9,856,000</td></tr><tr><td class="c">3차</td><td class="l">조명공사 — 무빙 조명 및 제어 시스템</td><td class="r">6,630,000</td><td class="r">663,000</td><td class="r">7,293,000</td></tr><tr><td class="c">음향</td><td class="l">본당 음향보수 — 데스크및 음향</td><td class="r">4,200,000</td><td class="r">420,000</td><td class="r">4,620,000</td></tr>
-      <tr class="sum"><td colspan="2" class="c sumlbl">분리 발주 합계</td>
-        <td class="r">25,915,000</td><td class="r">2,591,500</td><td class="r">28,506,500</td></tr>
-
-      <tr class="pad"><td colspan="5"></td></tr>
-
-      <tr class="grp"><td class="c">2</td><td class="l b" colspan="4">일괄(통합) 발주 — 전체를 한 번에 계약·시공하는 경우</td></tr>
-      <tr><td class="c">&nbsp;</td><td class="l">조명 1차~3차 + 본당 음향보수 (고소작업대 1회 투입)</td>
-        <td class="r">25,415,000</td><td class="r">&ndash;</td><td class="r">&ndash;</td></tr>
-      <tr><td class="c">&nbsp;</td><td class="l">일괄발주 D / C</td>
-        <td class="r">&minus; 860,000</td><td class="r">&ndash;</td><td class="r">&ndash;</td></tr>
-      <tr><td class="c">&nbsp;</td><td class="l">절삭</td>
-        <td class="r">&ndash;</td><td class="r">&ndash;</td><td class="r">&minus; 10,500</td></tr>
-      <tr class="sum"><td colspan="2" class="c sumlbl">일괄 발주 합계</td>
-        <td class="r">24,555,000</td><td class="r">2,455,500</td><td class="r">27,000,000</td></tr>
-
-      <tr class="pad"><td colspan="5"></td></tr>
-
-      <tr class="sum total big"><td colspan="2" class="c sumlbl">예 산 절 감 액 &nbsp;( 1 &minus; 2 )</td>
-        <td class="r">1,360,000</td><td class="r">136,000</td>
-        <td class="r">1,506,500</td></tr>
-    </tbody>
-  </table>
-
-  <div class="save">
-    <div class="sv1">일괄 발주 시 절감 내역</div>
-    <table class="svt">
-      <tr><td>고소작업대 차수별 재투입비 절감 (2차 ₩250,000 + 3차 ₩250,000)</td><td class="r">₩500,000</td></tr>
-      <tr><td>일괄 발주 조건 D / C</td><td class="r">₩860,000</td></tr>
-      <tr><td>위 금액에 대한 부가가치세 절감분</td><td class="r">₩136,000</td></tr>
-      <tr><td>합계 금액 절삭</td><td class="r">₩10,500</td></tr>
-      <tr class="svtot"><td>총 절감액</td><td class="r">₩1,506,500</td></tr>
-    </table>
+  <div class="cmp">
+    <div>① 개별(차수별) 발주 합계<br><b>₩28,506,500</b> <span style="font-size:8px">(공급가 25,915,000 + VAT 2,591,500)</span></div>
+    <div>② 일괄 발주 합계<br><b>₩27,000,000</b> <span style="font-size:8px">(공급가 24,555,000 + VAT 2,455,500, 절삭)</span></div>
+    <div>③ 예산 절감액 ( ① &minus; ② )<br><b>₩1,506,500</b> <span style="font-size:8px">(약 5.3% 절감)</span></div>
   </div>
 
   <div class="note"><div class="nt">NOTE</div><ul>
-    <li>개별 발주 시에는 차수마다 고소작업대 투입·셋업·철수가 반복되어 동일 사양임에도 공사비가 증가합니다.</li>
-    <li>일괄 발주 시 1회 투입으로 전 공정을 진행하므로 공기 단축 및 현장 간섭 최소화 효과도 함께 있습니다.</li>
-    <li>본 비교표는 참고용이며, 실제 계약 금액은 5페이지 일괄 발주 견적서 <b>₩27,000,000</b> (VAT포함) 기준입니다.</li>
+    <li>본 견적서는 A~D 각 공사를 <b>개별(차수별)로 분리 발주할 경우의 금액</b>을 품목별로 산출한 뒤, <b>일괄 발주 조건</b>으로 D/C 및 절삭을 적용한 금액입니다.</li>
+    <li>개별 발주 시에는 차수마다 고소작업대 투입·셋업·철수가 반복되어 <b>B·C 차수에 재투입비 ₩500,000</b>이 추가로 발생합니다. 일괄 시공 시 1회 투입으로 해당 비용이 발생하지 않습니다.</li>
+    <li>절감 내역 : 일괄발주 D/C ₩1,360,000 (고소작업대 재투입비 ₩500,000 포함) + 부가세 절감분 ₩136,000 + 합계 절삭 ₩10,500 = <b>총 ₩1,506,500</b></li>
+    <li>본 견적 금액은 전 공정을 일괄 계약·시공하는 조건에 한해 유효하며, 차수 분리 발주 시에는 ① 금액이 적용됩니다. / 견적 유효기간 : 발행일로부터 30일</li>
   </ul></div>
 </section>
 </body></html>
