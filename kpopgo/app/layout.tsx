@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Hanken_Grotesk, Martian_Mono } from "next/font/google";
+import { Archivo, Black_Han_Sans, Gothic_A1, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
@@ -13,16 +13,27 @@ const archivo = Archivo({
   display: "swap",
 });
 
-const hanken = Hanken_Grotesk({
+// Hangul at poster scale. Used sparingly and always smaller than the Latin.
+const blackHan = Black_Han_Sans({
   subsets: ["latin"],
-  variable: "--font-hanken",
+  weight: "400",
+  variable: "--font-black-han",
   display: "swap",
 });
 
-// Used for verification dates and platform codes — the data voice of the site.
-const martian = Martian_Mono({
+// Hangul for labels and body — the words a fan meets on the booking screen.
+const gothicA1 = Gothic_A1({
   subsets: ["latin"],
-  variable: "--font-martian",
+  weight: ["400", "700", "900"],
+  variable: "--font-gothic-a1",
+  display: "swap",
+});
+
+// The data voice: verification dates, platform codes, step timings.
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-jetbrains",
   display: "swap",
 });
 
@@ -48,8 +59,8 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#07060d" },
-    { media: "(prefers-color-scheme: light)", color: "#fbfaff" },
+    { media: "(prefers-color-scheme: dark)", color: "#121117" },
+    { media: "(prefers-color-scheme: light)", color: "#f7f4ef" },
   ],
 };
 
@@ -68,10 +79,13 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${archivo.variable} ${hanken.variable} ${martian.variable}`}>
+      <body
+        className={`${archivo.variable} ${blackHan.variable} ${gothicA1.variable} ${jetbrains.variable}`}
+      >
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-pill focus:bg-grape-600 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-full focus:px-4 focus:py-2 focus:text-sm focus:font-bold"
+          style={{ background: "var(--ju)", color: "var(--on-ju)" }}
         >
           Skip to content
         </a>

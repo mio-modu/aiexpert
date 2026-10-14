@@ -1,261 +1,447 @@
 @import "tailwindcss";
 
-/* ============================================================
-   KPOPGO — "Neon Seoul" design system
-   Dark-first (the audience is 16-28, mobile, night-time browsing)
-   with a full light theme so the page respects the OS setting.
-   ============================================================ */
+/* ═══════════════════════════════════════════════════════════════
+   KPOPGO
+
+   Style system (webdesign-style):
+     T13 보송한 3D 사물      — identity (DEPTH group)
+     T21 화면 캡처 겹치기    — the step flow
+     T20 숫자로 증명하기     — proof blocks
+
+   T13's rule is the hard one: 반짝임 금지 · 표면은 보송하게. So
+   every object is built from flat tonal faces — a lit face, a side
+   face, a shade face — with one soft contact shadow underneath. No
+   specular highlight anywhere, no glossy gradient. Light comes from
+   the upper left, once, for everything on the page.
+   T21 sets the shadow depths: the front screen casts hard, the ones
+   behind cast progressively lighter.
+
+   Korean reading: the palette is obangsaek-derived rather than the
+   usual cream-and-terracotta — 주朱 vermilion, 군청 indigo, 백 bone,
+   흑 ink. The verification badge is a 인장 seal, since a seal is a
+   mark of authentication and that is this site's whole product.
+   Hangul is content, never ornament: every Korean word on the page
+   is one a fan meets on the real booking screen.
+   ═══════════════════════════════════════════════════════════════ */
 
 @theme {
-  /* Brand ramp — violet → pink → tangerine, the gradient everything derives from */
-  --color-grape-50: #f5f2ff;
-  --color-grape-200: #ddd2ff;
-  --color-grape-400: #a78bfa;
-  --color-grape-500: #8b5cf6;
-  --color-grape-600: #7c3aed;
-  --color-grape-700: #6d28d9;
-
-  --color-bubble-300: #f9a8d4;
-  --color-bubble-400: #f472b6;
-  --color-bubble-500: #ec4899;
-  --color-bubble-600: #db2777;
-
-  --color-tangerine-400: #fb923c;
-  --color-tangerine-500: #f97316;
-
-  --color-aqua-300: #67e8f9;
-  --color-aqua-400: #22d3ee;
-  --color-aqua-500: #06b6d4;
-
-  --color-lime-400: #a3e635;
-  --color-lime-500: #84cc16;
-
-  /* Ink scale */
-  --color-ink-950: #07060d;
-  --color-ink-900: #0c0a16;
-  --color-ink-850: #120f1f;
-  --color-ink-800: #1a1527;
-  --color-ink-700: #2a2140;
-
-  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-martian), ui-monospace, "SF Mono", monospace;
-
-  --radius-card: 1.5rem;
-  --radius-pill: 999px;
+  --font-latin: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-han: var(--font-gothic-a1), "Apple SD Gothic Neo", sans-serif;
+  --font-han-poster: var(--font-black-han), var(--font-gothic-a1), sans-serif;
+  --font-data: var(--font-jetbrains), ui-monospace, "SF Mono", monospace;
 }
 
-/* ---------- Semantic tokens: dark is the default ---------- */
+/* Light is the resting state: the objects read as things on paper. */
 :root {
-  --bg: #07060d;
-  --bg-raised: rgba(255, 255, 255, 0.04);
-  --bg-raised-strong: rgba(255, 255, 255, 0.07);
-  --border: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(255, 255, 255, 0.18);
-  --text: #f6f4ff;
-  --text-soft: #b8b2d4;
-  --text-faint: #807a9e;
-  --shadow-glow: 0 24px 70px -24px rgba(124, 58, 237, 0.55);
-  --grid-line: rgba(255, 255, 255, 0.045);
-  color-scheme: dark;
-}
+  --paper: #f7f4ef;
+  --paper-2: #efeae1;
+  --ink: #14131a;
+  --ink-72: rgba(20, 19, 26, 0.74);
+  --ink-46: rgba(20, 19, 26, 0.52);
+  --rule: rgba(20, 19, 26, 0.16);
+  --rule-soft: rgba(20, 19, 26, 0.09);
+  --ju: #d8341f;
+  --on-ju: #fffaf6;
+  --ju-body: rgba(255, 250, 246, 0.88);
+  --cast: rgba(20, 19, 26, 0.17);
+  --cast-soft: rgba(20, 19, 26, 0.09);
 
-/* Light theme: when the OS asks for it and the page has not been pinned dark */
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --bg: #fbfaff;
-    --bg-raised: rgba(14, 10, 30, 0.035);
-    --bg-raised-strong: rgba(14, 10, 30, 0.06);
-    --border: rgba(24, 16, 48, 0.1);
-    --border-strong: rgba(24, 16, 48, 0.2);
-    --text: #140f26;
-    --text-soft: #4b4368;
-    --text-faint: #736c8f;
-    --shadow-glow: 0 24px 60px -28px rgba(124, 58, 237, 0.35);
-    --grid-line: rgba(24, 16, 48, 0.05);
-    color-scheme: light;
-  }
-}
+  /* The objects are physical, so their own tones hold in both themes. */
+  --o-indigo: #334a86;
+  --o-indigo-s: #24355f;
+  --o-indigo-d: #1a2745;
+  --o-ju: #e0432c;
+  --o-ju-s: #b32d1c;
+  --o-bone: #f3ece1;
+  --o-bone-s: #d8cdbc;
+  --o-ink: #1c1b22;
+  --o-ink-s: #121118;
+  --o-gold: #c9a24a;
 
-/* Explicit light pin */
-:root[data-theme="light"] {
-  --bg: #fbfaff;
-  --bg-raised: rgba(14, 10, 30, 0.035);
-  --bg-raised-strong: rgba(14, 10, 30, 0.06);
-  --border: rgba(24, 16, 48, 0.1);
-  --border-strong: rgba(24, 16, 48, 0.2);
-  --text: #140f26;
-  --text-soft: #4b4368;
-  --text-faint: #736c8f;
-  --shadow-glow: 0 24px 60px -28px rgba(124, 58, 237, 0.35);
-  --grid-line: rgba(24, 16, 48, 0.05);
   color-scheme: light;
 }
 
-* {
-  border-color: var(--border);
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121117;
+    --paper-2: #1a1921;
+    --ink: #f6f3ee;
+    --ink-72: rgba(246, 243, 238, 0.74);
+    --ink-46: rgba(246, 243, 238, 0.5);
+    --rule: rgba(246, 243, 238, 0.2);
+    --rule-soft: rgba(246, 243, 238, 0.11);
+    --ju: #ff5a42;
+    --on-ju: #141018;
+    --ju-body: rgba(20, 16, 24, 0.8);
+    --cast: rgba(0, 0, 0, 0.46);
+    --cast-soft: rgba(0, 0, 0, 0.28);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #121117;
+  --paper-2: #1a1921;
+  --ink: #f6f3ee;
+  --ink-72: rgba(246, 243, 238, 0.74);
+  --ink-46: rgba(246, 243, 238, 0.5);
+  --rule: rgba(246, 243, 238, 0.2);
+  --rule-soft: rgba(246, 243, 238, 0.11);
+  --ju: #ff5a42;
+  --on-ju: #141018;
+  --ju-body: rgba(20, 16, 24, 0.8);
+  --cast: rgba(0, 0, 0, 0.46);
+  --cast-soft: rgba(0, 0, 0, 0.28);
+  color-scheme: dark;
 }
 
 html {
-  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-latin);
+  font-size: 16px;
+  line-height: 1.62;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--ju);
+  color: var(--on-ju);
+}
+
+:focus-visible {
+  outline: 3px solid var(--ju);
+  outline-offset: 3px;
 }
 
 h1,
 h2,
 h3,
 h4 {
-  font-variation-settings: "wdth" 112;
+  line-height: 0.95;
+  letter-spacing: -0.034em;
+  text-wrap: balance;
 }
 
-.font-display {
-  font-variation-settings: "wdth" 114;
-}
-
-body {
-  background-color: var(--bg);
-  color: var(--text);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-::selection {
-  background: var(--color-grape-500);
-  color: #fff;
-}
-
-:focus-visible {
-  outline: 2px solid var(--color-aqua-400);
-  outline-offset: 3px;
-  border-radius: 6px;
-}
-
-/* ---------- Utility layer ---------- */
 @layer utilities {
-  .text-soft {
-    color: var(--text-soft);
+  /* ── shell ── */
+  .wrap {
+    max-width: 1140px;
+    margin-inline: auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
   }
-  .text-faint {
-    color: var(--text-faint);
+  .sect {
+    padding-block: clamp(52px, 8vw, 96px);
   }
-
-  /* The signature gradient. One definition, reused everywhere. */
-  .grad-brand {
-    background-image: linear-gradient(
-      110deg,
-      var(--color-grape-500) 0%,
-      var(--color-bubble-500) 48%,
-      var(--color-tangerine-400) 100%
-    );
+  .band {
+    border-bottom: 1px solid var(--rule-soft);
   }
-
-  .grad-text {
-    background-image: linear-gradient(
-      110deg,
-      var(--color-grape-400) 0%,
-      var(--color-bubble-400) 45%,
-      var(--color-tangerine-400) 95%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  .tint {
+    background: var(--paper-2);
   }
 
-  /* Glass card with a 1px gradient hairline — the core surface */
-  .glass {
-    position: relative;
-    background: var(--bg-raised);
-    backdrop-filter: blur(14px);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-card);
+  /* ── poster type: Archivo's width axis does the work ── */
+  .px {
+    font-variation-settings: "wdth" 110;
+    font-weight: 900;
+    font-size: clamp(2.6rem, 9.4vw, 6rem);
+    text-transform: uppercase;
+  }
+  .pl {
+    font-variation-settings: "wdth" 106;
+    font-weight: 900;
+    font-size: clamp(1.8rem, 5.6vw, 3.25rem);
+    text-transform: uppercase;
+  }
+  .pm {
+    font-variation-settings: "wdth" 103;
+    font-weight: 800;
+    font-size: clamp(1.15rem, 2.9vw, 1.5rem);
+    text-transform: uppercase;
+    line-height: 1.06;
+  }
+  .ps {
+    font-variation-settings: "wdth" 100;
+    font-weight: 800;
+    font-size: 1.0625rem;
+    line-height: 1.26;
+    letter-spacing: -0.015em;
   }
 
-  .glass-hover {
+  /* ── Hangul: set smaller than the Latin or the balance breaks ── */
+  .han-m {
+    font-family: var(--font-han-poster);
+    font-weight: 400;
+    font-size: clamp(1.25rem, 3.3vw, 1.875rem);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+  }
+  .han {
+    font-family: var(--font-han);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .han-lb {
+    font-family: var(--font-han);
+    font-weight: 700;
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
+    color: var(--ink-46);
+  }
+
+  /* ── the data voice: dates, codes, counts ── */
+  .data {
+    font-family: var(--font-data);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .data-sm {
+    font-family: var(--font-data);
+    font-size: 0.625rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ── running text ── */
+  .t {
+    font-size: 1rem;
+    line-height: 1.64;
+    color: var(--ink-72);
+    max-width: 62ch;
+  }
+  .t-lg {
+    font-size: clamp(1.0625rem, 1.9vw, 1.25rem);
+    line-height: 1.55;
+    color: var(--ink-72);
+    max-width: 38ch;
+  }
+  .t-sm {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--ink-72);
+  }
+  .dim {
+    color: var(--ink-46);
+  }
+  .ju {
+    color: var(--ju);
+  }
+
+  .flood {
+    background: var(--ju);
+    color: var(--on-ju);
+  }
+  .flood .t,
+  .flood .t-sm,
+  .flood .dim {
+    color: var(--ju-body);
+  }
+  .mark {
+    background: var(--ju);
+    color: var(--on-ju);
+    padding: 0 0.12em;
+  }
+
+  /* ── T13/T21 surfaces: rounded, matte, one soft contact shadow ── */
+  .obj {
+    background: var(--paper);
+    border: 1px solid var(--rule-soft);
+    border-radius: 18px;
+    box-shadow: 0 18px 34px -20px var(--cast-soft);
+  }
+  .obj-flat {
+    background: var(--paper);
+    border: 1px solid var(--rule-soft);
+    border-radius: 18px;
+  }
+  .obj-ju {
+    border: 2px solid var(--ju);
+    border-radius: 18px;
+  }
+  .obj-lift {
     transition:
       transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      border-color 0.35s ease,
       box-shadow 0.35s ease;
   }
-  .glass-hover:hover {
-    transform: translateY(-4px);
-    border-color: var(--border-strong);
-    box-shadow: var(--shadow-glow);
+  .obj-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 26px 44px -22px var(--cast);
   }
 
-  /* Gradient ring that only paints the border */
-  .ring-grad {
-    position: relative;
-  }
-  .ring-grad::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(
-      135deg,
-      var(--color-grape-500),
-      var(--color-bubble-500) 50%,
-      var(--color-aqua-400)
-    );
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-  }
-
-  /* Ambient light blobs behind the hero */
-  .orb {
-    position: absolute;
+  .chip {
+    border: 1px solid var(--rule);
     border-radius: 999px;
-    filter: blur(90px);
-    opacity: 0.5;
-    pointer-events: none;
-    will-change: transform;
+    padding: 5px 11px;
   }
 
-  /* Faint technical grid, keeps big dark areas from feeling empty */
-  .bg-grid {
-    background-image:
-      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-    background-size: 56px 56px;
+  /* ── 인장: the seal, standing in for a verification mark ── */
+  .seal {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    border: 2px solid var(--ju);
+    border-radius: 7px;
+    color: var(--ju);
+    padding: 5px 10px;
+    font-family: var(--font-data);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .seal-han {
+    font-family: var(--font-han);
+    font-weight: 900;
+    font-size: 0.8125rem;
+    letter-spacing: 0;
   }
 
-  .animate-float {
-    animation: float 14s ease-in-out infinite;
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 15px 25px;
+    border-radius: 999px;
+    font-variation-settings: "wdth" 103;
+    font-weight: 900;
+    font-size: 0.9375rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: var(--ju);
+    color: var(--on-ju);
+    border: 2px solid var(--ju);
+    box-shadow: 0 14px 26px -14px var(--cast);
   }
-  .animate-float-slow {
-    animation: float 22s ease-in-out infinite reverse;
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--rule);
+    box-shadow: none;
   }
-  .animate-marquee {
-    animation: marquee 38s linear infinite;
+
+  /* ── T20: 숫자가 주인공 ── */
+  .figure {
+    font-variation-settings: "wdth" 108;
+    font-weight: 900;
+    font-size: clamp(2.75rem, 8vw, 4.5rem);
+    line-height: 0.84;
+    letter-spacing: -0.05em;
+    font-variant-numeric: tabular-nums;
+    display: block;
   }
-  .animate-pulse-dot {
-    animation: pulse-dot 2.4s ease-in-out infinite;
+
+  /* ── T14/T21: the flow rows ── */
+  .flow-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 22px;
   }
-  .animate-rise {
-    animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  @media (min-width: 680px) {
+    .flow-row {
+      grid-template-columns: 112px 1fr;
+      gap: 24px;
+      padding: 26px;
+    }
+  }
+
+  .breaks {
+    border-left: 3px solid var(--ju);
+    padding-left: 15px;
+    margin-top: 15px;
+  }
+
+  /* ── tables carry the comparisons; wide ones scroll in place ── */
+  .tbl {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+  .tbl th,
+  .tbl td {
+    text-align: left;
+    padding: 13px 14px 13px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    vertical-align: middle;
+  }
+  .tbl th {
+    font-family: var(--font-data);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-46);
+  }
+  .tbl td {
+    color: var(--ink-72);
+  }
+  .scroller {
+    overflow-x: auto;
+  }
+
+  /* ── links out, set as credits ── */
+  .srcs a {
+    display: inline-flex;
+    gap: 11px;
+    align-items: baseline;
+    font-size: 0.9375rem;
+    color: var(--ink-72);
+    text-decoration: underline;
+    text-decoration-color: var(--rule);
+    text-underline-offset: 4px;
+  }
+  .srcs a:hover {
+    color: var(--ink);
+    text-decoration-color: var(--ju);
+  }
+
+  /* ── city ticker ── */
+  .ticker {
+    overflow: hidden;
+    padding-block: 11px;
+  }
+  .ticker-in {
+    display: flex;
+    width: max-content;
+    animation: run 48s linear infinite;
+  }
+  .ticker-in > span {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    padding-right: 26px;
+    font-family: var(--font-data);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .svg-w {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%;
+  }
+  .float {
+    animation: bob 7s ease-in-out infinite;
+  }
+  .float-b {
+    animation: bob 9s ease-in-out infinite reverse;
   }
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(3%, -5%, 0) scale(1.1);
-  }
-}
-
-@keyframes marquee {
+@keyframes run {
   from {
     transform: translateX(0);
   }
@@ -264,42 +450,23 @@ body {
   }
 }
 
-@keyframes pulse-dot {
+@keyframes bob {
   0%,
   100% {
-    opacity: 1;
-    box-shadow: 0 0 0 0 rgba(163, 230, 53, 0.6);
-  }
-  50% {
-    opacity: 0.75;
-    box-shadow: 0 0 0 7px rgba(163, 230, 53, 0);
-  }
-}
-
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
     transform: translateY(0);
   }
+  50% {
+    transform: translateY(-9px);
+  }
 }
 
-/* Anyone who asked for less motion gets none of it */
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+  .ticker-in,
+  .float,
+  .float-b {
+    animation: none;
   }
-  .animate-float,
-  .animate-float-slow,
-  .animate-marquee,
-  .animate-pulse-dot,
-  .animate-rise {
-    animation: none !important;
-  }
-  .glass-hover:hover {
+  .obj-lift:hover {
     transform: none;
   }
 }

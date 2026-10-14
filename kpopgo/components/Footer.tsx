@@ -4,38 +4,29 @@ import { site } from "@/lib/site";
 
 export function Footer() {
   return (
-    <footer className="relative mt-28 border-t border-[var(--border)]">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
+    <footer style={{ borderTop: "1px solid var(--rule-soft)" }}>
+      <div className="wrap grid gap-10 py-12 md:grid-cols-[1.5fr_1fr_1fr]">
         <div>
-          <div className="flex items-center gap-2.5">
-            <span className="grad-brand grid size-8 place-items-center rounded-lg font-display text-sm font-extrabold text-white">
-              K
-            </span>
-            <span className="font-display text-base font-extrabold tracking-tight">
-              KPOP<span className="grad-text">GO</span>
-            </span>
-          </div>
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-soft">
-            {site.description}
-          </p>
-          <p className="mt-5 text-xs leading-relaxed text-faint">
-            An independent fan resource. Not affiliated with, endorsed by or operated by any
-            agency, artist or ticketing platform. Platform rules change — the official
+          <span
+            className="text-[1.125rem] font-black uppercase tracking-[-0.045em]"
+            style={{ fontVariationSettings: '"wdth" 114' }}
+          >
+            KPOP<span className="ju">GO</span>
+          </span>
+          <p className="han-lb mt-2">케이팝 해외 예매 안내 · 비공식 팬 자료</p>
+          <p className="t-sm dim mt-4 max-w-[62ch] text-[0.8125rem]">
+            An independent fan resource. Not affiliated with, endorsed by or operated by
+            any agency, artist or ticketing platform. Platform rules change — the official
             announcement for your show always overrides anything written here.
           </p>
         </div>
 
         <nav aria-label="Guides">
-          <h2 className="font-display text-sm font-bold tracking-wide uppercase text-faint">
-            Guides
-          </h2>
-          <ul className="mt-4 space-y-2.5">
+          <h2 className="data dim">Guides</h2>
+          <ul className="mt-4 grid gap-2.5">
             {guides.map((g) => (
               <li key={g.slug}>
-                <Link
-                  href={`/guides/${g.slug}`}
-                  className="text-sm text-soft transition-colors hover:text-[var(--text)]"
-                >
+                <Link href={`/guides/${g.slug}`} className="t-sm hover:text-[var(--ink)]">
                   {g.name}
                 </Link>
               </li>
@@ -44,21 +35,26 @@ export function Footer() {
         </nav>
 
         <div>
-          <h2 className="font-display text-sm font-bold tracking-wide uppercase text-faint">
-            How this works
-          </h2>
-          <ul className="mt-4 space-y-2.5 text-sm text-soft">
+          <h2 className="data dim">How this works</h2>
+          <ul className="t-sm mt-4 grid gap-2.5">
             <li>Every page carries a verification date.</li>
             <li>Every claim links its source.</li>
             <li>No identity-check workarounds, ever.</li>
-            <li>No idol photos — we draw our own diagrams.</li>
+            <li>No idol photos — every object is drawn for this site.</li>
           </ul>
         </div>
       </div>
 
-      <div className="mx-auto flex max-w-6xl flex-col gap-2 border-t border-[var(--border)] px-4 py-6 text-xs text-faint sm:flex-row sm:items-center sm:justify-between sm:px-6">
-        <p>Research compiled {RESEARCH_DATE}. Not legal, financial or immigration advice.</p>
-        <p>&copy; {new Date().getFullYear()} {site.name}</p>
+      <div
+        className="wrap flex flex-col gap-2 py-6 sm:flex-row sm:items-center sm:justify-between"
+        style={{ borderTop: "1px solid var(--rule-soft)" }}
+      >
+        <p className="data-sm dim">
+          Research compiled {RESEARCH_DATE} · Not legal, financial or immigration advice
+        </p>
+        <p className="data-sm dim">
+          © {new Date().getFullYear()} {site.name} · T13 보송한 3D 사물
+        </p>
       </div>
     </footer>
   );

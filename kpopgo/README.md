@@ -69,8 +69,36 @@ job and is the actual product work.
 | Analytics | GA4 via `NEXT_PUBLIC_GA_ID` — engagement time is measured here, **not** in Search Console |
 | Deploy | Vercel |
 
-Design: dark-first "Neon Seoul" — Archivo (wide display), Hanken Grotesk (body),
-Martian Mono (verification dates and platform codes). Full light theme included.
+Design follows the webdesign-style system:
+
+- **T13 보송한 3D 사물** — identity. Every object (passport, ticket, card, phone) is
+  built from flat tonal faces with one soft contact shadow. T13's rule is
+  반짝임 금지 · 표면은 보송하게, so there is no specular highlight and no glossy
+  gradient anywhere, and the light sits upper-left for everything on the site.
+- **T21 화면 캡처 겹치기** — the booking screens, stacked in a staircase with the
+  front one casting the hardest shadow. T21 says 진짜 데이터만, so the values are
+  real and the warning on the front screen is the failure the guides prevent.
+- **T20 숫자로 증명하기** — the proof blocks, numbers as the subject with their
+  sources beside them.
+
+Palette is obangsaek-derived rather than the usual cream-and-terracotta:
+주朱 vermilion, 군청 indigo, 백 bone, 흑 ink. The verification badge is a 인장 seal,
+because a seal is a mark of authentication and that is this site's product.
+
+Hangul is content, never ornament — every Korean word on the page is one a fan
+meets on the real booking screen (본인인증, 선예매, 결제), and the steps are indexed
+ㄱ ㄴ ㄷ ㄹ ㅁ. English stays canonical: the paying audience is Tier-1 English
+speakers, machine translation would put the legal and verification wording at
+risk, and there is essentially no Korean-language demand for a guide to buying
+Korean tickets. Later languages get hand-reviewed translations, not a translate
+widget.
+
+Type: Archivo (wide poster display), Gothic A1 and Black Han Sans (Hangul),
+JetBrains Mono (verification dates and platform codes). Light theme is the
+resting state, full dark theme included.
+
+Every illustration is drawn in-repo as inline SVG — see `components/Objects.tsx`.
+No photographs, no idol likenesses, no external image assets.
 
 ```bash
 npm install

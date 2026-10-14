@@ -2,93 +2,71 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { site } from "@/lib/site";
 
 export function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
     <header
-      className={`sticky top-0 z-50 transition-colors duration-300 ${
-        scrolled ? "backdrop-blur-xl" : ""
-      }`}
+      className="sticky z-50"
       style={{
-        background: scrolled ? "color-mix(in oklab, var(--bg) 78%, transparent)" : "transparent",
-        borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
+        top: "env(safe-area-inset-top, 0px)",
+        background: "var(--paper)",
+        borderBottom: "1px solid var(--rule-soft)",
       }}
     >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center gap-3 px-4 sm:h-18 sm:px-6">
-        <Link href="/" className="group flex items-center gap-2.5">
-          <span className="grad-brand grid size-9 place-items-center rounded-xl font-display text-[15px] font-extrabold tracking-tight text-white shadow-lg shadow-grape-600/25">
-            K
-          </span>
-          <span className="font-display text-lg font-extrabold tracking-tight">
-            KPOP<span className="grad-text">GO</span>
+      <nav className="wrap flex h-15 items-center gap-3 sm:h-17">
+        <Link href="/" className="logo-link">
+          <span
+            className="font-latin text-[1.3125rem] font-black uppercase tracking-[-0.045em]"
+            style={{ fontVariationSettings: '"wdth" 114' }}
+          >
+            KPOP<span className="ju">GO</span>
           </span>
         </Link>
+        <span className="han-lb ml-2 hidden sm:inline">케이팝 해외 예매 안내</span>
 
-        <div className="ml-auto flex items-center gap-1 sm:gap-2">
-          <Link
-            href="/guides"
-            className="rounded-pill px-3 py-2 text-sm font-medium text-soft transition-colors hover:text-[var(--text)]"
-          >
+        <div className="ml-auto flex items-center gap-2">
+          <Link href="/guides" className="data dim px-2 transition-colors hover:text-[var(--ink)]">
             Guides
-          </Link>
-          <Link
-            href="/#platforms"
-            className="hidden rounded-pill px-3 py-2 text-sm font-medium text-soft transition-colors hover:text-[var(--text)] sm:block"
-          >
-            Platforms
           </Link>
           <ThemeToggle />
           <Link
             href="/guides/buy-k-pop-concert-tickets-from-overseas"
-            className="grad-brand rounded-pill px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-grape-600/25 transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98]"
+            className="btn px-4 py-2.5 text-[0.8125rem]"
           >
-            Start here
+            Start
           </Link>
         </div>
       </nav>
-      <span className="sr-only">{site.tagline}</span>
     </header>
   );
 }
 
 function ThemeToggle() {
-  const [theme, setTheme] = useState<"dark" | "light" | null>(null);
+  const [dark, setDark] = useState<boolean | null>(null);
 
   useEffect(() => {
     let stored: string | null = null;
     try {
       stored = localStorage.getItem("kpopgo-theme");
     } catch {
-      // Private mode or blocked storage — fall back to the OS preference.
+      // Private mode or blocked storage — the OS preference still applies.
     }
-    const initial =
-      stored === "light" || stored === "dark"
-        ? (stored as "light" | "dark")
-        : window.matchMedia("(prefers-color-scheme: light)").matches
-          ? "light"
-          : "dark";
-    setTheme(initial);
-    document.documentElement.dataset.theme = initial;
+    const isDark =
+      stored === "dark" || stored === "light"
+        ? stored === "dark"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setDark(isDark);
+    document.documentElement.dataset.theme = isDark ? "dark" : "light";
   }, []);
 
   const toggle = () => {
-    const next = theme === "light" ? "dark" : "light";
-    setTheme(next);
-    document.documentElement.dataset.theme = next;
+    const next = !dark;
+    setDark(next);
+    document.documentElement.dataset.theme = next ? "dark" : "light";
     try {
-      localStorage.setItem("kpopgo-theme", next);
+      localStorage.setItem("kpopgo-theme", next ? "dark" : "light");
     } catch {
-      // Not persisting is acceptable; the page still renders correctly.
+      // Not persisting is acceptable; the toggle still works for this view.
     }
   };
 
@@ -97,16 +75,25 @@ function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label="Switch colour theme"
-      className="grid size-9 place-items-center rounded-pill border border-[var(--border)] text-soft transition-colors hover:text-[var(--text)]"
+      className="grid size-9 place-items-center rounded-full"
+      style={{ border: "1px solid var(--rule)" }}
     >
-      <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
-        {theme === "light" ? (
-          <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" />
-        ) : (
+      <svg
+        viewBox="0 0 24 24"
+        className="size-4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        aria-hidden="true"
+      >
+        {dark ? (
           <>
-            <circle cx="12" cy="12" r="4" />
-            <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4" />
+            <circle cx="12" cy="12" r="4.2" />
+            <path d="M12 2.6v2.6M12 18.8v2.6M2.6 12h2.6M18.8 12h2.6M5.4 5.4 7.2 7.2M16.8 16.8l1.8 1.8M18.6 5.4 16.8 7.2M7.2 16.8l-1.8 1.8" />
           </>
+        ) : (
+          <path d="M20.4 14.6A8.8 8.8 0 0 1 9.4 3.6a8.8 8.8 0 1 0 11 11Z" />
         )}
       </svg>
     </button>

@@ -1,292 +1,323 @@
 import Link from "next/link";
-import { guides, platformList, RESEARCH_DATE } from "@/content/guides";
-import { accentMap } from "@/lib/site";
-import { Glyph } from "@/components/Glyph";
+import { guides, glossary, platformList } from "@/content/guides";
+import { HeroScene, ObjectMark } from "@/components/Objects";
 import { VerifiedBadge } from "@/components/Badges";
 
-const marqueeWords = [
-  "Seoul",
-  "Los Angeles",
-  "São Paulo",
-  "London",
-  "Jakarta",
-  "Mexico City",
-  "Paris",
-  "Manila",
-  "Toronto",
-  "Sydney",
-  "Berlin",
-  "Bangkok",
+const cities = [
+  "서울 Seoul",
+  "로스앤젤레스 Los Angeles",
+  "상파울루 São Paulo",
+  "런던 London",
+  "자카르타 Jakarta",
+  "멕시코시티 Mexico City",
+  "파리 Paris",
+  "마닐라 Manila",
+  "토론토 Toronto",
+  "시드니 Sydney",
+];
+
+const failures = [
+  {
+    n: "01",
+    en: "Wrong platform",
+    ko: "예매처를 잘못 고름",
+    d: "Guides map agencies to platforms one-to-one. Agencies switch between tours, and one tour can split its Korean and global sales.",
+  },
+  {
+    n: "02",
+    en: "Wrong check",
+    ko: "본인인증 방식을 잘못 준비",
+    d: "The identity check depends entirely on which site sells your show. Preparing for the wrong one burns the lead time that matters.",
+  },
+  {
+    n: "03",
+    en: "Wrong moment",
+    ko: "결제 단계에서야 알게 됨",
+    d: "Verification processing, bank fraud rules and membership cut-offs all need days. They get discovered at the payment step instead.",
+  },
+];
+
+const renames = [
+  { ko: "인터파크 티켓 → 놀 티켓", en: "Interpark Ticket → NOL Ticket", when: "Apr 2025" },
+  { ko: "인터파크 글로벌 → 놀 월드", en: "interpark Global → NOL World", when: "01 Dec 2025" },
+  { ko: "개정 공연법 시행", en: "Revised Performances Act in effect", when: "28 Aug 2025" },
 ];
 
 export default function Home() {
   return (
     <>
-      {/* ───────────────────────── Hero ───────────────────────── */}
-      <section className="relative overflow-hidden">
-        <div className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000,transparent)]" />
-        <div
-          className="orb animate-float -top-32 -left-24 size-[32rem]"
-          style={{ background: "var(--color-grape-600)" }}
-        />
-        <div
-          className="orb animate-float-slow -top-20 right-[-10rem] size-[30rem]"
-          style={{ background: "var(--color-bubble-500)" }}
-        />
-        <div
-          className="orb animate-float top-56 left-1/3 size-[22rem] opacity-30"
-          style={{ background: "var(--color-aqua-400)" }}
-        />
-
-        <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-20 sm:px-6 sm:pt-20 sm:pb-28">
-          <div className="animate-rise">
-            <span className="inline-flex items-center gap-2 rounded-pill border border-[var(--border)] bg-[var(--bg-raised)] px-3.5 py-1.5 font-mono text-[0.64rem] font-semibold tracking-[0.12em] uppercase backdrop-blur-sm">
-              <span className="size-2 animate-pulse-dot rounded-full bg-lime-400" aria-hidden="true" />
-              Updated for NOL World · Dec 2025 rebrand
-            </span>
+      {/* ─────────── Hero ─────────── */}
+      <section className="band">
+        <div className="wrap py-9 sm:py-14">
+          <div className="grid items-center gap-9 lg:grid-cols-[1.05fr_0.95fr] lg:gap-11">
+            <div>
+              <p className="data ju">Updated for NOL World · 01 Dec 2025</p>
+              <h1 className="px mt-4">Buying K-pop tickets from outside Korea</h1>
+              <p className="han-m mt-4">
+                <span className="mark">이렇게 어려울 필요 없습니다</span>
+              </p>
+              <p className="t-lg mt-6">
+                Which platform your show is on. What identity check it runs. Why your card
+                got declined. Dated, sourced, walked step by step.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-2.5">
+                <Link href="/guides/buy-k-pop-concert-tickets-from-overseas" className="btn">
+                  Start with the basics →
+                </Link>
+                <Link
+                  href="/guides/foreign-card-declined-korean-ticketing"
+                  className="btn btn-ghost"
+                >
+                  My card was declined
+                </Link>
+              </div>
+            </div>
+            <HeroScene />
           </div>
+        </div>
+      </section>
 
-          <h1
-            className="animate-rise mt-7 max-w-4xl font-display text-[2.6rem] leading-[1.02] font-extrabold tracking-[-0.03em] sm:text-6xl lg:text-[4.75rem]"
-            style={{ animationDelay: "60ms" }}
-          >
-            Buying K-pop tickets
-            <br />
-            from outside Korea
-            <br />
-            <span className="grad-text">shouldn&apos;t be this hard.</span>
-          </h1>
+      {/* ─────────── City ticker ─────────── */}
+      <div className="band ticker flood" aria-hidden="true">
+        <div className="ticker-in">
+          {[0, 1].map((dup) => (
+            <span key={dup}>
+              {cities.map((c) => (
+                <span key={c} className="flex items-center gap-6">
+                  {c}
+                  <span>✱</span>
+                </span>
+              ))}
+            </span>
+          ))}
+        </div>
+      </div>
 
-          <p
-            className="animate-rise mt-7 max-w-xl text-lg leading-relaxed text-soft"
-            style={{ animationDelay: "120ms" }}
-          >
-            Which platform your show is on. What identity check it runs. Why your card
-            got declined. Walked step by step, dated, and sourced — so you don&apos;t find
-            out at the payment screen.
+      {/* ─────────── T20: numbers as the subject ─────────── */}
+      <section className="band tint">
+        <div className="wrap grid gap-3.5 py-10 sm:grid-cols-3 sm:py-14">
+          <div className="obj p-6">
+            <ObjectMark name="id" />
+            <span className="figure mt-4">05</span>
+            <p className="data mt-3.5">Guides</p>
+            <p className="han-lb mt-1">전체 절차 안내</p>
+          </div>
+          <div className="obj p-6">
+            <ObjectMark name="card" />
+            <span className="figure ju mt-4">00</span>
+            <p className="data mt-3.5">Idol photos used</p>
+            <p className="han-lb mt-1">초상권 리스크 없음</p>
+          </div>
+          <div className="obj p-6">
+            <ObjectMark name="star" />
+            <span className="figure mt-4">
+              100<span className="text-[0.5em]">%</span>
+            </span>
+            <p className="data mt-3.5">Claims with a source</p>
+            <p className="han-lb mt-1">출처 전부 표기</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────── The gap ─────────── */}
+      <section className="band sect">
+        <div className="wrap">
+          <p className="data dim">01 / The gap</p>
+          <h2 className="pl mt-4 max-w-[22ch]">
+            Most guides describe a site that <span className="mark">got renamed.</span>
+          </h2>
+          <p className="han-m dim mt-3.5">이름이 바뀐 사이트를 설명하고 있습니다</p>
+          <p className="t mt-5">
+            Three things changed. The English guides ranking today reflect none of them —
+            and neither does anything an answer engine learned before they happened.
           </p>
 
-          <div
-            className="animate-rise mt-9 flex flex-wrap items-center gap-3"
-            style={{ animationDelay: "180ms" }}
-          >
-            <Link
-              href="/guides/buy-k-pop-concert-tickets-from-overseas"
-              className="grad-brand group inline-flex items-center gap-2 rounded-pill px-6 py-3.5 font-display text-base font-bold text-white shadow-xl shadow-grape-600/30 transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98]"
-            >
-              Start with the basics
-              <svg viewBox="0 0 24 24" className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg>
-            </Link>
-            <Link
-              href="/guides/foreign-card-declined-korean-ticketing"
-              className="inline-flex items-center gap-2 rounded-pill border border-[var(--border-strong)] px-6 py-3.5 font-display text-base font-bold transition-colors hover:bg-[var(--bg-raised)]"
-            >
-              My card was declined
-            </Link>
+          <div className="obj mt-8 px-5 pt-2 pb-1">
+            <div className="scroller">
+              <table className="tbl">
+                <thead>
+                  <tr>
+                    <th className="w-[44%]">What changed</th>
+                    <th className="w-[20%]">When</th>
+                    <th>Ranking guides</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {renames.map((r, i) => (
+                    <tr key={r.en} style={i === renames.length - 1 ? { borderBottom: 0 } : undefined}>
+                      <td style={{ color: "var(--ink)" }}>
+                        <span className="han">{r.ko}</span>
+                        <br />
+                        <span className="data-sm dim">{r.en}</span>
+                      </td>
+                      <td>
+                        <span className="data">{r.when}</span>
+                      </td>
+                      <td>
+                        <span className="data ju">Not covered</span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
 
-          <dl
-            className="animate-rise mt-16 grid max-w-2xl grid-cols-3 gap-4 sm:gap-8"
-            style={{ animationDelay: "240ms" }}
-          >
-            {[
-              { k: "5", v: "step-by-step guides" },
-              { k: "0", v: "idol photos used" },
-              { k: "100%", v: "claims with sources" },
-            ].map((stat) => (
-              <div key={stat.v}>
-                <dt className="sr-only">{stat.v}</dt>
-                <dd>
-                  <span className="block font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
-                    {stat.k}
-                  </span>
-                  <span className="mt-1 block text-xs leading-snug text-faint sm:text-sm">
-                    {stat.v}
-                  </span>
-                </dd>
+          <div className="mt-9 grid gap-3.5 sm:grid-cols-3">
+            {failures.map((f, i) => (
+              <div key={f.n} className="obj p-6">
+                <ObjectMark name={(["id", "card", "ticket"] as const)[i]} />
+                <p className="data ju mt-4">Failure {f.n}</p>
+                <h3 className="pm mt-2">{f.en}</h3>
+                <p className="han-lb mt-1.5">{f.ko}</p>
+                <p className="t-sm mt-3">{f.d}</p>
               </div>
             ))}
-          </dl>
+          </div>
         </div>
       </section>
 
-      {/* ───────────────────────── City marquee ───────────────────────── */}
-      <section aria-hidden="true" className="relative border-y border-[var(--border)] py-4">
-        <div className="flex w-max animate-marquee gap-10 pr-10">
-          {[...marqueeWords, ...marqueeWords].map((w, i) => (
-            <span
-              key={`${w}-${i}`}
-              className="flex items-center gap-10 font-display text-sm font-bold tracking-[0.2em] uppercase text-faint"
-            >
-              {w}
-              <span className="size-1.5 rounded-full bg-[var(--border-strong)]" />
-            </span>
-          ))}
-        </div>
-      </section>
+      {/* ─────────── Guides ─────────── */}
+      <section id="guides" className="band sect tint">
+        <div className="wrap">
+          <p className="data dim">02 / The guides</p>
+          <h2 className="pl mt-4">Five procedures</h2>
+          <p className="han-m dim mt-3">다섯 개의 절차</p>
 
-      {/* ───────────────────────── The problem ───────────────────────── */}
-      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
-        <div className="max-w-2xl">
-          <h2 className="font-display text-3xl font-extrabold tracking-[-0.02em] sm:text-4xl">
-            Most guides online are
-            <span className="grad-text"> describing a site that got renamed.</span>
-          </h2>
-          <p className="mt-5 text-base leading-relaxed text-soft">
-            Yanolja Core folded Interpark Ticket into NOL Ticket in April 2025. Then on
-            1 December 2025 the overseas-facing interpark Global became NOL World. The
-            English guides ranking today still send you to the old name, with screenshots
-            of an interface that changed.
-          </p>
-          <p className="mt-4 text-base leading-relaxed text-soft">
-            On top of that, South Korea&apos;s revised Performances Act took effect on
-            28 August 2025 and reshaped what resale is allowed. Almost nothing written for
-            international fans mentions it.
-          </p>
-        </div>
-
-        <div className="mt-12 grid gap-4 sm:grid-cols-3">
-          {[
-            {
-              n: "01",
-              t: "Wrong platform",
-              d: "Guides map agencies to platforms one-to-one. Agencies switch between tours, and a single tour can split its Korean and global sales.",
-            },
-            {
-              n: "02",
-              t: "Wrong verification",
-              d: "The identity check you face depends entirely on which site your show is sold on. Preparing for the wrong one wastes the lead time that matters.",
-            },
-            {
-              n: "03",
-              t: "Wrong moment",
-              d: "Verification processing, bank fraud rules and membership cut-offs all need days. They get discovered at the payment step instead.",
-            },
-          ].map((item) => (
-            <div key={item.n} className="glass glass-hover p-6">
-              <span className="font-mono text-[0.64rem] font-semibold tracking-[0.12em] uppercase text-faint">
-                Failure {item.n}
-              </span>
-              <h3 className="mt-3 font-display text-lg font-bold">{item.t}</h3>
-              <p className="mt-2.5 text-sm leading-relaxed text-soft">{item.d}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ───────────────────────── Guides ───────────────────────── */}
-      <section id="guides" className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <h2 className="font-display text-3xl font-extrabold tracking-[-0.02em] sm:text-4xl">
-            The guides
-          </h2>
-          <Link
-            href="/guides"
-            className="text-sm font-semibold text-soft transition-colors hover:text-[var(--text)]"
-          >
-            See all →
-          </Link>
-        </div>
-
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
-          {guides.map((g, i) => {
-            const a = accentMap[g.accent];
-            return (
-              <Link
-                key={g.slug}
-                href={`/guides/${g.slug}`}
-                className={`glass glass-hover group relative overflow-hidden p-6 sm:p-7 ${
-                  i === 0 ? "md:col-span-2" : ""
-                }`}
-              >
-                <div
-                  className={`pointer-events-none absolute -top-24 -right-24 size-56 rounded-full bg-gradient-to-br ${a.glow} to-transparent opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100`}
-                />
-                <div className="relative flex items-start gap-4">
-                  <span className={`grid size-12 shrink-0 place-items-center rounded-xl ${a.bg} ${a.text}`}>
-                    <Glyph name={g.glyph} className="size-6" />
-                  </span>
+          <ul className="mt-8 grid gap-3.5">
+            {guides.map((g, i) => (
+              <li key={g.slug} className="obj obj-lift p-6">
+                <Link href={`/guides/${g.slug}`} className="flex items-start gap-4">
+                  <ObjectMark name={g.glyph} />
                   <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="font-display text-xl font-bold tracking-[-0.01em]">
-                        {g.title}
-                      </h3>
+                    <div className="flex items-baseline gap-3">
+                      <span className="data ju shrink-0">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <h3 className="pm min-w-0">{g.title}</h3>
                     </div>
-                    <p className="mt-2.5 text-sm leading-relaxed text-soft">{g.summary}</p>
-                    <div className="mt-4 flex flex-wrap items-center gap-2">
+                    <p className="han-lb mt-1.5">{g.koLine}</p>
+                    <p className="t-sm mt-2 max-w-[62ch]">{g.summary}</p>
+                    <div className="mt-3.5 flex flex-wrap items-center gap-2">
+                      <span className="chip data-sm">
+                        {String(g.steps.length).padStart(2, "0")} steps
+                      </span>
+                      <span className="chip data-sm">
+                        {String(g.readMinutes).padStart(2, "0")} min
+                      </span>
                       <VerifiedBadge status={g.status} date={g.lastVerified} />
-                      <span className="text-xs text-faint">{g.readMinutes} min read</span>
-                      <span className="text-xs text-faint">· {g.steps.length} steps</span>
                     </div>
                   </div>
-                </div>
-              </Link>
-            );
-          })}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* ───────────────────────── Platforms ───────────────────────── */}
-      <section id="platforms" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
-        <h2 className="font-display text-3xl font-extrabold tracking-[-0.02em] sm:text-4xl">
-          Know your platform
-        </h2>
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-soft">
-          There is no single K-pop ticketing site. The platform is chosen per tour and
-          named in the official announcement. These are the ones that come up — but never
-          infer yours from the agency.
-        </p>
+      {/* ─────────── Platforms ─────────── */}
+      <section id="platforms" className="band sect">
+        <div className="wrap">
+          <p className="data dim">03 / Platforms</p>
+          <h2 className="pl mt-4 max-w-[19ch]">Never infer yours from the agency</h2>
+          <p className="han-m dim mt-3">소속사로 예매처를 추측하지 마세요</p>
+          <p className="t mt-5">
+            There is no single K-pop ticketing site. The platform is chosen per tour and
+            named in the official announcement. These are the Hangul names you will see on
+            screen.
+          </p>
 
-        <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {platformList.map((p) => {
-            const a = accentMap[p.accent];
-            return (
-              <li key={p.name} className="glass flex items-start gap-3 p-5">
-                <span className={`mt-1.5 size-2.5 shrink-0 rounded-full ${a.dot}`} aria-hidden="true" />
-                <div>
-                  <h3 className="font-display text-base font-bold">{p.name}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-soft">{p.note}</p>
+          <div className="obj mt-8 px-5 pt-2 pb-1">
+            <div className="scroller">
+              <table className="tbl">
+                <thead>
+                  <tr>
+                    <th className="w-[20%]">한글</th>
+                    <th className="w-[26%]">Platform</th>
+                    <th>What it is</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {platformList.map((p, i) => (
+                    <tr
+                      key={p.name}
+                      style={i === platformList.length - 1 ? { borderBottom: 0 } : undefined}
+                    >
+                      <td>
+                        <span className="han ju text-[1.0625rem]">{p.ko}</span>
+                      </td>
+                      <td style={{ color: "var(--ink)" }}>
+                        <span className="ps">{p.name}</span>
+                      </td>
+                      <td>{p.note}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="obj mt-3.5 p-6">
+            <p className="data dim">
+              Words on the booking screen{" "}
+              <span className="han text-[0.6875rem]">예매 화면에서 보게 될 단어</span>
+            </p>
+            <div className="mt-4 grid gap-2.5 sm:grid-cols-3">
+              {glossary.map((w) => (
+                <div key={w.ko} className="obj-flat p-3.5">
+                  <span className="han ju text-[1.125rem]">{w.ko}</span>
+                  <p className="data-sm mt-1">{w.en}</p>
                 </div>
-              </li>
-            );
-          })}
-        </ul>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* ───────────────────────── Principles ───────────────────────── */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="ring-grad glass overflow-hidden p-8 sm:p-12">
-          <h2 className="font-display text-2xl font-extrabold tracking-[-0.02em] sm:text-3xl">
-            How we write these
-          </h2>
-          <div className="mt-8 grid gap-7 sm:grid-cols-2">
+      {/* ─────────── Principles ─────────── */}
+      <section className="band flood">
+        <div className="wrap sect">
+          <p className="data" style={{ opacity: 0.64 }}>
+            04 / How we write these
+          </p>
+          <h2 className="pl mt-4 max-w-[20ch]">Four rules, no exceptions</h2>
+          <p className="han-m mt-3" style={{ opacity: 0.76 }}>
+            네 가지 원칙, 예외 없음
+          </p>
+
+          <div className="mt-9 grid">
             {[
               {
                 t: "Dated, or it doesn't ship",
-                d: `Every page carries the day it was last checked against the live platform. Research compiled ${RESEARCH_DATE}.`,
+                d: "Every page carries the day it was last checked against the live platform.",
               },
               {
                 t: "Sourced, or it doesn't ship",
-                d: "Official announcements, platform help pages and press reporting — linked at the bottom of every guide so you can check us.",
+                d: "Official announcements, platform help pages and press reporting — linked at the foot of every guide so you can check us.",
               },
               {
                 t: "No identity-check workarounds",
-                d: "Where a platform requires Korean identity verification we say so and describe the official routes open to overseas fans. We will not help you around a verification.",
+                d: "Where a platform requires Korean 본인인증 we say so, and describe the official routes open to overseas fans instead.",
               },
               {
                 t: "No idol photos",
-                d: "Not one. Every visual here is drawn for this site. That keeps us clear of portrait and copyright claims, and it means we can redraw a flow the day a platform changes it.",
+                d: "Not one. Every object on this site was drawn for it, which keeps us clear of portrait and copyright claims — and lets us redraw a flow the day a platform changes it.",
               },
-            ].map((p) => (
-              <div key={p.t} className="flex gap-3.5">
-                <svg viewBox="0 0 24 24" className="mt-0.5 size-5 shrink-0 text-lime-400" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M4 12.5l5 5L20 6.5" />
-                </svg>
+            ].map((p, i, arr) => (
+              <div
+                key={p.t}
+                className="grid grid-cols-[48px_1fr] py-5"
+                style={{
+                  borderTop: "1px solid rgba(0,0,0,.22)",
+                  borderBottom: i === arr.length - 1 ? "1px solid rgba(0,0,0,.22)" : undefined,
+                }}
+              >
+                <span className="data" style={{ opacity: 0.6 }}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 <div>
-                  <h3 className="font-display text-base font-bold">{p.t}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-soft">{p.d}</p>
+                  <h3 className="ps">{p.t}</h3>
+                  <p className="t-sm mt-2">{p.d}</p>
                 </div>
               </div>
             ))}

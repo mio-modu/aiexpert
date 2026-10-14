@@ -36,13 +36,18 @@ export type Guide = {
   slug: string;
   /** Short label for cards and nav. */
   name: string;
+  /**
+   * A Hangul one-liner shown under the title. Not a translation of the English —
+   * it uses the words a fan meets on the real booking screen, so it carries
+   * information an international reader can act on.
+   */
+  koLine: string;
   /** Full <title> / h1. Written as the query a fan actually types. */
   title: string;
   /** Meta description + card subtitle. */
   summary: string;
   /** Emoji-free glyph key — mapped to an inline SVG in components/Glyph.tsx */
   glyph: "ticket" | "id" | "card" | "star" | "parcel";
-  accent: "grape" | "bubble" | "aqua" | "tangerine" | "lime";
   status: GuideStatus;
   lastVerified: string;
   /** What this guide does and does not cover. Rendered above the steps. */
@@ -64,11 +69,11 @@ export const guides: Guide[] = [
   {
     slug: "buy-k-pop-concert-tickets-from-overseas",
     name: "Start here",
+    koLine: "해외에서 한국 공연 티켓 사기 — 전체 흐름",
     title: "How to buy K-pop concert tickets from outside Korea",
     summary:
       "The whole picture before you start: which platform your show is on, what identity check it runs, and what to have ready before the sale opens.",
     glyph: "ticket",
-    accent: "grape",
     status: "draft",
     lastVerified: RESEARCH_DATE,
     scope:
@@ -172,11 +177,11 @@ export const guides: Guide[] = [
   {
     slug: "nol-world-ticketing-guide",
     name: "NOL World",
+    koLine: "놀 월드 예매 안내 — 구 인터파크 글로벌",
     title: "NOL World ticketing guide (the site that used to be interpark Global)",
     summary:
       "interpark Global became NOL World on 1 December 2025. Most guides still send you to the old name — here is the current route, step by step.",
     glyph: "id",
-    accent: "aqua",
     status: "draft",
     lastVerified: RESEARCH_DATE,
     scope:
@@ -258,11 +263,11 @@ export const guides: Guide[] = [
   {
     slug: "fan-club-presale-checklist",
     name: "Presale access",
+    koLine: "팬클럽 선예매 — 자격 만들기",
     title: "Fan club presale: how to actually qualify before the window closes",
     summary:
       "Membership alone is not access. There is a verification step between the two, it has its own deadline, and missing it is the most common way fans lose a presale.",
     glyph: "star",
-    accent: "bubble",
     status: "draft",
     lastVerified: RESEARCH_DATE,
     scope:
@@ -340,11 +345,11 @@ export const guides: Guide[] = [
   {
     slug: "foreign-card-declined-korean-ticketing",
     name: "Card declined",
+    koLine: "해외 카드 결제 거절 — 원인별 해결",
     title: "Foreign card declined on a Korean ticketing site: what to check",
     summary:
       "Three different systems can reject the same payment — the platform, your card network and your bank. Each has a different fix and only one of them is fast.",
     glyph: "card",
-    accent: "tangerine",
     status: "draft",
     lastVerified: RESEARCH_DATE,
     scope:
@@ -421,11 +426,11 @@ export const guides: Guide[] = [
   {
     slug: "buy-k-pop-albums-from-overseas",
     name: "Albums & goods",
+    koLine: "해외 앨범 구매 — 차트 반영되는 곳",
     title: "Buying K-pop albums from overseas so they count toward the charts",
     summary:
       "Where you buy decides whether your purchase is counted, what you pay in shipping, and whether you get the pre-order inclusions. Here is how to choose.",
     glyph: "parcel",
-    accent: "lime",
     status: "draft",
     lastVerified: RESEARCH_DATE,
     scope:
@@ -504,30 +509,50 @@ export function getGuide(slug: string): Guide | undefined {
   return guides.find((g) => g.slug === slug);
 }
 
-export const platformList = [
+export const platformList: { ko: string; name: string; note: string }[] = [
   {
+    ko: "위버스",
     name: "Weverse",
     note: "HYBE's own community and ticketing platform",
-    accent: "grape" as const,
   },
   {
+    ko: "놀 월드",
     name: "NOL World",
     note: "Overseas-facing — renamed from interpark Global, Dec 2025",
-    accent: "aqua" as const,
   },
   {
+    ko: "놀 티켓",
     name: "NOL Ticket",
     note: "Korean-language — renamed from Interpark Ticket, Apr 2025",
-    accent: "bubble" as const,
   },
   {
+    ko: "예스24",
     name: "YES24 Global",
     note: "Used for a range of Korean tours",
-    accent: "tangerine" as const,
   },
   {
+    ko: "멜론티켓",
     name: "Melon Ticket",
     note: "Also appears in Korean tour announcements",
-    accent: "lime" as const,
   },
 ];
+
+/**
+ * The words a fan will actually read on a Korean booking screen. This is the
+ * most immediately useful Korean content the site can carry, which is why the
+ * Hangul here is content rather than decoration.
+ */
+export const glossary: { ko: string; en: string }[] = [
+  { ko: "본인인증", en: "Identity verification" },
+  { ko: "선예매", en: "Presale" },
+  { ko: "예매", en: "Booking" },
+  { ko: "좌석 선택", en: "Seat selection" },
+  { ko: "결제", en: "Payment" },
+  { ko: "매진", en: "Sold out" },
+  { ko: "현장 수령", en: "Collect at venue" },
+  { ko: "해외 발행 카드", en: "Overseas-issued card" },
+  { ko: "취소", en: "Cancelled" },
+];
+
+/** Hangul consonants used to index the steps of a flow. */
+export const jamo = ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ"];
