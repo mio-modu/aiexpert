@@ -152,3 +152,23 @@ Expect roughly zero revenue for the first three to four months.
 
 Not affiliated with any agency, artist or ticketing platform. Not legal, financial or
 immigration advice.
+
+---
+
+## Deploying
+
+The production domain is `kpopgo.app`. `.app` is HTTPS-only and HSTS-preloaded in
+browsers, so there is no http variant to canonicalise and no certificate to buy —
+Vercel issues and renews one automatically. Do not purchase an SSL product from
+the registrar.
+
+1. Import the repo in Vercel and set **Root Directory** to `kpopgo`.
+2. Add `NEXT_PUBLIC_GA_ID` (GA4) — engagement time is measured there, not in
+   Search Console.
+3. Add `kpopgo.app` under Domains, then point the registrar's nameservers or add
+   the A/CNAME records Vercel shows.
+4. Verify the property in Google Search Console and submit
+   `https://kpopgo.app/sitemap.xml`.
+
+Changing the domain later is one line in `lib/site.ts` — sitemap, robots,
+canonicals and OpenGraph all derive from it.
