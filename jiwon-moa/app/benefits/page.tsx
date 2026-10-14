@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/benefits" },
 };
 
-const ORDER: Category[] = ["tax", "cash", "child", "housing", "job", "senior", "edu", "business", "living"];
+const ORDER: Category[] = ["hidden", "tax", "cash", "child", "housing", "job", "senior", "edu", "business", "living"];
 
 export default function Page() {
   return (

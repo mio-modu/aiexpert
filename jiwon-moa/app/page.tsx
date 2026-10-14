@@ -19,6 +19,10 @@ export default function Home() {
     .map((s) => BENEFITS.find((b) => b.slug === s)!)
     .filter(Boolean);
 
+  const hidden = ["sumeun-boheomgeum", "hyumyeon-yegeum", "card-point", "gukse-hwangeupgeum", "gangbo-sanghanje", "toejik-yeongeum-micheonggu"]
+    .map((s) => BENEFITS.find((b) => b.slug === s)!)
+    .filter(Boolean);
+
   const categories = Object.values(CATEGORY_META);
 
   const faqLd = {
@@ -88,8 +92,8 @@ export default function Home() {
           </div>
 
           <p className="t-lead" style={{ maxWidth: "48ch", marginBottom: "calc(var(--u)*3)" }}>
-            5가지만 답하면 받을 수 있는 지원금을 금액·신청기간과 함께 찾아드립니다.
-            가입도, 로그인도 필요 없습니다.
+            정부지원금 {BENEFITS.length}개와 이미 내 이름으로 쌓여 있는 숨은 돈을
+            한곳에서 찾습니다. 가입도, 로그인도 필요 없습니다.
           </p>
 
           <div className="row">
@@ -108,9 +112,9 @@ export default function Home() {
         <div className="wrap">
           <div className="stat-row">
             <div className="stat">
-              <span className="stat-label">정리된 지원제도</span>
+              <span className="stat-label">정리된 제도</span>
               <span className="stat-value is-lg">{BENEFITS.length}개</span>
-              <span className="stat-basis">중앙부처 기준 · 지자체 제도 순차 추가</span>
+              <span className="stat-basis">지원금 {BENEFITS.filter((b) => b.category !== "hidden").length}개 + 숨은 돈 {BENEFITS.filter((b) => b.category === "hidden").length}개</span>
             </div>
             <div className="stat">
               <span className="stat-label">자녀장려금 1인당 최대</span>
@@ -134,6 +138,41 @@ export default function Home() {
       <div className="wrap section-sm">
         <AdSlot />
       </div>
+
+      {/* ───────── 숨은 돈 찾기 ───────── */}
+      <section className="section-sm">
+        <div className="wrap">
+          <div className="row-between" style={{ marginBottom: "calc(var(--u))" }}>
+            <h2 style={{ fontSize: "var(--fs-h2)" }}>이미 내 돈인데 안 찾아간 것</h2>
+            <Link href="/category/hidden" className="t-sm">전부 보기 →</Link>
+          </div>
+          <p className="t-lead" style={{ maxWidth: "52ch", marginBottom: "calc(var(--u)*2)" }}>
+            지원금은 자격을 심사받아야 하지만, 이건 다릅니다. 이미 내 이름으로 쌓여 있는데
+            찾아가지 않아 묶여 있는 돈입니다. 조회는 전부 공식 기관에서 무료입니다.
+          </p>
+
+          <div className="grid grid-3">
+            {hidden.map((b) => (
+              <Link key={b.slug} href={`/benefit/${b.slug}`} className="card card-link">
+                <span className="badge badge-accent">{b.agency}</span>
+                <h3 className="card-title" style={{ margin: "calc(var(--u)*1.5) 0 calc(var(--u))" }}>
+                  {b.name}
+                </h3>
+                <p className="card-sub">{b.summary}</p>
+              </Link>
+            ))}
+          </div>
+
+          <div className="notice notice-warn" style={{ marginTop: "calc(var(--u)*2)" }}>
+            <span className="ni" aria-hidden>!</span>
+            <span>
+              <strong>수수료를 받고 대신 찾아준다는 업체는 이용할 이유가 없습니다.</strong>{" "}
+              위 서비스는 모두 협회·공단·금융감독원이 직접 운영하는 무료 조회이며,
+              본인인증만 하면 누구나 몇 분 안에 직접 확인하고 청구할 수 있습니다.
+            </span>
+          </div>
+        </div>
+      </section>
 
       {/* ───────── 많이 찾는 지원금 ───────── */}
       <section className="section-sm">

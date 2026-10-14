@@ -23,9 +23,11 @@ export type Category =
   | "senior"    // 노년
   | "business"  // 창업·소상공인
   | "edu"       // 교육·자기계발
-  | "living";   // 생활·에너지·문화
+  | "living"    // 생활·에너지·문화
+  | "hidden";   // 숨은 돈 찾기 (이미 내 돈인데 안 찾아간 것)
 
 export const CATEGORY_META: Record<Category, { label: string; slug: string; desc: string }> = {
+  hidden:   { label: "숨은 돈 찾기",      slug: "hidden",   desc: "이미 내 돈인데 찾아가지 않아 묶여 있는 보험금·예금·환급금. 조회는 전부 무료입니다" },
   tax:      { label: "세금 환급·장려금", slug: "tax",      desc: "국세청이 현금으로 돌려주는 장려금과 환급 제도" },
   cash:     { label: "현금성 지원",       slug: "cash",     desc: "조건을 만족하면 현금으로 직접 지급되는 지원금" },
   housing:  { label: "주거·월세",         slug: "housing",  desc: "월세·보증금·전세대출 이자를 덜어주는 지원" },

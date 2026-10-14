@@ -13,11 +13,15 @@ const SITUATIONS = [
   { id: "jobseeking", label: "구직 중이에요" },
   { id: "childcare", label: "아이를 키우고 있어요" },
   { id: "pregnant", label: "임신 중이거나 곧 출산해요" },
+  { id: "newlywed", label: "결혼했거나 결혼을 앞두고 있어요" },
+  { id: "singleparent", label: "한부모 가정이에요" },
   { id: "study", label: "공부·자격증을 준비해요" },
-  { id: "moving", label: "이사를 계획 중이에요" },
+  { id: "moving", label: "이사·주택 구입을 계획 중이에요" },
   { id: "startup", label: "창업을 준비해요" },
+  { id: "disabled", label: "등록 장애가 있어요" },
   { id: "lowincome", label: "기초수급·차상위 대상이에요" },
   { id: "crisis", label: "갑작스러운 실직·질병을 겪었어요" },
+  { id: "jeonsesagi", label: "전세보증금을 못 돌려받고 있어요" },
 ];
 
 export function Diagnose() {
