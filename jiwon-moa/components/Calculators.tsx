@@ -140,14 +140,23 @@ export function EitcCalculator() {
       <div className="result-panel stack" style={{ ["--gap" as string]: "calc(var(--u)*2)" }}>
         <div className="stat">
           <span className="stat-label">예상 수령액</span>
-          <span className="stat-value is-hero">{formatKRW(r.final)}</span>
-          <span className="stat-basis">
-            {HOUSEHOLD_LABEL[household]} · 총급여 {formatPlain(income.value)}원 · 재산{" "}
-            {formatPlain(asset)}원 기준 · {table.label} ({table.baseYear}년 귀속)
-          </span>
+          {income.value === 0 ? (
+            <>
+              <span className="stat-value is-hero is-empty">—</span>
+              <span className="stat-basis">연간 총급여액을 입력하면 예상액이 바로 계산됩니다.</span>
+            </>
+          ) : (
+            <>
+              <span className="stat-value is-hero">{formatKRW(r.final)}</span>
+              <span className="stat-basis">
+                {HOUSEHOLD_LABEL[household]} · 총급여 {formatPlain(income.value)}원 · 재산{" "}
+                {formatPlain(asset)}원 기준 · {table.label} ({table.baseYear}년 귀속)
+              </span>
+            </>
+          )}
         </div>
 
-        {r.assetTier === "half" && (
+        {income.value > 0 && r.assetTier === "half" && (
           <div className="notice notice-warn">
             <span className="ni" aria-hidden>!</span>
             <span>
@@ -156,13 +165,13 @@ export function EitcCalculator() {
             </span>
           </div>
         )}
-        {r.assetTier === "none" && (
+        {income.value > 0 && r.assetTier === "none" && (
           <div className="notice notice-warn">
             <span className="ni" aria-hidden>!</span>
             <span>재산 합계가 2억 4,000만원 이상이면 근로장려금이 지급되지 않습니다.</span>
           </div>
         )}
-        {r.phase === "over" && r.assetTier !== "none" && (
+        {income.value > 0 && r.phase === "over" && r.assetTier !== "none" && (
           <div className="notice notice-warn">
             <span className="ni" aria-hidden>!</span>
             <span>
@@ -308,21 +317,30 @@ export function CtcCalculator() {
       <div className="result-panel stack" style={{ ["--gap" as string]: "calc(var(--u)*2)" }}>
         <div className="stat">
           <span className="stat-label">예상 수령액</span>
-          <span className="stat-value is-hero">{formatKRW(r.final)}</span>
-          <span className="stat-basis">
-            자녀 {children}명 · 총소득 {formatPlain(income.value)}원 · 재산 {formatPlain(asset)}원
-            기준 · {CTC_CURRENT.baseYear}년 귀속
-          </span>
+          {income.value === 0 ? (
+            <>
+              <span className="stat-value is-hero is-empty">—</span>
+              <span className="stat-basis">부부 합산 총소득을 입력하면 예상액이 바로 계산됩니다.</span>
+            </>
+          ) : (
+            <>
+              <span className="stat-value is-hero">{formatKRW(r.final)}</span>
+              <span className="stat-basis">
+                자녀 {children}명 · 총소득 {formatPlain(income.value)}원 · 재산{" "}
+                {formatPlain(asset)}원 기준 · {CTC_CURRENT.baseYear}년 귀속
+              </span>
+            </>
+          )}
         </div>
 
-        {r.perChild > 0 && (
+        {income.value > 0 && r.perChild > 0 && (
           <p className="t-sm t-soft">
             자녀 1명당 <strong>{formatKRW(r.perChild)}</strong> × {children}명
             {r.assetTier === "half" ? " (재산 기준으로 50% 감액 적용)" : ""}
           </p>
         )}
 
-        {income.value >= CTC_CURRENT.cutoff && (
+        {income.value > 0 && income.value >= CTC_CURRENT.cutoff && (
           <div className="notice notice-warn">
             <span className="ni" aria-hidden>!</span>
             <span>
@@ -331,7 +349,7 @@ export function CtcCalculator() {
             </span>
           </div>
         )}
-        {r.assetTier === "none" && (
+        {income.value > 0 && r.assetTier === "none" && (
           <div className="notice notice-warn">
             <span className="ni" aria-hidden>!</span>
             <span>재산 합계가 2억 4,000만원 이상이면 자녀장려금이 지급되지 않습니다.</span>

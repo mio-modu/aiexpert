@@ -51,8 +51,10 @@
   --font-sans: "Pretendard Variable", Pretendard, -apple-system,
                BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic",
                system-ui, "Segoe UI", Roboto, sans-serif;
-  --font-num:  "JetBrains Mono", ui-monospace, "SF Mono", Menlo,
-               "Pretendard Variable", monospace;
+  /* 한글이 섞인 문자열에서 모노스페이스 폴백이 생기지 않도록 Pretendard 우선.
+     자릿수 정렬은 font-variant-numeric: tabular-nums 가 담당한다. */
+  --font-num:  "Pretendard Variable", Pretendard, -apple-system,
+               BlinkMacSystemFont, "Apple SD Gothic Neo", system-ui, sans-serif;
 
   --fs-display: clamp(2.6rem, 1.5rem + 4.6vw, 4.2rem);
   --fs-h1:      clamp(1.75rem, 1.2rem + 2.3vw, 2.6rem);

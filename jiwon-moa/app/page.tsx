@@ -149,7 +149,7 @@ export default function Home() {
                   <span className="badge badge-plain">{b.agency}</span>
                 </div>
                 <h3 className="card-title" style={{ marginBottom: "calc(var(--u))" }}>{b.name}</h3>
-                <p className="stat-value is-md" style={{ color: "var(--c-accent)", marginBottom: "calc(var(--u))" }}>
+                <p className="card-amount">
                   {b.amount}
                 </p>
                 <p className="card-sub" style={{ marginBottom: "calc(var(--u)*1.5)" }}>{b.summary}</p>

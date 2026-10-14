@@ -53,7 +53,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       <div className="stat-row" style={{ marginBottom: "calc(var(--u)*3)" }}>
         <div className="stat">
           <span className="stat-label">지원 금액</span>
-          <span className="stat-value is-md" style={{ color: "var(--c-accent)" }}>{b.amount}</span>
+          <span className="card-amount">{b.amount}</span>
           <span className="stat-basis">{b.baseYear}년 기준</span>
         </div>
         <div className="stat">
@@ -118,7 +118,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
             return (
               <Link key={r} href={`/benefit/${r}`} className="card card-link">
                 <h3 className="card-title" style={{ marginBottom: "calc(var(--u)*0.5)" }}>{rb.name}</h3>
-                <p className="stat-value is-md" style={{ color: "var(--c-accent)", fontSize: "1rem", marginBottom: "calc(var(--u))" }}>
+                <p className="card-amount">
                   {rb.amount}
                 </p>
                 <p className="card-sub">{rb.summary}</p>

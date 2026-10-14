@@ -317,3 +317,13 @@ button { font: inherit; cursor: pointer; }
   content: counter(f); position: absolute; left: calc(var(--u) * 2); top: calc(var(--u) * 1.5);
   font-family: var(--font-num); font-size: var(--fs-sm); font-weight: 700; color: var(--c-primary);
 }
+
+
+/* 카드 안 금액 — 긴 한글 문자열이 섞이므로 숫자 블록과 분리한다 */
+.card-amount {
+  font-weight: 800; font-size: 1.0625rem; line-height: 1.45;
+  letter-spacing: -0.02em; color: var(--c-accent);
+  font-variant-numeric: tabular-nums;
+}
+/* 값이 아직 없을 때 */
+.stat-value.is-empty { color: var(--c-ink-muted); }
