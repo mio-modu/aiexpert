@@ -28,6 +28,12 @@ export function Nav() {
           <Link href="/guides" className="data dim px-2 transition-colors hover:text-[var(--ink)]">
             Guides
           </Link>
+          <Link
+            href="/words"
+            className="data dim hidden px-2 transition-colors hover:text-[var(--ink)] sm:block"
+          >
+            Words
+          </Link>
           <ThemeToggle />
           <Link
             href="/guides/buy-k-pop-concert-tickets-from-overseas"

@@ -5,6 +5,8 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { site } from "@/lib/site";
 import { adsConfigured, ads } from "@/lib/ads";
+import { siteJsonLd } from "@/lib/jsonld";
+import { JsonLd } from "@/components/JsonLd";
 
 // Archivo carries a width axis — the wide cut gives the headlines their poster feel.
 const archivo = Archivo({
@@ -90,6 +92,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <JsonLd data={siteJsonLd()} />
         <Nav />
         <main id="main">{children}</main>
         <Footer />

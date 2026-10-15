@@ -68,6 +68,7 @@ job and is the actual product work.
 | SEO | Per-page metadata, `HowTo` + `FAQPage` + `BreadcrumbList` JSON-LD, sitemap, robots |
 | Analytics | GA4 via `NEXT_PUBLIC_GA_ID` — engagement time is measured here, **not** in Search Console |
 | Deploy | Vercel |
+| Security | Frame denial, nosniff, referrer and permissions policy in `next.config.ts` |
 
 Design follows the webdesign-style system:
 
@@ -149,6 +150,22 @@ domain can take months to index, so low impressions alone does not mean no marke
 
 Failing *search* alone → diagnose indexing versus content. Failing *product* or *demand* →
 stop.
+
+## Pages
+
+| Route | What it is |
+| --- | --- |
+| `/` | Stage hero, the gap, the five guides, platforms, principles |
+| `/guides` | Index |
+| `/guides/[slug]` | A procedure, with its sources and verification date |
+| `/words` | The Korean on a booking screen, grouped by where you meet it |
+| `/about` | Who writes this, how it is checked, what it will not do |
+| `/privacy` | Required for AdSense, and only claims ads exist once they do |
+| `/ads.txt` | Generated from the publisher id, 404 while none is set |
+
+`/words` is the page most likely to be linked by other people. A reference
+someone bookmarks is worth more than a guide they read once, and it is the one
+thing here no competitor offers at all.
 
 ## Advertising
 

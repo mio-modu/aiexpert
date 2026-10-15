@@ -50,3 +50,36 @@ export function guideJsonLd(guide: Guide) {
 
   return [howTo, faq, breadcrumb];
 }
+
+/**
+ * Site-level structured data. Answer engines increasingly cite rather than
+ * link, so naming the publisher and what it covers is worth doing even when no
+ * rich result comes of it.
+ */
+export function siteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${site.url}#org`,
+        name: site.name,
+        url: site.url,
+        description: site.description,
+        // Said plainly, because the agencies and platforms named across the
+        // site are not partners and must not read as such.
+        disambiguatingDescription:
+          "An independent fan resource. Not affiliated with, endorsed by or " +
+          "operated by any agency, artist or ticketing platform.",
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${site.url}#site`,
+        url: site.url,
+        name: site.name,
+        inLanguage: "en",
+        publisher: { "@id": `${site.url}#org` },
+      },
+    ],
+  };
+}
