@@ -26,7 +26,7 @@ export default function GuidesIndex() {
       </p>
 
       {/* What a sale actually hands you, in the site's own objects. */}
-      <div className="mx-auto mt-10 max-w-[560px] sm:mt-12">
+      <div className="mx-auto mt-10 max-w-[480px] sm:mt-12">
         <Artwork name="fan-kit" fallback={null} priority />
       </div>
 

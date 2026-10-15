@@ -77,7 +77,10 @@ export default async function GuidePage({
       </header>
 
       {/* ─────────── The guide's own object ─────────── */}
-      <div className="wrap mt-10 max-w-[560px]">
+      {/* Capped narrower than it used to be: the pieces are not all the same
+          shape, and a square one at 560px pushed a thousand pixels of guide
+          below the fold to show an object nobody came for. */}
+      <div className="wrap mt-10 max-w-[420px]">
         <Artwork name={guide.art} fallback={null} priority />
       </div>
 

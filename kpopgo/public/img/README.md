@@ -8,10 +8,10 @@ back to the SVG when it is missing, so the site builds and ships either way.
 | --- | --- | --- |
 | `hero-stage.jpg` | 1800 × 1012 | Home hero — **in place** |
 | `band-crowd.jpg` | 1800 × 524 | Crowd band — **in place** |
-| `lightstick.webp` | 560 × 834 | Hero, laid over the photograph — **in place** |
-| `pc-foil.webp` | 720 × 1001 | Home, beside the guides heading — **in place** |
+| `lightstick.webp` | 560 × 879 | Hero, laid over the photograph — **in place** |
+| `pc-foil.webp` | 720 × 1273 | Home, beside the guides heading — **in place** |
 | `fan-kit.webp` | 960 × 620 | Guides index header — **in place** |
-| `album-stack.webp` | 820 × 840 | Guide 05 — **in place** |
+| `album-stack.webp` | 820 × 841 | Guide 05 — **in place** |
 | `guide-tickets.webp` | 720 × 420 | Guide 01 — **in place** |
 | `guide-nol.webp` | 720 × 590 | Guide 02 — **in place** |
 | `guide-presale.webp` | 720 × 409 | Guide 03 — still on the drawn fallback |

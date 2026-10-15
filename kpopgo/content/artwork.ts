@@ -117,7 +117,7 @@ export const artwork: ArtPiece[] = [
     id: "pc-foil",
     file: "pc-foil.webp",
     width: 720,
-    height: 1202,
+    height: 1273,
     alt: "A blank collectible card standing upright, its border a band of iridescent foil.",
     placement: "Home — beside the guides heading, where the photocard idea is introduced",
     prompt:
@@ -131,7 +131,7 @@ export const artwork: ArtPiece[] = [
     id: "lightstick",
     file: "lightstick.webp",
     width: 560,
-    height: 878,
+    height: 879,
     alt: "A generic concert lightstick — a translucent sphere glowing on a straight handle.",
     placement: "Home hero, lower right — the object that names the subject on sight",
     prompt:
@@ -157,7 +157,7 @@ export const artwork: ArtPiece[] = [
     id: "album-stack",
     file: "album-stack.webp",
     width: 820,
-    height: 840,
+    height: 841,
     alt: "Three square album cases stacked at slight angles, in vermilion, violet and bone white.",
     placement: "Guide 05 — buying albums from overseas",
     prompt:
