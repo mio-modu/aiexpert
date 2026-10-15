@@ -48,6 +48,8 @@ export type Guide = {
   summary: string;
   /** Emoji-free glyph key — mapped to an inline SVG in components/Glyph.tsx */
   glyph: "ticket" | "id" | "card" | "star" | "parcel";
+  /** Artwork id from content/artwork.ts. Falls back to the drawn SVG. */
+  art: string;
   status: GuideStatus;
   lastVerified: string;
   /** What this guide does and does not cover. Rendered above the steps. */
@@ -68,6 +70,7 @@ export const RESEARCH_DATE = "2026-10-14";
 export const guides: Guide[] = [
   {
     slug: "buy-k-pop-concert-tickets-from-overseas",
+    art: "guide-tickets",
     name: "Start here",
     koLine: "해외에서 한국 공연 티켓 사기 — 전체 흐름",
     title: "How to buy K-pop concert tickets from outside Korea",
@@ -176,6 +179,7 @@ export const guides: Guide[] = [
 
   {
     slug: "nol-world-ticketing-guide",
+    art: "guide-nol",
     name: "NOL World",
     koLine: "놀 월드 예매 안내 — 구 인터파크 글로벌",
     title: "NOL World ticketing guide (the site that used to be interpark Global)",
@@ -262,6 +266,7 @@ export const guides: Guide[] = [
 
   {
     slug: "fan-club-presale-checklist",
+    art: "guide-presale",
     name: "Presale access",
     koLine: "팬클럽 선예매 — 자격 만들기",
     title: "Fan club presale: how to actually qualify before the window closes",
@@ -344,6 +349,7 @@ export const guides: Guide[] = [
 
   {
     slug: "foreign-card-declined-korean-ticketing",
+    art: "guide-card",
     name: "Card declined",
     koLine: "해외 카드 결제 거절 — 원인별 해결",
     title: "Foreign card declined on a Korean ticketing site: what to check",
@@ -425,6 +431,7 @@ export const guides: Guide[] = [
 
   {
     slug: "buy-k-pop-albums-from-overseas",
+    art: "guide-albums",
     name: "Albums & goods",
     koLine: "해외 앨범 구매 — 차트 반영되는 곳",
     title: "Buying K-pop albums from overseas so they count toward the charts",

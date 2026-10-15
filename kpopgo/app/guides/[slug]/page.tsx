@@ -5,6 +5,7 @@ import { getGuide, guides, jamo } from "@/content/guides";
 import { guideJsonLd } from "@/lib/jsonld";
 import { JsonLd } from "@/components/JsonLd";
 import { ObjectMark, StackedScreens, StepObject } from "@/components/Objects";
+import { Artwork } from "@/components/Artwork";
 import { VerifiedBadge, DraftNotice } from "@/components/Badges";
 
 export function generateStaticParams() {
@@ -72,6 +73,15 @@ export default async function GuidePage({
           ))}
         </div>
       </header>
+
+      {/* ─────────── The guide's own object ─────────── */}
+      <div className="wrap mt-10 max-w-[560px]">
+        <Artwork
+          name={guide.art}
+          fallback={<ObjectMark name={guide.glyph} />}
+          priority
+        />
+      </div>
 
       {/* ─────────── T21: the booking screens ─────────── */}
       <div className="wrap mt-10">

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { guides, glossary, platformList } from "@/content/guides";
 import { HeroScene, ObjectMark } from "@/components/Objects";
+import { Artwork } from "@/components/Artwork";
 import { VerifiedBadge } from "@/components/Badges";
 
 const cities = [
@@ -72,7 +73,7 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <HeroScene />
+            <Artwork name="hero" fallback={<HeroScene />} priority />
           </div>
         </div>
       </section>

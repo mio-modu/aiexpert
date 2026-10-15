@@ -98,7 +98,19 @@ JetBrains Mono (verification dates and platform codes). Light theme is the
 resting state, full dark theme included.
 
 Every illustration is drawn in-repo as inline SVG — see `components/Objects.tsx`.
-No photographs, no idol likenesses, no external image assets.
+No photographs, no idol likenesses, no external image assets, so the site builds
+and ships with zero image files.
+
+Rendered artwork is an upgrade path rather than a dependency. `content/artwork.ts`
+holds the file names and the generation briefs; dropping a PNG into `public/img/`
+makes `<Artwork>` swap it in at build time, and anything not yet rendered keeps
+its SVG. See `public/img/README.md`.
+
+Share cards are generated at build time by `next/og` (`app/opengraph-image.tsx`
+and the per-guide one), so every guide has its own card carrying its
+verification date. Known gap: they render in the default font weight, because
+loading a custom face would make the build depend on a font fetch — a card that
+always builds beats a bolder one that can fail a deploy.
 
 ```bash
 npm install
