@@ -1,0 +1,915 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════
+   KPOPGO
+
+   Style system (webdesign-style):
+     T13 보송한 3D 사물      — identity (DEPTH group)
+     T21 화면 캡처 겹치기    — the step flow
+     T20 숫자로 증명하기     — proof blocks
+
+   T13's rule is the hard one: 반짝임 금지 · 표면은 보송하게. So
+   every object is built from flat tonal faces — a lit face, a side
+   face, a shade face — with one soft contact shadow underneath. No
+   specular highlight anywhere, no glossy gradient. Light comes from
+   the upper left, once, for everything on the page.
+   T21 sets the shadow depths: the front screen casts hard, the ones
+   behind cast progressively lighter.
+
+   Korean reading: the palette is obangsaek-derived rather than the
+   usual cream-and-terracotta — 주朱 vermilion, 청 cyan, 보라 violet, 백 bone,
+   흑 ink. The verification badge is a 인장 seal, since a seal is a
+   mark of authentication and that is this site's whole product.
+   Hangul is content, never ornament: every Korean word on the page
+   is one a fan meets on the real booking screen.
+   ═══════════════════════════════════════════════════════════════ */
+
+@theme {
+  --font-latin: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-han: var(--font-gothic-a1), "Apple SD Gothic Neo", sans-serif;
+  --font-han-poster: var(--font-black-han), var(--font-gothic-a1), sans-serif;
+  --font-data: var(--font-jetbrains), ui-monospace, "SF Mono", monospace;
+}
+
+/* Dark is the resting state now. Cream paper reads as an editorial magazine,
+   which is a fine look and the wrong one — every surface the audience already
+   lives on (Weverse, Bubble, an album microsite, a tour poster) is black with
+   saturated light on it. Light theme stays complete, as the alternative. */
+:root {
+  --paper: #0a0a0f;
+  --paper-2: #121119;
+  --ink: #f6f3ee;
+  --ink-72: rgba(246, 243, 238, 0.74);
+  --ink-46: rgba(246, 243, 238, 0.5);
+  --rule: rgba(246, 243, 238, 0.2);
+  --rule-soft: rgba(246, 243, 238, 0.11);
+
+  /* The lightstick trio. 주朱 leads; the other two exist so the page is not
+     monochrome, which no K-pop surface ever is. Used on edges and marks, never
+     as a background wash — that is the difference between a photocard's foil
+     and a generic gradient hero. */
+  --ju: #ff3b2e;
+  --cy: #00e5ff;
+  --vi: #b14bff;
+  --on-ju: #0a0a0f;
+  --ju-body: rgba(10, 10, 15, 0.82);
+  --foil: linear-gradient(115deg, var(--cy), var(--vi) 42%, var(--ju) 82%, var(--cy));
+
+  --cast: rgba(0, 0, 0, 0.55);
+  --cast-soft: rgba(0, 0, 0, 0.34);
+
+  /* Objects are physical, so their own tones hold in both themes. These are
+     the matte-clay cousins of the lightstick trio: the same three hues one
+     step down in chroma, because a rendered object catches less light than a
+     lit edge does and a clay surface at full chroma reads as plastic. They
+     were indigo and gold while the palette was, and a drawn fallback sitting
+     next to a rendered image in the new palette made the mismatch obvious. */
+  --o-vi: #5a2f9e;
+  --o-vi-s: #42216f;
+  --o-vi-d: #2e1750;
+  --o-ju: #e8392b;
+  --o-ju-s: #b72a1f;
+  --o-bone: #f3ece1;
+  --o-bone-s: #d8cdbc;
+  --o-ink: #1c1b22;
+  --o-ink-s: #121118;
+  --o-cy: #00b2c8;
+
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --paper: #f7f4ef;
+    --paper-2: #efeae1;
+    --ink: #14131a;
+    --ink-72: rgba(20, 19, 26, 0.74);
+    --ink-46: rgba(20, 19, 26, 0.52);
+    --rule: rgba(20, 19, 26, 0.16);
+    --rule-soft: rgba(20, 19, 26, 0.09);
+    --ju: #d8341f;
+    --cy: #0088a8;
+    --vi: #7a2fd0;
+    --on-ju: #fffaf6;
+    --ju-body: rgba(255, 250, 246, 0.9);
+    --cast: rgba(20, 19, 26, 0.17);
+    --cast-soft: rgba(20, 19, 26, 0.09);
+    color-scheme: light;
+  }
+}
+
+:root[data-theme="light"] {
+  --paper: #f7f4ef;
+  --paper-2: #efeae1;
+  --ink: #14131a;
+  --ink-72: rgba(20, 19, 26, 0.74);
+  --ink-46: rgba(20, 19, 26, 0.52);
+  --rule: rgba(20, 19, 26, 0.16);
+  --rule-soft: rgba(20, 19, 26, 0.09);
+  --ju: #d8341f;
+  --cy: #0088a8;
+  --vi: #7a2fd0;
+  --on-ju: #fffaf6;
+  --ju-body: rgba(255, 250, 246, 0.9);
+  --cast: rgba(20, 19, 26, 0.17);
+  --cast-soft: rgba(20, 19, 26, 0.09);
+  color-scheme: light;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-latin);
+  font-size: 16px;
+  line-height: 1.62;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--ju);
+  color: var(--on-ju);
+}
+
+:focus-visible {
+  outline: 3px solid var(--ju);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 0.95;
+  letter-spacing: -0.034em;
+  text-wrap: balance;
+}
+
+@layer utilities {
+  /* ── shell ── */
+  .wrap {
+    max-width: 1140px;
+    margin-inline: auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .sect {
+    padding-block: clamp(52px, 8vw, 96px);
+  }
+  .band {
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .tint {
+    background: var(--paper-2);
+  }
+
+  /* ── poster type: Archivo's width axis does the work ── */
+  .px {
+    font-variation-settings: "wdth" 110;
+    font-weight: 900;
+    font-size: clamp(2.6rem, 9.4vw, 6rem);
+    text-transform: uppercase;
+  }
+  .pl {
+    font-variation-settings: "wdth" 106;
+    font-weight: 900;
+    font-size: clamp(1.8rem, 5.6vw, 3.25rem);
+    text-transform: uppercase;
+  }
+  .pm {
+    font-variation-settings: "wdth" 103;
+    font-weight: 800;
+    font-size: clamp(1.15rem, 2.9vw, 1.5rem);
+    text-transform: uppercase;
+    line-height: 1.06;
+  }
+  .ps {
+    font-variation-settings: "wdth" 100;
+    font-weight: 800;
+    font-size: 1.0625rem;
+    line-height: 1.26;
+    letter-spacing: -0.015em;
+  }
+
+  /* ── Hangul: set smaller than the Latin or the balance breaks ── */
+  .han-m {
+    font-family: var(--font-han-poster);
+    font-weight: 400;
+    font-size: clamp(1.25rem, 3.3vw, 1.875rem);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+  }
+  .han {
+    font-family: var(--font-han);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .han-lb {
+    font-family: var(--font-han);
+    font-weight: 700;
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
+    color: var(--ink-46);
+  }
+
+  /* ── the data voice: dates, codes, counts ── */
+  .data {
+    font-family: var(--font-data);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .data-sm {
+    font-family: var(--font-data);
+    font-size: 0.625rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ── running text ── */
+  .t {
+    font-size: 1rem;
+    line-height: 1.64;
+    color: var(--ink-72);
+    max-width: 62ch;
+  }
+  .t-lg {
+    font-size: clamp(1.0625rem, 1.9vw, 1.25rem);
+    line-height: 1.55;
+    color: var(--ink-72);
+    max-width: 38ch;
+  }
+  .t-sm {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--ink-72);
+  }
+  .dim {
+    color: var(--ink-46);
+  }
+  .ju {
+    color: var(--ju);
+  }
+
+  .flood {
+    background: var(--ju);
+    color: var(--on-ju);
+  }
+  .flood .t,
+  .flood .t-sm,
+  .flood .dim {
+    color: var(--ju-body);
+  }
+  .mark {
+    background: var(--ju);
+    color: var(--on-ju);
+    padding: 0 0.12em;
+  }
+
+  /* ── T13/T21 surfaces: rounded, matte, one soft contact shadow ── */
+  .obj {
+    background: var(--paper);
+    border: 1px solid var(--rule-soft);
+    border-radius: 18px;
+    box-shadow: 0 18px 34px -20px var(--cast-soft);
+  }
+  .obj-flat {
+    background: var(--paper);
+    border: 1px solid var(--rule-soft);
+    border-radius: 18px;
+  }
+  .obj-ju {
+    border: 2px solid var(--ju);
+    border-radius: 18px;
+  }
+  .obj-lift {
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.35s ease;
+  }
+  .obj-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 26px 44px -22px var(--cast);
+  }
+
+  .chip {
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 5px 11px;
+  }
+
+  /* ── 인장: the seal, standing in for a verification mark ── */
+  .seal {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    border: 2px solid var(--ju);
+    border-radius: 7px;
+    color: var(--ju);
+    padding: 5px 10px;
+    font-family: var(--font-data);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .seal-han {
+    font-family: var(--font-han);
+    font-weight: 900;
+    font-size: 0.8125rem;
+    letter-spacing: 0;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 15px 25px;
+    border-radius: 999px;
+    font-variation-settings: "wdth" 103;
+    font-weight: 900;
+    font-size: 0.9375rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: var(--ju);
+    color: var(--on-ju);
+    border: 2px solid var(--ju);
+    box-shadow: 0 14px 26px -14px var(--cast);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--rule);
+    box-shadow: none;
+  }
+
+  /* ── T20: 숫자가 주인공 ── */
+  .figure {
+    font-variation-settings: "wdth" 108;
+    font-weight: 900;
+    font-size: clamp(2.75rem, 8vw, 4.5rem);
+    line-height: 0.84;
+    letter-spacing: -0.05em;
+    font-variant-numeric: tabular-nums;
+    display: block;
+  }
+
+  /* ── T14/T21: the flow rows ── */
+  .flow-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 22px;
+  }
+  @media (min-width: 680px) {
+    .flow-row {
+      grid-template-columns: 112px 1fr;
+      gap: 24px;
+      padding: 26px;
+    }
+  }
+
+  .breaks {
+    border-left: 3px solid var(--ju);
+    padding-left: 15px;
+    margin-top: 15px;
+  }
+
+  /* ── tables carry the comparisons; wide ones scroll in place ── */
+  .tbl {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+  .tbl th,
+  .tbl td {
+    text-align: left;
+    padding: 13px 14px 13px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    vertical-align: middle;
+  }
+  .tbl th {
+    font-family: var(--font-data);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-46);
+  }
+  .tbl td {
+    color: var(--ink-72);
+  }
+  .scroller {
+    overflow-x: auto;
+  }
+
+  /* ── links out, set as credits ── */
+  .srcs a {
+    display: inline-flex;
+    gap: 11px;
+    align-items: baseline;
+    font-size: 0.9375rem;
+    color: var(--ink-72);
+    text-decoration: underline;
+    text-decoration-color: var(--rule);
+    text-underline-offset: 4px;
+  }
+  .srcs a:hover {
+    color: var(--ink);
+    text-decoration-color: var(--ju);
+  }
+
+  /* ── city ticker ── */
+  .ticker {
+    overflow: hidden;
+    padding-block: 11px;
+  }
+  .ticker-in {
+    display: flex;
+    width: max-content;
+    animation: run 48s linear infinite;
+  }
+  .ticker-in > span {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    padding-right: 26px;
+    font-family: var(--font-data);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* ── T09: the cinematic band. Dark in both themes — it is a photograph,
+     and the type on it is light, so it does not follow the page palette. ── */
+  .stage {
+    position: relative;
+    background: #0e0d12;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .stage-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .stage-media img,
+  .stage-media svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* The subject sits slightly above centre in both frames, and `cover` on a
+       band this wide crops vertically — without this it keeps the empty air
+       above them and cuts the stage floor off. */
+    object-position: center 42%;
+  }
+  /* T09's own failure is type sinking into the picture, so the corner the
+     headline sits in gets darkened — and only that corner. */
+  .stage-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to top right,
+      rgba(14, 13, 18, 0.94) 0%,
+      rgba(14, 13, 18, 0.62) 46%,
+      rgba(14, 13, 18, 0.08) 100%
+    );
+  }
+  /* A phone crops `cover` to the middle third of the frame, which is exactly
+     where the stage light is brightest — so the diagonal scrim that works on a
+     wide screen puts the eyebrow line straight onto the hot spot. Narrow
+     screens get a vertical scrim instead, and the type starts below the clear
+     zone, which is the shape of a poster anyway: picture, then title. */
+  @media (max-width: 639px) {
+    .stage-scrim {
+      background: linear-gradient(
+        to top,
+        rgba(14, 13, 18, 0.97) 38%,
+        rgba(14, 13, 18, 0.84) 62%,
+        rgba(14, 13, 18, 0.3) 100%
+      );
+    }
+    .stage-scrim-soft {
+      background: linear-gradient(
+        to top,
+        rgba(14, 13, 18, 0.92) 30%,
+        rgba(14, 13, 18, 0.6) 70%,
+        rgba(14, 13, 18, 0.12) 100%
+      );
+    }
+    .stage-hero .stage-body {
+      padding-top: 168px;
+    }
+  }
+
+  /* Bands with a short line of type need far less darkening than the hero. */
+  .stage-scrim-soft {
+    background: linear-gradient(
+      to top right,
+      rgba(14, 13, 18, 0.82) 0%,
+      rgba(14, 13, 18, 0.4) 52%,
+      rgba(14, 13, 18, 0) 100%
+    );
+  }
+
+  .stage-body {
+    position: relative;
+    z-index: 2;
+    color: #f6f3ee;
+  }
+  .stage-body .t-lg,
+  .stage-body .t,
+  .stage-body .t-sm {
+    color: rgba(246, 243, 238, 0.78);
+  }
+  .stage-body .dim {
+    color: rgba(246, 243, 238, 0.56);
+  }
+  .btn-stage {
+    background: transparent;
+    color: #f6f3ee;
+    border-color: rgba(246, 243, 238, 0.42);
+    box-shadow: none;
+  }
+
+  /* ══ PHOTOCARD ══
+     A guide is a thing you collect, not a row in a list. The foil edge is the
+     one place the full spectrum appears — a photocard's edge really is
+     iridescent, so the gradient describes an object rather than
+     decorating a box, which is what keeps it off the generic-gradient pile.
+     It only lights on hover and focus; at rest the card is quiet. */
+  .pc {
+    position: relative;
+    background: var(--paper-2);
+    border-radius: 20px;
+    overflow: hidden;
+    isolation: isolate;
+    transition:
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.4s ease;
+  }
+  .pc::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: var(--rule);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    transition: background 0.4s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .pc:hover::before,
+  .pc:focus-within::before {
+    background: var(--foil);
+  }
+  .pc:hover,
+  .pc:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 28px 50px -24px var(--cast);
+  }
+
+  /* The index number, set like a tracklist rather than a bullet. */
+  .pc-no {
+    font-family: var(--font-latin);
+    font-variation-settings: "wdth" 112;
+    font-weight: 900;
+    font-size: clamp(2.5rem, 7vw, 3.5rem);
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    font-variant-numeric: tabular-nums;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--rule);
+    transition: color 0.4s ease, -webkit-text-stroke-color 0.4s ease;
+  }
+  .pc-no-sm {
+    font-size: clamp(1.6rem, 4vw, 2rem);
+    -webkit-text-stroke-width: 1.2px;
+  }
+  .pc:hover .pc-no,
+  .pc:focus-within .pc-no {
+    color: var(--ju);
+    -webkit-text-stroke-color: transparent;
+  }
+
+  /* The Korean word carried as the card's face. */
+  .pc-han {
+    font-family: var(--font-han-poster);
+    font-size: clamp(1.5rem, 5vw, 2.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+
+  /* ══ Foil marks ══ */
+  .foil-text {
+    background-image: var(--foil);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: foil-slide 9s linear infinite;
+  }
+  .foil-rule {
+    height: 2px;
+    background-image: var(--foil);
+    background-size: 220% 100%;
+    animation: foil-slide 9s linear infinite;
+    border: 0;
+  }
+
+  /* ══ Sticker ══ a Korean term, set as something you peel and keep ══ */
+  .sticker {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 13px;
+    border-radius: 999px;
+    background: var(--paper-2);
+    border: 1.5px solid var(--rule);
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .sticker:hover {
+    border-color: var(--ju);
+    transform: translateY(-2px);
+  }
+  .sticker .ko {
+    font-family: var(--font-han);
+    font-weight: 900;
+    font-size: 0.9375rem;
+    color: var(--ju);
+  }
+  .sticker .en {
+    font-family: var(--font-data);
+    font-size: 0.5625rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-46);
+  }
+
+  /* The trio in rotation, so a long run of stickers is never one colour —
+     which is the whole argument for having three. Applied by index, not by
+     meaning: nothing about a word makes it cyan. */
+  .sticker-cy .ko {
+    color: var(--cy);
+  }
+  .sticker-cy:hover {
+    border-color: var(--cy);
+  }
+  .sticker-vi .ko {
+    color: var(--vi);
+  }
+  .sticker-vi:hover {
+    border-color: var(--vi);
+  }
+
+  /* ══ WORD WALL ══
+     Every word on the page at once, before the tables that define them. It is
+     a contents list doing a second job: a reference page made only of tables
+     looks like a document, and the one thing this page is selling is that the
+     Korean on a booking screen is a finite, learnable set — which you can see
+     at a glance here and nowhere else. ══ */
+  .wall {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .wall .sticker {
+    padding: 6px 11px;
+  }
+  .wall .sticker .ko {
+    font-size: 0.875rem;
+  }
+
+  /* ══ Scanline ══ the texture of a screen a show is watched on ══ */
+  .scan::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.035) 0px,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  }
+
+  /* ── Touch targets ──
+     Several links sat at 18-19px tall, which is fine for a cursor and not for
+     a thumb. WCAG asks for 44px; the padding is vertical only so nothing in
+     the layout moves. */
+  /* Padding, not display and min-height. Setting `display` here overrode
+     Tailwind's `hidden` on the links that carry both, which put a nav item
+     back on screen at phone width and pushed the bar past the viewport. */
+  .tap {
+    padding-block: 13px;
+  }
+  @media (min-width: 760px) {
+    .tap {
+      padding-block: 0;
+    }
+  }
+
+  /* At 320px the bar runs out of room: logo, one link, the toggle and the
+     call to action come to more than the viewport. The link is the thing to
+     drop, since the logo still goes home and the footer carries full
+     navigation — and only below 360, where it is actually needed. */
+  @media (max-width: 359px) {
+    .nav-compact {
+      display: none;
+    }
+    .nav-cta {
+      padding-inline: 12px;
+    }
+  }
+
+  /* ── Phone width ──
+     Stacked, every card's text column is the full screen, so the object mark
+     goes above the title instead of stealing 68px from a line that is already
+     short. */
+  .card-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  @media (min-width: 560px) {
+    .card-row {
+      flex-direction: row;
+      gap: 16px;
+    }
+  }
+
+  /* Three proof tiles side by side is a lot of scrolling once stacked. */
+  @media (max-width: 559px) {
+    .proof {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .proof > *:first-child {
+      grid-column: 1 / -1;
+    }
+    .proof .figure {
+      font-size: clamp(2.25rem, 11vw, 3rem);
+    }
+  }
+
+  /* ── Ad slots ──
+     The reserved height is the point: an ad that arrives and pushes the
+     article down is a layout shift, and layout shift is something Google
+     ranks on. On a site whose only channel is search, an unreserved slot
+     spends search position to buy impressions. */
+  .ad-slot {
+    display: block;
+    margin-block: 36px;
+    padding: 14px;
+    border: 1px solid var(--rule-soft);
+    border-radius: 18px;
+    background: var(--paper-2);
+    min-height: 308px;
+    overflow: hidden;
+  }
+  @media (min-width: 760px) {
+    .ad-slot {
+      min-height: 294px;
+    }
+  }
+  .ad-label {
+    margin-bottom: 10px;
+    letter-spacing: 0.14em;
+  }
+  .ad-slot .adsbygoogle {
+    min-height: 250px;
+  }
+
+  /* The cut-out renders carry no baked shadow — a shadow the render chose
+     cannot follow the theme. This one is drawn from a token, so it does. */
+  .art-drop {
+    filter: drop-shadow(0 14px 18px var(--cast-soft))
+      drop-shadow(0 2px 3px var(--cast-soft));
+  }
+
+  .svg-w {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%;
+  }
+  /* ══ PROP ══
+     A clay object laid over the stage photograph. T13 and T09 are not supposed
+     to meet inside one frame, and here they do on purpose: a matte cut-out
+     sitting on a photograph is a sticker on a poster, which is how this
+     audience already decorates — 포카 꾸미기, diary pages, phone cases. The
+     tilt and the shadow are what make it read as placed rather than composited.
+
+     It is decoration, so it never occupies space the content needs: it is
+     positioned out of flow and hidden outright on a phone, where the hero's
+     height is the thing worth protecting. */
+  .prop {
+    position: absolute;
+    z-index: 2;
+    display: none;
+    pointer-events: none;
+    filter: drop-shadow(0 26px 34px rgba(0, 0, 0, 0.55));
+  }
+  .prop img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  @media (min-width: 1024px) {
+    .prop {
+      display: block;
+    }
+  }
+  .prop-stick {
+    right: clamp(20px, 6vw, 96px);
+    bottom: clamp(44px, 7vh, 88px);
+    width: clamp(112px, 12vw, 180px);
+    transform: rotate(14deg);
+  }
+  /* On the page's own background rather than a photograph, so the shadow is a
+     theme token and the card stands a little straighter. */
+  .prop-card {
+    right: clamp(16px, 4vw, 72px);
+    top: -14px;
+    width: clamp(116px, 12vw, 182px);
+    transform: rotate(-7deg);
+    filter: drop-shadow(0 20px 26px var(--cast-soft));
+  }
+
+  .float {
+    animation: bob 7s ease-in-out infinite;
+  }
+  .float-b {
+    animation: bob 9s ease-in-out infinite reverse;
+  }
+}
+
+@keyframes foil-slide {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 220% 50%;
+  }
+}
+
+@keyframes run {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-in,
+  .float,
+  .float-b,
+  .foil-text,
+  .foil-rule {
+    animation: none;
+  }
+  .pc:hover,
+  .pc:focus-within {
+    transform: none;
+  }
+  .obj-lift:hover {
+    transform: none;
+  }
+}
