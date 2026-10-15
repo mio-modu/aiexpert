@@ -3,40 +3,26 @@ const b = await chromium.launch({
   executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome",
   args: ["--no-sandbox"],
 });
-const BASE = "http://127.0.0.1:3184";
+const BASE = "http://127.0.0.1:3192";
 const routes = ["/", "/guides", "/words", "/about", "/privacy", "/guides/nol-world-ticketing-guide"];
-
-for (const w of [320, 360, 390, 414]) {
-  const p = await b.newPage({ viewport: { width: w, height: 800 }, isMobile: true });
-  const fails = [];
-  for (const r of routes) {
-    await p.goto(BASE + r, { waitUntil: "networkidle" });
-    const o = await p.evaluate(() =>
-      document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
-    if (o) fails.push(r);
+for (const scheme of ["dark", "light"]) {
+  for (const w of [320, 360, 390, 768, 1280]) {
+    const p = await b.newPage({ viewport: { width: w, height: 800 }, isMobile: w < 768, colorScheme: scheme });
+    const fails = [];
+    for (const r of routes) {
+      await p.goto(BASE + r, { waitUntil: "networkidle" });
+      if (await p.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1))
+        fails.push(r);
+    }
+    console.log(`${fails.length ? "FAIL" : " ok "}  ${scheme.padEnd(5)} ${w}px  ${fails.join(", ")}`);
+    await p.close();
   }
-  console.log(`${fails.length ? "FAIL" : " ok "}  ${w}px  ${fails.join(", ")}`);
-  await p.close();
 }
-
-const p = await b.newPage({ viewport: { width: 390, height: 844 }, isMobile: true });
-await p.goto(BASE + "/", { waitUntil: "networkidle" });
-await p.waitForTimeout(800);
-const r = await p.evaluate(() => {
-  const small = [...document.querySelectorAll("a,button")]
-    .map(el => ({ t: (el.textContent || el.getAttribute("aria-label") || "").trim().slice(0, 20),
-                  b: el.getBoundingClientRect() }))
-    .filter(x => x.b.width > 2 && x.b.height > 2 && x.b.height < 44)
-    .map(x => `${x.t} ${Math.round(x.b.width)}x${Math.round(x.b.height)}`);
-  return { height: document.body.scrollHeight, shortTargets: small };
-});
-console.log("home:", JSON.stringify(r, null, 1));
-await p.evaluate(() => window.scrollTo(0, 820));
-await p.waitForTimeout(400);
-await p.screenshot({ path: "/tmp/claude-0/ok-proof.png" });
-await p.goto(BASE + "/guides/nol-world-ticketing-guide", { waitUntil: "networkidle" });
-await p.waitForTimeout(700);
-await p.evaluate(() => window.scrollTo(0, 400));
-await p.waitForTimeout(400);
-await p.screenshot({ path: "/tmp/claude-0/ok-screen.png" });
+const m = await b.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, colorScheme: "dark" });
+await m.goto(BASE + "/", { waitUntil: "networkidle" });
+await m.waitForTimeout(900);
+await m.evaluate(() => document.querySelector("#guides")?.scrollIntoView({ block: "start" }));
+await m.waitForTimeout(500);
+await m.screenshot({ path: "/tmp/claude-0/dm.png" });
+console.log("home height:", await m.evaluate(() => document.body.scrollHeight));
 await b.close();

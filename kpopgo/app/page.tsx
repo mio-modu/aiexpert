@@ -178,36 +178,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─────────── Guides ─────────── */}
-      <section id="guides" className="band sect tint">
+      {/* ─────────── Guides — photocards ─────────── */}
+      <section id="guides" className="band sect">
         <div className="wrap">
           <p className="data dim">02 / The guides</p>
-          <h2 className="pl mt-4">Five procedures</h2>
+          <h2 className="pl mt-4">
+            Five <span className="foil-text">procedures</span>
+          </h2>
           <p className="han-m dim mt-3">다섯 개의 절차</p>
 
-          <ul className="mt-8 grid gap-3.5">
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2">
             {guides.map((g, i) => (
-              <li key={g.slug} className="obj obj-lift p-6">
-                <Link href={`/guides/${g.slug}`} className="card-row">
-                  <ObjectMark name={g.glyph} />
-                  <div className="w-full min-w-0">
-                    <div className="flex items-baseline gap-3">
-                      <span className="data ju shrink-0">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <h3 className="pm min-w-0">{g.title}</h3>
+              <li
+                key={g.slug}
+                className={`pc ${i === 0 ? "sm:col-span-2" : ""}`}
+              >
+                <Link href={`/guides/${g.slug}`} className="block p-6 sm:p-7">
+                  <div className="flex items-start justify-between gap-5">
+                    <div className="min-w-0">
+                      <span className="pc-han block">{g.ko}</span>
+                      <h3 className="pm mt-3">{g.title}</h3>
                     </div>
-                    <p className="han-lb mt-1.5">{g.koLine}</p>
-                    <p className="t-sm mt-2 max-w-[62ch]">{g.summary}</p>
-                    <div className="mt-3.5 flex flex-wrap items-center gap-2">
-                      <span className="chip data-sm">
-                        {String(g.steps.length).padStart(2, "0")} steps
-                      </span>
-                      <span className="chip data-sm">
-                        {String(g.readMinutes).padStart(2, "0")} min
-                      </span>
-                      <VerifiedBadge status={g.status} date={g.lastVerified} />
-                    </div>
+                    <span className="pc-no shrink-0">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+
+                  <p className="t-sm mt-4 max-w-[58ch]">{g.summary}</p>
+
+                  <div className="mt-5 flex flex-wrap items-center gap-2">
+                    <span className="chip data-sm">
+                      {String(g.steps.length).padStart(2, "0")} steps
+                    </span>
+                    <span className="chip data-sm">
+                      {String(g.readMinutes).padStart(2, "0")} min
+                    </span>
+                    <VerifiedBadge status={g.status} date={g.lastVerified} />
                   </div>
                 </Link>
               </li>
@@ -216,9 +222,25 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="wrap">
-        <AdSlot placement="list" />
-      </div>
+      {/* ─────────── Terms marquee ─────────── */}
+      <section
+        className="band ticker"
+        aria-label="Korean words you will meet on a booking screen"
+      >
+        <div className="ticker-in">
+          {[0, 1].map((dup) => (
+            <span key={dup}>
+              {glossary.map((w) => (
+                <span key={w.ko} className="flex items-center gap-6">
+                  <span className="han ju text-[1.05rem] normal-case">{w.ko}</span>
+                  <span className="dim">{w.en}</span>
+                  <span className="dim">／</span>
+                </span>
+              ))}
+            </span>
+          ))}
+        </div>
+      </section>
 
       {/* ─────────── Crowd band ─────────── */}
       <section className="stage band" aria-label="A concert crowd with raised arms and handheld lights">
@@ -282,19 +304,24 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="obj mt-3.5 p-6">
+          <div className="mt-10">
             <p className="data dim">
               Words on the booking screen{" "}
               <span className="han text-[0.6875rem]">예매 화면에서 보게 될 단어</span>
             </p>
-            <div className="mt-4 grid gap-2.5 sm:grid-cols-3">
+            <ul className="mt-5 flex flex-wrap gap-2.5">
               {glossary.map((w) => (
-                <div key={w.ko} className="obj-flat p-3.5">
-                  <span className="han ju text-[1.125rem]">{w.ko}</span>
-                  <p className="data-sm mt-1">{w.en}</p>
-                </div>
+                <li key={w.ko} className="sticker">
+                  <span className="ko">{w.ko}</span>
+                  <span className="en">{w.en}</span>
+                </li>
               ))}
-            </div>
+            </ul>
+            <p className="t-sm mt-5">
+              <Link href="/words" className="ju underline underline-offset-4">
+                All 55 words, grouped by where you meet them →
+              </Link>
+            </p>
           </div>
         </div>
       </section>

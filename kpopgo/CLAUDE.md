@@ -65,11 +65,27 @@ T09 and T13 conflict on purpose and both sit in the DEPTH group, so they read
 as one set. T17 is deliberately unused: its no-gradient rule would make the
 hero's backlit glow impossible.
 
-Palette is obangsaek-derived rather than the usual cream-and-terracotta:
-주朱 vermilion, 군청 indigo, 백 bone, 흑 ink. The verification badge is a 인장
-seal, because a seal is a mark of authentication and that is the product.
-Light theme is the resting state; the dark theme is complete, and the
-cinematic bands stay dark in both because they are photographs.
+**Dark is the resting state.** A first pass led with cream paper and matte
+objects — a passport, a bank card, a parcel box. It was well made and it was
+wrong: it read as a fintech or a shipping service, and a fan arriving from a
+fan community saw nothing of their own world. Every surface this audience
+already lives on is black with saturated light on it.
+
+Palette: 주朱 vermilion leads, with electric cyan and hot violet behind it —
+the lightstick trio, so the page is never monochrome, which no K-pop surface
+is. The three combine into `--foil`, used **only on edges and marks**, never as
+a background wash. That distinction is the whole thing: a photocard's edge
+really is iridescent, so the gradient describes an object rather than
+decorating a box.
+
+A guide is a **photocard** (`.pc`): a Korean word as its face, an outlined
+tracklist number that fills on hover, and a foil edge that lights only on hover
+or focus. Korean terms are **stickers** (`.sticker`). The verification badge is
+a 인장 seal, because a seal is a mark of authentication and that is the product.
+
+The energy lives in the chrome — hero, cards, bands, marquees. The reading body
+stays calm, because what the site sells is being right, and a page that shouts
+through an instruction undercuts it.
 
 Type: Archivo (wide poster display), Gothic A1 and Black Han Sans (Hangul),
 JetBrains Mono (dates, platform codes, step timings).

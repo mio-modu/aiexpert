@@ -31,22 +31,34 @@
   --font-data: var(--font-jetbrains), ui-monospace, "SF Mono", monospace;
 }
 
-/* Light is the resting state: the objects read as things on paper. */
+/* Dark is the resting state now. Cream paper reads as an editorial magazine,
+   which is a fine look and the wrong one — every surface the audience already
+   lives on (Weverse, Bubble, an album microsite, a tour poster) is black with
+   saturated light on it. Light theme stays complete, as the alternative. */
 :root {
-  --paper: #f7f4ef;
-  --paper-2: #efeae1;
-  --ink: #14131a;
-  --ink-72: rgba(20, 19, 26, 0.74);
-  --ink-46: rgba(20, 19, 26, 0.52);
-  --rule: rgba(20, 19, 26, 0.16);
-  --rule-soft: rgba(20, 19, 26, 0.09);
-  --ju: #d8341f;
-  --on-ju: #fffaf6;
-  --ju-body: rgba(255, 250, 246, 0.88);
-  --cast: rgba(20, 19, 26, 0.17);
-  --cast-soft: rgba(20, 19, 26, 0.09);
+  --paper: #0a0a0f;
+  --paper-2: #121119;
+  --ink: #f6f3ee;
+  --ink-72: rgba(246, 243, 238, 0.74);
+  --ink-46: rgba(246, 243, 238, 0.5);
+  --rule: rgba(246, 243, 238, 0.2);
+  --rule-soft: rgba(246, 243, 238, 0.11);
 
-  /* The objects are physical, so their own tones hold in both themes. */
+  /* The lightstick trio. 주朱 leads; the other two exist so the page is not
+     monochrome, which no K-pop surface ever is. Used on edges and marks, never
+     as a background wash — that is the difference between a photocard's foil
+     and a generic gradient hero. */
+  --ju: #ff3b2e;
+  --cy: #00e5ff;
+  --vi: #b14bff;
+  --on-ju: #0a0a0f;
+  --ju-body: rgba(10, 10, 15, 0.82);
+  --foil: linear-gradient(115deg, var(--cy), var(--vi) 42%, var(--ju) 82%, var(--cy));
+
+  --cast: rgba(0, 0, 0, 0.55);
+  --cast-soft: rgba(0, 0, 0, 0.34);
+
+  /* Objects are physical, so their own tones hold in both themes. */
   --o-indigo: #334a86;
   --o-indigo-s: #24355f;
   --o-indigo-d: #1a2745;
@@ -58,41 +70,45 @@
   --o-ink-s: #121118;
   --o-gold: #c9a24a;
 
-  color-scheme: light;
+  color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #121117;
-    --paper-2: #1a1921;
-    --ink: #f6f3ee;
-    --ink-72: rgba(246, 243, 238, 0.74);
-    --ink-46: rgba(246, 243, 238, 0.5);
-    --rule: rgba(246, 243, 238, 0.2);
-    --rule-soft: rgba(246, 243, 238, 0.11);
-    --ju: #ff5a42;
-    --on-ju: #141018;
-    --ju-body: rgba(20, 16, 24, 0.8);
-    --cast: rgba(0, 0, 0, 0.46);
-    --cast-soft: rgba(0, 0, 0, 0.28);
-    color-scheme: dark;
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --paper: #f7f4ef;
+    --paper-2: #efeae1;
+    --ink: #14131a;
+    --ink-72: rgba(20, 19, 26, 0.74);
+    --ink-46: rgba(20, 19, 26, 0.52);
+    --rule: rgba(20, 19, 26, 0.16);
+    --rule-soft: rgba(20, 19, 26, 0.09);
+    --ju: #d8341f;
+    --cy: #0088a8;
+    --vi: #7a2fd0;
+    --on-ju: #fffaf6;
+    --ju-body: rgba(255, 250, 246, 0.9);
+    --cast: rgba(20, 19, 26, 0.17);
+    --cast-soft: rgba(20, 19, 26, 0.09);
+    color-scheme: light;
   }
 }
 
-:root[data-theme="dark"] {
-  --paper: #121117;
-  --paper-2: #1a1921;
-  --ink: #f6f3ee;
-  --ink-72: rgba(246, 243, 238, 0.74);
-  --ink-46: rgba(246, 243, 238, 0.5);
-  --rule: rgba(246, 243, 238, 0.2);
-  --rule-soft: rgba(246, 243, 238, 0.11);
-  --ju: #ff5a42;
-  --on-ju: #141018;
-  --ju-body: rgba(20, 16, 24, 0.8);
-  --cast: rgba(0, 0, 0, 0.46);
-  --cast-soft: rgba(0, 0, 0, 0.28);
-  color-scheme: dark;
+:root[data-theme="light"] {
+  --paper: #f7f4ef;
+  --paper-2: #efeae1;
+  --ink: #14131a;
+  --ink-72: rgba(20, 19, 26, 0.74);
+  --ink-46: rgba(20, 19, 26, 0.52);
+  --rule: rgba(20, 19, 26, 0.16);
+  --rule-soft: rgba(20, 19, 26, 0.09);
+  --ju: #d8341f;
+  --cy: #0088a8;
+  --vi: #7a2fd0;
+  --on-ju: #fffaf6;
+  --ju-body: rgba(255, 250, 246, 0.9);
+  --cast: rgba(20, 19, 26, 0.17);
+  --cast-soft: rgba(20, 19, 26, 0.09);
+  color-scheme: light;
 }
 
 html {
@@ -490,6 +506,142 @@ h4 {
     box-shadow: none;
   }
 
+  /* ══ PHOTOCARD ══
+     A guide is a thing you collect, not a row in a list. The foil edge is the
+     one place the full spectrum appears — a photocard's edge really is
+     iridescent, so the gradient describes an object rather than
+     decorating a box, which is what keeps it off the generic-gradient pile.
+     It only lights on hover and focus; at rest the card is quiet. */
+  .pc {
+    position: relative;
+    background: var(--paper-2);
+    border-radius: 20px;
+    overflow: hidden;
+    isolation: isolate;
+    transition:
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.4s ease;
+  }
+  .pc::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: var(--rule);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    transition: background 0.4s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .pc:hover::before,
+  .pc:focus-within::before {
+    background: var(--foil);
+  }
+  .pc:hover,
+  .pc:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 28px 50px -24px var(--cast);
+  }
+
+  /* The index number, set like a tracklist rather than a bullet. */
+  .pc-no {
+    font-family: var(--font-latin);
+    font-variation-settings: "wdth" 112;
+    font-weight: 900;
+    font-size: clamp(2.5rem, 7vw, 3.5rem);
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    font-variant-numeric: tabular-nums;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--rule);
+    transition: color 0.4s ease, -webkit-text-stroke-color 0.4s ease;
+  }
+  .pc:hover .pc-no,
+  .pc:focus-within .pc-no {
+    color: var(--ju);
+    -webkit-text-stroke-color: transparent;
+  }
+
+  /* The Korean word carried as the card's face. */
+  .pc-han {
+    font-family: var(--font-han-poster);
+    font-size: clamp(1.5rem, 5vw, 2.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+
+  /* ══ Foil marks ══ */
+  .foil-text {
+    background-image: var(--foil);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: foil-slide 9s linear infinite;
+  }
+  .foil-rule {
+    height: 2px;
+    background-image: var(--foil);
+    background-size: 220% 100%;
+    animation: foil-slide 9s linear infinite;
+    border: 0;
+  }
+
+  /* ══ Sticker ══ a Korean term, set as something you peel and keep ══ */
+  .sticker {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 13px;
+    border-radius: 999px;
+    background: var(--paper-2);
+    border: 1.5px solid var(--rule);
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .sticker:hover {
+    border-color: var(--ju);
+    transform: translateY(-2px);
+  }
+  .sticker .ko {
+    font-family: var(--font-han);
+    font-weight: 900;
+    font-size: 0.9375rem;
+    color: var(--ju);
+  }
+  .sticker .en {
+    font-family: var(--font-data);
+    font-size: 0.5625rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-46);
+  }
+
+  /* ══ Scanline ══ the texture of a screen a show is watched on ══ */
+  .scan::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.035) 0px,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  }
+
   /* ── Touch targets ──
      Several links sat at 18-19px tall, which is fine for a cursor and not for
      a thumb. WCAG asks for 44px; the padding is vertical only so nothing in
@@ -600,6 +752,15 @@ h4 {
   }
 }
 
+@keyframes foil-slide {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 220% 50%;
+  }
+}
+
 @keyframes run {
   from {
     transform: translateX(0);
@@ -622,8 +783,14 @@ h4 {
 @media (prefers-reduced-motion: reduce) {
   .ticker-in,
   .float,
-  .float-b {
+  .float-b,
+  .foil-text,
+  .foil-rule {
     animation: none;
+  }
+  .pc:hover,
+  .pc:focus-within {
+    transform: none;
   }
   .obj-lift:hover {
     transform: none;

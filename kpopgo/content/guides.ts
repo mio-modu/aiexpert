@@ -37,6 +37,12 @@ export type Guide = {
   /** Short label for cards and nav. */
   name: string;
   /**
+   * The one Korean word this guide is about, carried as the photocard's face.
+   * Every one of them is a word on the real booking screen, so the card teaches
+   * something before it is even opened.
+   */
+  ko: string;
+  /**
    * A Hangul one-liner shown under the title. Not a translation of the English —
    * it uses the words a fan meets on the real booking screen, so it carries
    * information an international reader can act on.
@@ -70,6 +76,7 @@ export const RESEARCH_DATE = "2026-10-14";
 export const guides: Guide[] = [
   {
     slug: "buy-k-pop-concert-tickets-from-overseas",
+    ko: "예매",
     art: "guide-tickets",
     name: "Start here",
     koLine: "해외에서 한국 공연 티켓 사기 — 전체 흐름",
@@ -179,6 +186,7 @@ export const guides: Guide[] = [
 
   {
     slug: "nol-world-ticketing-guide",
+    ko: "놀 월드",
     art: "guide-nol",
     name: "NOL World",
     koLine: "놀 월드 예매 안내 — 구 인터파크 글로벌",
@@ -266,6 +274,7 @@ export const guides: Guide[] = [
 
   {
     slug: "fan-club-presale-checklist",
+    ko: "선예매",
     art: "guide-presale",
     name: "Presale access",
     koLine: "팬클럽 선예매 — 자격 만들기",
@@ -349,6 +358,7 @@ export const guides: Guide[] = [
 
   {
     slug: "foreign-card-declined-korean-ticketing",
+    ko: "결제",
     art: "guide-card",
     name: "Card declined",
     koLine: "해외 카드 결제 거절 — 원인별 해결",
@@ -431,6 +441,7 @@ export const guides: Guide[] = [
 
   {
     slug: "buy-k-pop-albums-from-overseas",
+    ko: "앨범",
     art: "guide-albums",
     name: "Albums & goods",
     koLine: "해외 앨범 구매 — 차트 반영되는 곳",
