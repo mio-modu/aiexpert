@@ -45,6 +45,18 @@ for (const theme of ["dark", "light"]) {
       });
       const page = await ctx.newPage();
       await page.goto(`${BASE}${path}`, { waitUntil: "networkidle" });
+      // Walk the page before measuring. Everything below the fold loads lazily,
+      // and a full-page screenshot does not reliably trigger it — which cost an
+      // hour once, chasing a decorative image that was rendering correctly and
+      // simply had not been fetched when the shot was taken.
+      await page.evaluate(async () => {
+        for (let y = 0; y < document.body.scrollHeight; y += 700) {
+          window.scrollTo(0, y);
+          await new Promise((r) => setTimeout(r, 60));
+        }
+        window.scrollTo(0, 0);
+      });
+      await page.waitForLoadState("networkidle");
       const over = await page.evaluate(
         () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
       );
