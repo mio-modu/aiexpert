@@ -1,0 +1,134 @@
+/* ============================================================
+   DESIGN TOKENS — 적용 유형: T20 "숫자로 증명하기" (FLAT 그룹)
+   출처: Web Design Style System (webdesign-style.vercel.app)
+   ------------------------------------------------------------
+   T20 규칙
+     · 숫자가 주인공
+     · 이미지는 오히려 방해
+     · 출처를 같이 적기 (근거 없는 숫자는 신뢰를 가장 빨리 깎는다)
+
+   FLAT 그룹 규칙
+     · 입체감을 넣으면 그 스타일이 아니게 된다
+     · 밀도는 그림자가 아니라 "글자 크기 차이 · 정확한 간격 · 진짜 내용"
+
+   따라서 이 파일에서 그림자는 전부 none 이고,
+   위계는 타입 스케일 대비(최대 4.2rem ↔ 0.75rem)와
+   1px 헤어라인, 그리고 8px 그리드 간격으로만 만든다.
+
+   검사 기준: 본문 대비 4.5:1 이상 (WCAG AA)
+   ============================================================ */
+
+:root {
+  /* ---- Ink (숫자가 주인공이므로 잉크가 곧 브랜드) ---- */
+  --c-ink:            #14171A;  /* on --c-bg : 15.8:1 */
+  --c-ink-soft:       #3D454C;  /* on --c-bg :  9.4:1 */
+  --c-ink-muted:      #61696F;  /* on --c-bg :  5.6:1 */
+
+  /* ---- Brand : 강조는 한 계열 + 액센트 하나 (T05/T20 공통 규칙) ---- */
+  --c-primary:        #0B5D3B;  /* on white : 7.6:1 */
+  --c-primary-strong: #084630;
+  --c-primary-weak:   #E8F1EC;
+  --c-primary-ink:    #FFFFFF;
+
+  /* 숫자 전용 액센트 — CTA 와 역할을 분리한다 */
+  --c-accent:         #9A3412;  /* on white : 7.1:1 */
+  --c-accent-weak:    #FBEEE8;
+
+  /* ---- Surfaces : 바탕은 종이, 카드는 선으로만 구분 ---- */
+  --c-bg:             #FAF9F6;
+  --c-surface:        #FFFFFF;
+  --c-surface-sunk:   #F2F1EC;
+  --c-border:         #DFDDD4;
+  --c-border-strong:  #B9B6AA;
+
+  /* ---- Semantic ---- */
+  --c-ok:    #0B5D3B;  --c-ok-weak:   #E8F1EC;
+  --c-warn:  #7A4A05;  --c-warn-weak: #FBF2E2;
+  --c-no:    #93271A;  --c-no-weak:   #FAEBE8;
+  --c-info:  #124A72;  --c-info-weak: #E7F0F6;
+
+  /* ---- Type : 위계를 전부 크기 차이로 만든다 ---- */
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system,
+               BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic",
+               system-ui, "Segoe UI", Roboto, sans-serif;
+  /* 한글이 섞인 문자열에서 모노스페이스 폴백이 생기지 않도록 Pretendard 우선.
+     자릿수 정렬은 font-variant-numeric: tabular-nums 가 담당한다. */
+  --font-num:  "Pretendard Variable", Pretendard, -apple-system,
+               BlinkMacSystemFont, "Apple SD Gothic Neo", system-ui, sans-serif;
+
+  --fs-display: clamp(2.6rem, 1.5rem + 4.6vw, 4.2rem);
+  --fs-h1:      clamp(1.75rem, 1.2rem + 2.3vw, 2.6rem);
+  --fs-h2:      clamp(1.3rem, 1.1rem + 1vw, 1.75rem);
+  --fs-h3:      1.0625rem;
+  --fs-body:    1rem;
+  --fs-sm:      0.9375rem;
+  --fs-xs:      0.8125rem;
+  --fs-2xs:     0.75rem;   /* 출처·기준연도 전용 */
+
+  --lh-tight: 1.12;
+  --lh-body:  1.72;
+
+  /* ---- Shape : 납작하게. 곡률은 최소한만 ---- */
+  --r-sm: 3px;
+  --r-md: 4px;
+  --r-lg: 6px;
+  --r-xl: 8px;
+  --r-pill: 2px;   /* FLAT 에서는 알약 버튼을 쓰지 않는다 */
+
+  /* ---- Elevation : 전부 없음. 구분은 1px 선으로만 ---- */
+  --sh-1: none;
+  --sh-2: none;
+  --sh-3: none;
+  --ring: 0 0 0 2px var(--c-bg), 0 0 0 4px var(--c-primary);
+
+  /* ---- Motion : 움직임도 납작하게 ---- */
+  --ease: cubic-bezier(0.2, 0, 0.1, 1);
+  --dur:  120ms;
+
+  /* ---- Grid : 간격은 8px 배수로만 ---- */
+  --u: 8px;
+}
+
+/* ---- Dark : 같은 규칙, 잉크만 뒤집는다 ---- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --c-ink:            #F0EFEA;
+    --c-ink-soft:       #BFC3C0;
+    --c-ink-muted:      #92968F;
+
+    --c-primary:        #5FC79A;
+    --c-primary-strong: #86DCB6;
+    --c-primary-weak:   #15291F;
+    --c-primary-ink:    #07211A;
+
+    --c-accent:         #F0906A;
+    --c-accent-weak:    #2B1A13;
+
+    --c-bg:             #111312;
+    --c-surface:        #171A19;
+    --c-surface-sunk:   #1E2221;
+    --c-border:         #2C312F;
+    --c-border-strong:  #474E4B;
+
+    --c-ok:    #5FC79A;  --c-ok-weak:   #15291F;
+    --c-warn:  #E2B45F;  --c-warn-weak: #2A2214;
+    --c-no:    #EE9179;  --c-no-weak:   #2E1A16;
+    --c-info:  #74B6E4;  --c-info-weak: #15242E;
+
+    --ring: 0 0 0 2px var(--c-bg), 0 0 0 4px var(--c-primary);
+  }
+}
+
+:root[data-theme="dark"] {
+  --c-ink: #F0EFEA; --c-ink-soft: #BFC3C0; --c-ink-muted: #92968F;
+  --c-primary: #5FC79A; --c-primary-strong: #86DCB6;
+  --c-primary-weak: #15291F; --c-primary-ink: #07211A;
+  --c-accent: #F0906A; --c-accent-weak: #2B1A13;
+  --c-bg: #111312; --c-surface: #171A19; --c-surface-sunk: #1E2221;
+  --c-border: #2C312F; --c-border-strong: #474E4B;
+  --c-ok: #5FC79A; --c-ok-weak: #15291F;
+  --c-warn: #E2B45F; --c-warn-weak: #2A2214;
+  --c-no: #EE9179; --c-no-weak: #2E1A16;
+  --c-info: #74B6E4; --c-info-weak: #15242E;
+  --ring: 0 0 0 2px var(--c-bg), 0 0 0 4px var(--c-primary);
+}
