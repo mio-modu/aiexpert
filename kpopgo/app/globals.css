@@ -490,6 +490,13 @@ h4 {
     box-shadow: none;
   }
 
+  /* The cut-out renders carry no baked shadow — a shadow the render chose
+     cannot follow the theme. This one is drawn from a token, so it does. */
+  .art-drop {
+    filter: drop-shadow(0 14px 18px var(--cast-soft))
+      drop-shadow(0 2px 3px var(--cast-soft));
+  }
+
   .svg-w {
     width: 100%;
     height: auto;

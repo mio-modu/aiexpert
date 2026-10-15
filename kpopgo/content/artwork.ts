@@ -39,7 +39,8 @@ export type ArtPiece = {
 const BASE =
   "Matte clay 3D render, soft studio light from the upper left only, " +
   "no gloss, no specular highlights, no reflections, no rim light, " +
-  "soft contact shadow directly beneath, transparent background, " +
+  "no baked shadow — the page draws its own so it can follow the theme, " +
+  "transparent background, " +
   "slightly isometric three-quarter view, clean product-shot composition, " +
   "no people, no hands, no faces, no text, no logos, no lettering. " +
   "Palette strictly: vermilion #E0432C, deep indigo #334A86, bone white #F3ECE1, " +
@@ -101,9 +102,9 @@ export const artwork: ArtPiece[] = [
   },
   {
     id: "hero",
-    file: "hero-still-life.png",
+    file: "hero-still-life.webp",
     width: 1040,
-    height: 960,
+    height: 743,
     alt: "A navy passport, a vermilion concert ticket, a bone-white bank card and a dark phone, arranged as matte clay objects.",
     placement: "Home page hero, right column",
     prompt:
@@ -116,9 +117,9 @@ export const artwork: ArtPiece[] = [
   },
   {
     id: "guide-tickets",
-    file: "guide-tickets.png",
+    file: "guide-tickets.webp",
     width: 720,
-    height: 560,
+    height: 420,
     alt: "A vermilion concert ticket with a perforated stub, rendered as a matte clay object.",
     placement: "Guide 01 — how to buy tickets from overseas",
     prompt:
@@ -128,9 +129,9 @@ export const artwork: ArtPiece[] = [
   },
   {
     id: "guide-nol",
-    file: "guide-nol.png",
+    file: "guide-nol.webp",
     width: 720,
-    height: 560,
+    height: 590,
     alt: "A dark phone showing a blank form screen, beside a navy passport, as matte clay objects.",
     placement: "Guide 02 — NOL World ticketing",
     prompt:
@@ -140,9 +141,9 @@ export const artwork: ArtPiece[] = [
   },
   {
     id: "guide-presale",
-    file: "guide-presale.png",
+    file: "guide-presale.webp",
     width: 720,
-    height: 560,
+    height: 409,
     alt: "A bone-white membership card with a vermilion star, beside a small calendar block, as matte clay objects.",
     placement: "Guide 03 — fan club presale access",
     prompt:
@@ -152,9 +153,9 @@ export const artwork: ArtPiece[] = [
   },
   {
     id: "guide-card",
-    file: "guide-card.png",
+    file: "guide-card.webp",
     width: 720,
-    height: 560,
+    height: 499,
     alt: "A bone-white bank card with a vermilion cross mark resting on its corner, as matte clay objects.",
     placement: "Guide 04 — foreign card declined",
     prompt:
@@ -164,9 +165,9 @@ export const artwork: ArtPiece[] = [
   },
   {
     id: "guide-albums",
-    file: "guide-albums.png",
+    file: "guide-albums.webp",
     width: 720,
-    height: 560,
+    height: 513,
     alt: "A small sealed parcel box beside a square album case, as matte clay objects.",
     placement: "Guide 05 — buying albums from overseas",
     prompt:

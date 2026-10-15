@@ -50,7 +50,7 @@ export default function Home() {
       {/* ─────────── Hero — T09 영화 같은 한 장면 ─────────── */}
       <section className="stage band">
         <div className="stage-media">
-          <Artwork name="hero-stage" fallback={<StageScene />} priority />
+          <Artwork name="hero-stage" fallback={<StageScene />} priority drop={false} />
         </div>
         <div className="stage-scrim" />
         <div className="wrap stage-body py-16 sm:py-24 lg:py-32">
@@ -218,7 +218,7 @@ export default function Home() {
       {/* ─────────── Crowd band ─────────── */}
       <section className="stage band" aria-label="A concert crowd with raised arms and handheld lights">
         <div className="stage-media">
-          <Artwork name="band-crowd" fallback={<CrowdScene />} />
+          <Artwork name="band-crowd" fallback={<CrowdScene />} drop={false} />
         </div>
         <div className="stage-scrim stage-scrim-soft" />
         <div className="wrap stage-body py-14 sm:py-20">

@@ -17,11 +17,14 @@ export function Artwork({
   fallback,
   priority = false,
   className,
+  drop = true,
 }: {
   name: string;
   fallback: React.ReactNode;
   priority?: boolean;
   className?: string;
+  /** Cut-outs get a drawn shadow; full-bleed frames do not. */
+  drop?: boolean;
 }) {
   const art = getArt(name);
   if (!art) return <>{fallback}</>;
@@ -36,7 +39,7 @@ export function Artwork({
       width={art.width}
       height={art.height}
       priority={priority}
-      className={className}
+      className={[drop ? "art-drop" : "", className].filter(Boolean).join(" ")}
       sizes="(max-width: 900px) 100vw, 50vw"
       style={{ width: "100%", height: "auto" }}
     />
