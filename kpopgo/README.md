@@ -150,6 +150,38 @@ domain can take months to index, so low impressions alone does not mean no marke
 Failing *search* alone → diagnose indexing versus content. Failing *product* or *demand* →
 stop.
 
+## Advertising
+
+Ad slots are in place and inert. Each one renders nothing until its id is set,
+so the site looks finished through the weeks before approval rather than
+carrying empty grey boxes:
+
+```
+NEXT_PUBLIC_ADSENSE_CLIENT=ca-pub-…
+NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE=…   # between the steps and the FAQ
+NEXT_PUBLIC_ADSENSE_SLOT_FOOT=…      # after the FAQ, before the sources
+NEXT_PUBLIC_ADSENSE_SLOT_LIST=…      # below a list of guides
+```
+
+Three decisions worth keeping:
+
+- **Every slot reserves its height.** An ad that arrives and pushes the article
+  down is a layout shift, and layout shift is something Google ranks on. On a
+  site whose only channel is search, an unreserved slot spends search position
+  to buy impressions.
+- **Every slot is labelled.** AdSense requires ads be distinguishable, and on a
+  page whose product is "you can trust what this says", an ad that reads as a
+  recommendation costs more than it earns.
+- **At most two per page**, never above the fold, never between a step and its
+  warning.
+
+`/ads.txt` is generated from the same publisher id, and 404s while none is set —
+an ads.txt naming nobody is worse than none.
+
+Approval needs `/about` and `/privacy`, which exist and are linked from every
+page, plus content and real traffic. Expect to apply once the guides have been
+verified and there is a few weeks of search data, not before.
+
 ### Monetisation order
 
 1. AdSense, to measure a real page RPM

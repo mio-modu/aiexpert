@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { ObjectMark, StackedScreens, StepObject } from "@/components/Objects";
 import { Artwork } from "@/components/Artwork";
 import { VerifiedBadge, DraftNotice } from "@/components/Badges";
+import { AdSlot } from "@/components/AdSlot";
 
 export function generateStaticParams() {
   return guides.map((g) => ({ slug: g.slug }));
@@ -143,6 +144,10 @@ export default async function GuidePage({
         </ol>
       </section>
 
+      <div className="wrap">
+        <AdSlot placement="article" />
+      </div>
+
       {/* ─────────── FAQ ─────────── */}
       <section className="wrap mt-16">
         <h2 className="pl">Questions people ask</h2>
@@ -169,6 +174,10 @@ export default async function GuidePage({
           ))}
         </div>
       </section>
+
+      <div className="wrap">
+        <AdSlot placement="foot" />
+      </div>
 
       {/* ─────────── Sources ─────────── */}
       <section className="wrap mt-16">

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { guides } from "@/content/guides";
 import { ObjectMark } from "@/components/Objects";
 import { VerifiedBadge } from "@/components/Badges";
+import { AdSlot } from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "All guides",
@@ -48,6 +49,8 @@ export default function GuidesIndex() {
           </li>
         ))}
       </ul>
+
+      <AdSlot placement="list" />
     </div>
   );
 }

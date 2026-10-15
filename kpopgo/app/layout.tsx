@@ -4,6 +4,7 @@ import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { site } from "@/lib/site";
+import { adsConfigured, ads } from "@/lib/ads";
 
 // Archivo carries a width axis — the wide cut gives the headlines their poster feel.
 const archivo = Archivo({
@@ -92,6 +93,13 @@ export default function RootLayout({
         <Nav />
         <main id="main">{children}</main>
         <Footer />
+        {adsConfigured ? (
+          <script
+            async
+            crossOrigin="anonymous"
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ads.client}`}
+          />
+        ) : null}
         {site.gaId ? (
           <>
             <script

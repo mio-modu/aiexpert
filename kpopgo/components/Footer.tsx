@@ -42,6 +42,18 @@ export function Footer() {
             <li>No identity-check workarounds, ever.</li>
             <li>No idol photos — every object is drawn for this site.</li>
           </ul>
+          <ul className="t-sm mt-5 flex flex-wrap gap-x-5 gap-y-2">
+            <li>
+              <Link href="/about" className="hover:text-[var(--ink)]">
+                About
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacy" className="hover:text-[var(--ink)]">
+                Privacy
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
 

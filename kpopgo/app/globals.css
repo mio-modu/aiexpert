@@ -490,6 +490,34 @@ h4 {
     box-shadow: none;
   }
 
+  /* ── Ad slots ──
+     The reserved height is the point: an ad that arrives and pushes the
+     article down is a layout shift, and layout shift is something Google
+     ranks on. On a site whose only channel is search, an unreserved slot
+     spends search position to buy impressions. */
+  .ad-slot {
+    display: block;
+    margin-block: 36px;
+    padding: 14px;
+    border: 1px solid var(--rule-soft);
+    border-radius: 18px;
+    background: var(--paper-2);
+    min-height: 308px;
+    overflow: hidden;
+  }
+  @media (min-width: 760px) {
+    .ad-slot {
+      min-height: 294px;
+    }
+  }
+  .ad-label {
+    margin-bottom: 10px;
+    letter-spacing: 0.14em;
+  }
+  .ad-slot .adsbygoogle {
+    min-height: 250px;
+  }
+
   /* The cut-out renders carry no baked shadow — a shadow the render chose
      cannot follow the theme. This one is drawn from a token, so it does. */
   .art-drop {

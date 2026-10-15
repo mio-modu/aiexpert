@@ -3,6 +3,7 @@ import { guides, glossary, platformList } from "@/content/guides";
 import { ObjectMark, StageScene, CrowdScene } from "@/components/Objects";
 import { Artwork } from "@/components/Artwork";
 import { VerifiedBadge } from "@/components/Badges";
+import { AdSlot } from "@/components/AdSlot";
 
 const cities = [
   "서울 Seoul",
@@ -214,6 +215,10 @@ export default function Home() {
           </ul>
         </div>
       </section>
+
+      <div className="wrap">
+        <AdSlot placement="list" />
+      </div>
 
       {/* ─────────── Crowd band ─────────── */}
       <section className="stage band" aria-label="A concert crowd with raised arms and handheld lights">
