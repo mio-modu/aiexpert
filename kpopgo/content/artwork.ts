@@ -74,8 +74,8 @@ export const artwork: ArtPiece[] = [
   {
     id: "hero-stage",
     file: "hero-stage.jpg",
-    width: 2400,
-    height: 1350,
+    width: 1800,
+    height: 1012,
     alt: "A backlit concert stage seen from the crowd, with performers in silhouette against warm light beams.",
     placement: "Home hero — full-bleed background behind the headline",
     prompt:
@@ -89,8 +89,8 @@ export const artwork: ArtPiece[] = [
   {
     id: "band-crowd",
     file: "band-crowd.jpg",
-    width: 2400,
-    height: 700,
+    width: 1800,
+    height: 524,
     alt: "A dense crowd seen from behind, arms raised, small lights scattered through the dark.",
     placement: "Narrow band divider between sections",
     prompt:

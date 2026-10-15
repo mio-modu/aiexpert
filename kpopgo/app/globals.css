@@ -460,6 +460,16 @@ h4 {
       rgba(14, 13, 18, 0.08) 100%
     );
   }
+  /* Bands with a short line of type need far less darkening than the hero. */
+  .stage-scrim-soft {
+    background: linear-gradient(
+      to top right,
+      rgba(14, 13, 18, 0.82) 0%,
+      rgba(14, 13, 18, 0.4) 52%,
+      rgba(14, 13, 18, 0) 100%
+    );
+  }
+
   .stage-body {
     position: relative;
     z-index: 2;

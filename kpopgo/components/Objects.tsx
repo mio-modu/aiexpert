@@ -599,3 +599,53 @@ export function StageScene() {
     </svg>
   );
 }
+
+/** Crowd band fallback — the same scene as the stage, pulled back to the floor. */
+export function CrowdScene() {
+  const heads = Array.from({ length: 70 }, (_, i) => ({
+    x: (i * 91.7) % 1600,
+    y: 300 + ((i * 37) % 54),
+    r: 11 + ((i * 5) % 8),
+  }));
+  const lights = Array.from({ length: 52 }, (_, i) => ({
+    x: (i * 123.4) % 1600,
+    y: 212 + ((i * 71) % 120),
+    r: 2.2 + ((i * 3) % 4),
+  }));
+
+  return (
+    <svg
+      viewBox="0 0 1600 467"
+      preserveAspectRatio="xMidYMid slice"
+      role="img"
+      aria-label="A dense crowd seen from behind, arms raised, small lights scattered through the dark."
+      style={{ display: "block", width: "100%", height: "100%" }}
+    >
+      <defs>
+        <radialGradient id="farglow" cx="50%" cy="34%" r="62%">
+          <stop offset="0%" stopColor="#ff8a4c" stopOpacity="0.85" />
+          <stop offset="45%" stopColor="#e0432c" stopOpacity="0.38" />
+          <stop offset="100%" stopColor="#0e0d12" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <rect width="1600" height="467" fill="#0e0d12" />
+      <ellipse cx="800" cy="170" rx="700" ry="150" fill="url(#farglow)" />
+      <g fill="#ffd9a8" opacity=".8">
+        {lights.map((l, i) => (
+          <circle key={i} cx={l.x} cy={l.y} r={l.r} />
+        ))}
+      </g>
+      <g fill="#0b0a0f">
+        <rect x="0" y="348" width="1600" height="119" />
+        {heads.map((h, i) => (
+          <circle key={i} cx={h.x} cy={h.y} r={h.r} />
+        ))}
+        {heads
+          .filter((_, i) => i % 4 === 0)
+          .map((h, i) => (
+            <rect key={i} x={h.x - 4} y={h.y - 62} width="8" height="64" rx="4" />
+          ))}
+      </g>
+    </svg>
+  );
+}

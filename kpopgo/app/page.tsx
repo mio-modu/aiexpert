@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { guides, glossary, platformList } from "@/content/guides";
-import { ObjectMark, StageScene } from "@/components/Objects";
+import { ObjectMark, StageScene, CrowdScene } from "@/components/Objects";
 import { Artwork } from "@/components/Artwork";
 import { VerifiedBadge } from "@/components/Badges";
 
@@ -212,6 +212,26 @@ export default function Home() {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* ─────────── Crowd band ─────────── */}
+      <section className="stage band" aria-label="A concert crowd with raised arms and handheld lights">
+        <div className="stage-media">
+          <Artwork name="band-crowd" fallback={<CrowdScene />} />
+        </div>
+        <div className="stage-scrim stage-scrim-soft" />
+        <div className="wrap stage-body py-14 sm:py-20">
+          <p className="pm max-w-[24ch]">
+            Hundreds of thousands clear this every tour
+          </p>
+          <p className="han-m mt-3" style={{ color: "rgba(246,243,238,.7)" }}>
+            매 투어마다 수십만 명이 통과합니다
+          </p>
+          <p className="t-sm mt-4 max-w-[48ch]">
+            It is not luck and it is not a secret. It is a sequence, and almost every
+            failure happens at a step you can finish days in advance.
+          </p>
         </div>
       </section>
 

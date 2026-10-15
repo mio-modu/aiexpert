@@ -101,6 +101,11 @@ Every illustration is drawn in-repo as inline SVG — see `components/Objects.ts
 No photographs, no idol likenesses, no external image assets, so the site builds
 and ships with zero image files.
 
+The home page opens on a photographed stage (`public/img/hero-stage.jpg`) with a
+crowd band further down. Both are anonymous backlit silhouettes — the language
+of a concert poster, and the reason the site can look like K-pop without using
+anyone's likeness.
+
 Rendered artwork is an upgrade path rather than a dependency. `content/artwork.ts`
 holds the file names and the generation briefs; dropping a PNG into `public/img/`
 makes `<Artwork>` swap it in at build time, and anything not yet rendered keeps

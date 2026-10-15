@@ -6,7 +6,9 @@ back to the SVG when it is missing, so the site builds and ships either way.
 
 | File | Size | Where it appears |
 | --- | --- | --- |
-| `hero-still-life.png` | 1040 × 960 | Home hero |
+| `hero-stage.jpg` | 1800 × 1012 | Home hero — **in place** |
+| `band-crowd.jpg` | 1800 × 524 | Crowd band — **in place** |
+| `hero-still-life.png` | 1040 × 960 | Unused — the hero is now the stage |
 | `guide-tickets.png` | 720 × 560 | Guide 01 — buying from overseas |
 | `guide-nol.png` | 720 × 560 | Guide 02 — NOL World |
 | `guide-presale.png` | 720 × 560 | Guide 03 — fan club presale |
@@ -18,6 +20,9 @@ The generation briefs live in `content/artwork.ts`, beside the file names, so
 the art direction is versioned with the code rather than sitting in a chat.
 
 ## Requirements
+
+The two cinematic pieces are full-bleed JPEGs and need no transparency. The
+rules below apply to the cut-out objects.
 
 - **PNG with a transparent background.** The page behind the image is paper in
   the light theme and ink in the dark one, so a baked-in background breaks one
