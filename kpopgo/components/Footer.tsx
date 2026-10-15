@@ -26,7 +26,7 @@ export function Footer() {
           <ul className="mt-4 grid gap-2.5">
             {guides.map((g) => (
               <li key={g.slug}>
-                <Link href={`/guides/${g.slug}`} className="t-sm hover:text-[var(--ink)]">
+                <Link href={`/guides/${g.slug}`} className="t-sm tap hover:text-[var(--ink)]">
                   {g.name}
                 </Link>
               </li>
@@ -44,17 +44,17 @@ export function Footer() {
           </ul>
           <ul className="t-sm mt-5 flex flex-wrap gap-x-5 gap-y-2">
             <li>
-              <Link href="/words" className="hover:text-[var(--ink)]">
+              <Link href="/words" className="tap hover:text-[var(--ink)]">
                 Korean words
               </Link>
             </li>
             <li>
-              <Link href="/about" className="hover:text-[var(--ink)]">
+              <Link href="/about" className="tap hover:text-[var(--ink)]">
                 About
               </Link>
             </li>
             <li>
-              <Link href="/privacy" className="hover:text-[var(--ink)]">
+              <Link href="/privacy" className="tap hover:text-[var(--ink)]">
                 Privacy
               </Link>
             </li>

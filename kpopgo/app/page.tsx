@@ -96,7 +96,7 @@ export default function Home() {
 
       {/* ─────────── T20: numbers as the subject ─────────── */}
       <section className="band tint">
-        <div className="wrap grid gap-3.5 py-10 sm:grid-cols-3 sm:py-14">
+        <div className="wrap proof grid gap-3.5 py-10 sm:grid-cols-3 sm:py-14">
           <div className="obj p-6">
             <ObjectMark name="id" />
             <span className="figure mt-4">05</span>
@@ -188,9 +188,9 @@ export default function Home() {
           <ul className="mt-8 grid gap-3.5">
             {guides.map((g, i) => (
               <li key={g.slug} className="obj obj-lift p-6">
-                <Link href={`/guides/${g.slug}`} className="flex items-start gap-4">
+                <Link href={`/guides/${g.slug}`} className="card-row">
                   <ObjectMark name={g.glyph} />
-                  <div className="min-w-0">
+                  <div className="w-full min-w-0">
                     <div className="flex items-baseline gap-3">
                       <span className="data ju shrink-0">
                         {String(i + 1).padStart(2, "0")}

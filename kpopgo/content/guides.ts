@@ -182,9 +182,9 @@ export const guides: Guide[] = [
     art: "guide-nol",
     name: "NOL World",
     koLine: "놀 월드 예매 안내 — 구 인터파크 글로벌",
-    title: "NOL World ticketing guide (the site that used to be interpark Global)",
+    title: "NOL World ticketing guide",
     summary:
-      "interpark Global became NOL World on 1 December 2025. Most guides still send you to the old name — here is the current route, step by step.",
+      "The site that used to be interpark Global. It was renamed on 1 December 2025, most guides still send you to the old name, and here is the current route step by step.",
     glyph: "id",
     status: "draft",
     lastVerified: RESEARCH_DATE,

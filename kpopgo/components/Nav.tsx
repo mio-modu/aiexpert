@@ -14,7 +14,7 @@ export function Nav() {
       }}
     >
       <nav className="wrap flex h-15 items-center gap-3 sm:h-17">
-        <Link href="/" className="logo-link">
+        <Link href="/" className="logo-link tap">
           <span
             className="font-latin text-[1.3125rem] font-black uppercase tracking-[-0.045em]"
             style={{ fontVariationSettings: '"wdth" 114' }}
@@ -25,19 +25,22 @@ export function Nav() {
         <span className="han-lb ml-2 hidden sm:inline">케이팝 해외 예매 안내</span>
 
         <div className="ml-auto flex items-center gap-2">
-          <Link href="/guides" className="data dim px-2 transition-colors hover:text-[var(--ink)]">
+          <Link
+            href="/guides"
+            className="data dim tap nav-compact px-2 transition-colors hover:text-[var(--ink)]"
+          >
             Guides
           </Link>
           <Link
             href="/words"
-            className="data dim hidden px-2 transition-colors hover:text-[var(--ink)] sm:block"
+            className="data dim tap hidden px-2 transition-colors hover:text-[var(--ink)] sm:inline-flex"
           >
             Words
           </Link>
           <ThemeToggle />
           <Link
             href="/guides/buy-k-pop-concert-tickets-from-overseas"
-            className="btn px-4 py-2.5 text-[0.8125rem]"
+            className="btn nav-cta px-4 py-2.5 text-[0.8125rem]"
           >
             Start
           </Link>
@@ -81,7 +84,7 @@ function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label="Switch colour theme"
-      className="grid size-9 place-items-center rounded-full"
+      className="grid size-11 place-items-center rounded-full sm:size-9"
       style={{ border: "1px solid var(--rule)" }}
     >
       <svg

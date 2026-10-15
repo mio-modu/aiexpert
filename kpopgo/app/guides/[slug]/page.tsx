@@ -4,7 +4,12 @@ import { notFound } from "next/navigation";
 import { getGuide, guides, jamo } from "@/content/guides";
 import { guideJsonLd } from "@/lib/jsonld";
 import { JsonLd } from "@/components/JsonLd";
-import { ObjectMark, StackedScreens, StepObject } from "@/components/Objects";
+import {
+  ObjectMark,
+  StackedScreens,
+  SingleScreen,
+  StepObject,
+} from "@/components/Objects";
 import { Artwork } from "@/components/Artwork";
 import { VerifiedBadge, DraftNotice } from "@/components/Badges";
 import { AdSlot } from "@/components/AdSlot";
@@ -82,10 +87,15 @@ export default async function GuidePage({
 
       {/* ─────────── T21: the booking screens ─────────── */}
       <div className="wrap mt-10">
-        <StackedScreens />
+        <div className="sm:hidden">
+          <SingleScreen />
+        </div>
+        <div className="hidden sm:block">
+          <StackedScreens />
+        </div>
         <p className="data-sm dim mt-3.5 max-w-[62ch]">
-          The screens carry real values. The warning on the front one is the failure these
-          guides exist to prevent.
+          Real values, and a real warning: the name does not match the fan club record.
+          That is the failure these guides exist to prevent.
         </p>
       </div>
 

@@ -26,9 +26,9 @@ export default function GuidesIndex() {
       <ul className="mt-10 grid gap-3.5">
         {guides.map((g, i) => (
           <li key={g.slug} className="obj obj-lift p-6">
-            <Link href={`/guides/${g.slug}`} className="flex items-start gap-4">
+            <Link href={`/guides/${g.slug}`} className="card-row">
               <ObjectMark name={g.glyph} />
-              <div className="min-w-0 flex-1">
+              <div className="w-full min-w-0 flex-1">
                 <div className="flex items-baseline gap-3">
                   <span className="data ju shrink-0">{String(i + 1).padStart(2, "0")}</span>
                   <h2 className="pm min-w-0">{g.title}</h2>

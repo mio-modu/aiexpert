@@ -115,6 +115,30 @@ Do not apply for AdSense before the guides are verified and there is real
 search data — a rejection carries a cooldown that makes a premature
 application the slower path.
 
+## Phone width
+
+Most of the traffic will be on a phone, so the narrow layout is not a
+degradation of the wide one:
+
+- The booking graphic swaps drawing, not scale. The three-screen staircase is
+  right on a desktop and wrong on a phone — at 390px its Korean labels land
+  about five pixels tall and the name-mismatch warning, the entire reason the
+  graphic exists, stops being readable. `SingleScreen` renders instead below
+  `sm`.
+- Object marks sit above a card's title below 560px so the text column keeps
+  the full screen.
+- The three proof tiles become two-up with the first spanning, rather than
+  three full-height cards to scroll past.
+- Below 360px the nav drops its text link: the logo still goes home and the
+  footer carries full navigation, and at that width the bar otherwise runs
+  past the viewport.
+- `.tap` adds vertical padding only. An earlier version set `display` and
+  silently overrode Tailwind's `hidden`, which put a nav item back on screen
+  at phone width — check both when touching it.
+
+Verify at 320, 360, 390 and 414 before pushing. Every tap target should clear
+44px tall.
+
 ## Commands
 
 ```bash

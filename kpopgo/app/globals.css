@@ -490,6 +490,67 @@ h4 {
     box-shadow: none;
   }
 
+  /* ── Touch targets ──
+     Several links sat at 18-19px tall, which is fine for a cursor and not for
+     a thumb. WCAG asks for 44px; the padding is vertical only so nothing in
+     the layout moves. */
+  /* Padding, not display and min-height. Setting `display` here overrode
+     Tailwind's `hidden` on the links that carry both, which put a nav item
+     back on screen at phone width and pushed the bar past the viewport. */
+  .tap {
+    padding-block: 13px;
+  }
+  @media (min-width: 760px) {
+    .tap {
+      padding-block: 0;
+    }
+  }
+
+  /* At 320px the bar runs out of room: logo, one link, the toggle and the
+     call to action come to more than the viewport. The link is the thing to
+     drop, since the logo still goes home and the footer carries full
+     navigation — and only below 360, where it is actually needed. */
+  @media (max-width: 359px) {
+    .nav-compact {
+      display: none;
+    }
+    .nav-cta {
+      padding-inline: 12px;
+    }
+  }
+
+  /* ── Phone width ──
+     Stacked, every card's text column is the full screen, so the object mark
+     goes above the title instead of stealing 68px from a line that is already
+     short. */
+  .card-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  @media (min-width: 560px) {
+    .card-row {
+      flex-direction: row;
+      gap: 16px;
+    }
+  }
+
+  /* Three proof tiles side by side is a lot of scrolling once stacked. */
+  @media (max-width: 559px) {
+    .proof {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .proof > *:first-child {
+      grid-column: 1 / -1;
+    }
+    .proof .figure {
+      font-size: clamp(2.25rem, 11vw, 3rem);
+    }
+  }
+
   /* ── Ad slots ──
      The reserved height is the point: an ad that arrives and pushes the
      article down is a layout shift, and layout shift is something Google

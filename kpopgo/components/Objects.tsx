@@ -649,3 +649,68 @@ export function CrowdScene() {
     </svg>
   );
 }
+
+/**
+ * The booking screen, alone and large, for phone width.
+ *
+ * The three-screen staircase is the right drawing on a desktop and the wrong
+ * one on a phone: scaled to 390px the Korean labels land around five pixels
+ * tall and the name-mismatch warning — the entire reason the graphic exists —
+ * becomes unreadable. Most of this site's traffic will be on a phone, so the
+ * narrow layout gets a single screen at a size where the warning can be read.
+ */
+export function SingleScreen() {
+  return (
+    <svg
+      className="svg-w"
+      viewBox="0 0 360 300"
+      role="img"
+      aria-label="A Korean identity-verification screen showing a passport name and date of birth, with a warning that they do not match the fan club record."
+    >
+      <defs>
+        <filter id="m1" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="10" />
+        </filter>
+        <clipPath id="mc1">
+          <rect x="22" y="18" width="316" height="238" rx="13" />
+        </clipPath>
+      </defs>
+
+      <ellipse cx="180" cy="278" rx="150" ry="13" fill="var(--cast)" filter="url(#m1)" />
+      <rect x="14" y="10" width="332" height="254" rx="17" fill="var(--o-ink)" />
+      <rect x="22" y="18" width="316" height="238" rx="13" fill="var(--o-bone)" />
+
+      <g clipPath="url(#mc1)">
+        <rect x="22" y="18" width="316" height="38" fill="var(--o-indigo)" />
+        <text x="40" y="44" fill="var(--o-bone)" style={{ fontFamily: "var(--font-han)", fontWeight: 700, fontSize: "17px" }}>
+          본인인증
+        </text>
+
+        <text x="40" y="84" fill="var(--o-ink)" opacity=".55" style={{ fontFamily: "var(--font-data)", fontSize: "11px" }}>
+          PASSPORT NAME
+        </text>
+        <rect x="40" y="92" width="280" height="30" rx="7" fill="var(--o-bone-s)" opacity=".62" />
+        <text x="52" y="112" fill="var(--o-ink)" opacity=".85" style={{ fontFamily: "var(--font-latin)", fontWeight: 600, fontSize: "14px" }}>
+          MARIA ELENA SANTOS CRUZ
+        </text>
+
+        <text x="40" y="146" fill="var(--o-ink)" opacity=".55" style={{ fontFamily: "var(--font-data)", fontSize: "11px" }}>
+          DATE OF BIRTH
+        </text>
+        <rect x="40" y="154" width="150" height="30" rx="7" fill="var(--o-bone-s)" opacity=".62" />
+        <text x="52" y="174" fill="var(--o-ink)" opacity=".85" style={{ fontFamily: "var(--font-data)", fontSize: "14px" }}>
+          2004-07-19
+        </text>
+
+        {/* The failure this guide exists to prevent, at a size you can read. */}
+        <rect x="40" y="200" width="280" height="40" rx="8" fill="var(--o-ju)" opacity=".15" />
+        <circle cx="60" cy="220" r="9" fill="var(--o-ju)" />
+        <path d="M60 216v4M60 224.5h.01" stroke="var(--o-bone)" strokeWidth="2.4" strokeLinecap="round" />
+        <text x="78" y="225" fill="var(--o-ju)" style={{ fontFamily: "var(--font-han)", fontWeight: 700, fontSize: "13px" }}>
+          팬클럽 정보와 일치하지 않습니다
+        </text>
+      </g>
+      <rect x="152" y="24" width="56" height="6" rx="3" fill="var(--o-ink)" opacity=".5" />
+    </svg>
+  );
+}
