@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { guides, glossary, platformList } from "@/content/guides";
-import { HeroScene, ObjectMark } from "@/components/Objects";
+import { ObjectMark, StageScene } from "@/components/Objects";
 import { Artwork } from "@/components/Artwork";
 import { VerifiedBadge } from "@/components/Badges";
 
@@ -47,33 +47,32 @@ const renames = [
 export default function Home() {
   return (
     <>
-      {/* ─────────── Hero ─────────── */}
-      <section className="band">
-        <div className="wrap py-9 sm:py-14">
-          <div className="grid items-center gap-9 lg:grid-cols-[1.05fr_0.95fr] lg:gap-11">
-            <div>
-              <p className="data ju">Updated for NOL World · 01 Dec 2025</p>
-              <h1 className="px mt-4">Buying K-pop tickets from outside Korea</h1>
-              <p className="han-m mt-4">
-                <span className="mark">이렇게 어려울 필요 없습니다</span>
-              </p>
-              <p className="t-lg mt-6">
-                Which platform your show is on. What identity check it runs. Why your card
-                got declined. Dated, sourced, walked step by step.
-              </p>
-              <div className="mt-7 flex flex-wrap gap-2.5">
-                <Link href="/guides/buy-k-pop-concert-tickets-from-overseas" className="btn">
-                  Start with the basics →
-                </Link>
-                <Link
-                  href="/guides/foreign-card-declined-korean-ticketing"
-                  className="btn btn-ghost"
-                >
-                  My card was declined
-                </Link>
-              </div>
-            </div>
-            <Artwork name="hero" fallback={<HeroScene />} priority />
+      {/* ─────────── Hero — T09 영화 같은 한 장면 ─────────── */}
+      <section className="stage band">
+        <div className="stage-media">
+          <Artwork name="hero-stage" fallback={<StageScene />} priority />
+        </div>
+        <div className="stage-scrim" />
+        <div className="wrap stage-body py-16 sm:py-24 lg:py-32">
+          <p className="data ju">Updated for NOL World · 01 Dec 2025</p>
+          <h1 className="px mt-4 max-w-[15ch]">Buying K-pop tickets from outside Korea</h1>
+          <p className="han-m mt-4">
+            <span className="mark">이렇게 어려울 필요 없습니다</span>
+          </p>
+          <p className="t-lg mt-6">
+            Which platform your show is on. What identity check it runs. Why your card got
+            declined. Dated, sourced, walked step by step.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-2.5">
+            <Link href="/guides/buy-k-pop-concert-tickets-from-overseas" className="btn">
+              Start with the basics →
+            </Link>
+            <Link
+              href="/guides/foreign-card-declined-korean-ticketing"
+              className="btn btn-stage"
+            >
+              My card was declined
+            </Link>
           </div>
         </div>
       </section>

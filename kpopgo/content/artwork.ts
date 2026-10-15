@@ -45,7 +45,60 @@ const BASE =
   "Palette strictly: vermilion #E0432C, deep indigo #334A86, bone white #F3ECE1, " +
   "near-black ink #1C1B22, muted gold #C9A24A.";
 
+/**
+ * T09 영화 같은 한 장면 has different rules from T13, and they conflict on
+ * purpose: here the light comes from BEHIND the subject, the image fills the
+ * frame rather than floating on it, and there is no cut-out. T09's documented
+ * failure is type sinking into the picture, so every brief below reserves a
+ * dark area where the headline sits.
+ *
+ * On likeness: silhouettes only, anonymous, never traced from a photograph —
+ * no faces, no identifiable features, no real lightstick designs (those are
+ * individual groups' trademarks). This is the standard language of a concert
+ * poster, and it is what keeps the site clear of portrait claims.
+ *
+ * These are full-bleed, so they do NOT need transparency. JPEG is fine and
+ * preferable for file size. Only the cut-out T13 objects need PNG with alpha.
+ */
+const STAGE =
+  "Cinematic concert photograph, strong backlight from behind the subjects, " +
+  "warm haze and visible light beams through atmospheric fog, deep shadow in " +
+  "the foreground, fine film grain, no lens flare starbursts, shallow depth. " +
+  "Subjects are ANONYMOUS SILHOUETTES ONLY — fully backlit, no facial features, " +
+  "no recognisable individuals, not traced from any photograph. " +
+  "No text, no logos, no brand marks, no readable signage. " +
+  "Warm palette: vermilion #E0432C, amber, deep indigo #334A86 shadows, " +
+  "near-black #0E0D12 foreground.";
+
 export const artwork: ArtPiece[] = [
+  {
+    id: "hero-stage",
+    file: "hero-stage.jpg",
+    width: 2400,
+    height: 1350,
+    alt: "A backlit concert stage seen from the crowd, with performers in silhouette against warm light beams.",
+    placement: "Home hero — full-bleed background behind the headline",
+    prompt:
+      `${STAGE} Subject: a wide concert stage seen from within the crowd. Four or five ` +
+      "performer silhouettes stand mid-pose across the stage, rimmed by strong warm light " +
+      "from directly behind them. Beams cut down through haze. The lower third is a dark " +
+      "crowd silhouette with scattered raised arms and small points of handheld light. " +
+      "Leave the lower-left quarter deep and uncluttered — the headline sits there. " +
+      "16:9, wide.",
+  },
+  {
+    id: "band-crowd",
+    file: "band-crowd.jpg",
+    width: 2400,
+    height: 700,
+    alt: "A dense crowd seen from behind, arms raised, small lights scattered through the dark.",
+    placement: "Narrow band divider between sections",
+    prompt:
+      `${STAGE} Subject: a dense audience seen from behind at the back of an arena, ` +
+      "arms raised, hundreds of small warm points of handheld light scattered through the " +
+      "dark. The stage is a distant warm glow on the horizon line. Very wide and short " +
+      "letterbox crop, roughly 24:7. No stage detail, no performers.",
+  },
   {
     id: "hero",
     file: "hero-still-life.png",

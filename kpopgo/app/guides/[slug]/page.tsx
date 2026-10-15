@@ -76,11 +76,7 @@ export default async function GuidePage({
 
       {/* ─────────── The guide's own object ─────────── */}
       <div className="wrap mt-10 max-w-[560px]">
-        <Artwork
-          name={guide.art}
-          fallback={<ObjectMark name={guide.glyph} />}
-          priority
-        />
+        <Artwork name={guide.art} fallback={null} priority />
       </div>
 
       {/* ─────────── T21: the booking screens ─────────── */}

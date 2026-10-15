@@ -464,3 +464,138 @@ export function StepObject({ index }: { index: number }) {
       );
   }
 }
+
+/**
+ * T09 영화 같은 한 장면 — the backlit stage.
+ *
+ * Drawn so the hero has its cinematic frame before any photograph exists; the
+ * rendered image replaces it through <Artwork name="hero-stage">.
+ *
+ * T09's rules run opposite to T13's on purpose: the light comes from behind the
+ * subjects, the image fills the frame instead of floating on it, and gradients
+ * are part of the look rather than banned. Its documented failure is type
+ * sinking into the picture, so the lower-left stays deep and uncluttered.
+ *
+ * Every figure is an anonymous silhouette. No faces, no identifiable features,
+ * nothing traced from a photograph, and the handheld lights are plain points
+ * rather than any group's lightstick design.
+ */
+export function StageScene() {
+  // Crowd heads and raised arms, scattered deterministically so the render is
+  // stable between builds.
+  const crowd = Array.from({ length: 46 }, (_, i) => {
+    const x = (i * 137.5) % 1600;
+    const y = 742 + ((i * 53) % 46);
+    return { x, y, r: 13 + ((i * 7) % 9) };
+  });
+
+  const lights = Array.from({ length: 30 }, (_, i) => ({
+    x: (i * 211.3) % 1600,
+    y: 660 + ((i * 97) % 110),
+    r: 2.6 + ((i * 3) % 4),
+  }));
+
+  return (
+    <svg
+      viewBox="0 0 1600 900"
+      preserveAspectRatio="xMidYMid slice"
+      role="img"
+      aria-label="A backlit concert stage seen from the crowd, with performers in silhouette against warm light beams."
+      style={{ display: "block", width: "100%", height: "100%" }}
+    >
+      <defs>
+        <radialGradient id="glow" cx="50%" cy="46%" r="54%">
+          <stop offset="0%" stopColor="#ffb26b" stopOpacity="0.95" />
+          <stop offset="38%" stopColor="#e0432c" stopOpacity="0.55" />
+          <stop offset="100%" stopColor="#0e0d12" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#ffc98a" stopOpacity="0.5" />
+          <stop offset="100%" stopColor="#ffc98a" stopOpacity="0" />
+        </linearGradient>
+        {/* T09's fix for its own failure mode: darken only where type sits. */}
+        <linearGradient id="scrim" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0%" stopColor="#0e0d12" stopOpacity="0.95" />
+          <stop offset="46%" stopColor="#0e0d12" stopOpacity="0.62" />
+          <stop offset="100%" stopColor="#0e0d12" stopOpacity="0.1" />
+        </linearGradient>
+        <filter id="haze" x="-10%" y="-10%" width="120%" height="120%">
+          <feGaussianBlur stdDeviation="26" />
+        </filter>
+      </defs>
+
+      <rect width="1600" height="900" fill="#0e0d12" />
+      <ellipse cx="800" cy="430" rx="760" ry="420" fill="url(#glow)" filter="url(#haze)" />
+
+      {/* beams cutting down through the haze */}
+      <g>
+        <polygon points="760,120 820,120 560,700 420,700" fill="url(#beam)" />
+        <polygon points="880,120 940,120 1180,700 1040,700" fill="url(#beam)" />
+        <polygon points="640,130 672,130 500,700 408,700" fill="url(#beam)" opacity=".7" />
+        <polygon points="1004,130 1036,130 1210,700 1120,700" fill="url(#beam)" opacity=".7" />
+      </g>
+
+      {/* stage deck */}
+      <rect x="0" y="596" width="1600" height="12" fill="#0e0d12" opacity=".85" />
+
+      {/* performers — anonymous, fully backlit, mid-pose */}
+      <g fill="#0e0d12">
+        {/* centre, both arms up */}
+        <g transform="translate(800 -36)">
+          <circle cx="0" cy="372" r="20" />
+          <path d="M-17 396h34l6 112-10 92h-14l-4-86-4 86h-14l-10-92z" />
+          <path d="M13 404l40-76 14 8-36 86z" />
+          <path d="M-13 404l-40-76-14 8 36 86z" />
+        </g>
+        {/* left, one arm out */}
+        <g transform="translate(618 -14)">
+          <circle cx="0" cy="378" r="18" />
+          <path d="M-16 400h32l6 106-10 88h-13l-4-82-4 82h-13l-10-88z" />
+          <path d="M12 408l44 26-7 14-42-22z" />
+          <path d="M-12 408l-30 54 12 8 27-48z" />
+        </g>
+        {/* right, mirrored */}
+        <g transform="translate(982 -20)">
+          <circle cx="0" cy="376" r="18" />
+          <path d="M-16 398h32l6 108-10 90h-13l-4-84-4 84h-13l-10-90z" />
+          <path d="M-12 406l-44 26 7 14 42-22z" />
+          <path d="M12 406l30 54-12 8-27-48z" />
+        </g>
+        {/* outer pair, smaller and further back */}
+        <g transform="translate(452 14) scale(0.84)">
+          <circle cx="0" cy="384" r="18" />
+          <path d="M-15 406h30l6 102-9 86h-12l-4-80-4 80h-12l-9-86z" />
+          <path d="M11 414l36-58 12 8-32 68z" />
+        </g>
+        <g transform="translate(1150 10) scale(0.84)">
+          <circle cx="0" cy="384" r="18" />
+          <path d="M-15 406h30l6 102-9 86h-12l-4-80-4 80h-12l-9-86z" />
+          <path d="M-11 414l-36-58-12 8 32 68z" />
+        </g>
+      </g>
+
+      {/* handheld lights in the crowd — plain points, no group's design */}
+      <g>
+        {lights.map((l, i) => (
+          <circle key={i} cx={l.x} cy={l.y} r={l.r} fill="#ffd9a8" opacity=".85" />
+        ))}
+      </g>
+
+      {/* crowd, nearest and darkest */}
+      <g fill="#0b0a0f">
+        <rect x="0" y="790" width="1600" height="110" />
+        {crowd.map((c, i) => (
+          <circle key={i} cx={c.x} cy={c.y} r={c.r} />
+        ))}
+        {/* raised arms */}
+        {crowd
+          .filter((_, i) => i % 3 === 0)
+          .map((c, i) => (
+            <rect key={i} x={c.x - 5} y={c.y - 74} width="10" height="76" rx="5" />
+          ))}
+      </g>
+
+      <rect width="1600" height="900" fill="url(#scrim)" />
+    </svg>
+  );
+}

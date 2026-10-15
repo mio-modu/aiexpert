@@ -427,6 +427,59 @@ h4 {
     white-space: nowrap;
   }
 
+  /* ── T09: the cinematic band. Dark in both themes — it is a photograph,
+     and the type on it is light, so it does not follow the page palette. ── */
+  .stage {
+    position: relative;
+    background: #0e0d12;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .stage-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .stage-media img,
+  .stage-media svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* T09's own failure is type sinking into the picture, so the corner the
+     headline sits in gets darkened — and only that corner. */
+  .stage-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to top right,
+      rgba(14, 13, 18, 0.94) 0%,
+      rgba(14, 13, 18, 0.62) 46%,
+      rgba(14, 13, 18, 0.08) 100%
+    );
+  }
+  .stage-body {
+    position: relative;
+    z-index: 2;
+    color: #f6f3ee;
+  }
+  .stage-body .t-lg,
+  .stage-body .t,
+  .stage-body .t-sm {
+    color: rgba(246, 243, 238, 0.78);
+  }
+  .stage-body .dim {
+    color: rgba(246, 243, 238, 0.56);
+  }
+  .btn-stage {
+    background: transparent;
+    color: #f6f3ee;
+    border-color: rgba(246, 243, 238, 0.42);
+    box-shadow: none;
+  }
+
   .svg-w {
     width: 100%;
     height: auto;
