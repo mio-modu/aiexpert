@@ -4,12 +4,7 @@ import { notFound } from "next/navigation";
 import { getGuide, guides, jamo } from "@/content/guides";
 import { guideJsonLd } from "@/lib/jsonld";
 import { JsonLd } from "@/components/JsonLd";
-import {
-  ObjectMark,
-  StackedScreens,
-  SingleScreen,
-  StepObject,
-} from "@/components/Objects";
+import { StackedScreens, SingleScreen, StepObject } from "@/components/Objects";
 import { Artwork } from "@/components/Artwork";
 import { VerifiedBadge, DraftNotice } from "@/components/Badges";
 import { AdSlot } from "@/components/AdSlot";
@@ -63,7 +58,8 @@ export default async function GuidePage({
           </Link>
         </nav>
 
-        <h1 className="pl mt-6 max-w-[22ch]">{guide.title}</h1>
+        <p className="pc-han mt-7">{guide.ko}</p>
+        <h1 className="pl mt-3 max-w-[22ch]">{guide.title}</h1>
         <p className="han-m dim mt-3.5">{guide.koLine}</p>
         <p className="t-lg mt-5">{guide.summary}</p>
 
@@ -213,16 +209,22 @@ export default async function GuidePage({
         </div>
       </section>
 
-      {/* ─────────── Next ─────────── */}
+      {/* ─────────── Next — the same photocards as everywhere else ─────────── */}
       <section className="wrap mt-16">
-        <h2 className="data dim">Next</h2>
-        <ul className="mt-4 grid gap-3 sm:grid-cols-3">
+        <h2 className="data dim">
+          Next <span className="han text-[0.6875rem]">다음 절차</span>
+        </h2>
+        <ul className="mt-5 grid gap-3.5 sm:grid-cols-3">
           {others.map((g) => (
-            <li key={g.slug}>
-              <Link href={`/guides/${g.slug}`} className="obj obj-lift block h-full p-5">
-                <ObjectMark name={g.glyph} />
-                <h3 className="ps mt-3.5">{g.name}</h3>
-                <p className="han-lb mt-1">{g.koLine}</p>
+            <li key={g.slug} className="pc">
+              <Link href={`/guides/${g.slug}`} className="block h-full p-5">
+                <div className="flex items-start justify-between gap-3">
+                  <span className="pc-han block">{g.ko}</span>
+                  <span className="pc-no pc-no-sm shrink-0">
+                    {String(guides.findIndex((x) => x.slug === g.slug) + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <h3 className="ps mt-3">{g.name}</h3>
                 <p className="data-sm dim mt-2">
                   {String(g.steps.length).padStart(2, "0")} steps ·{" "}
                   {String(g.readMinutes).padStart(2, "0")} min

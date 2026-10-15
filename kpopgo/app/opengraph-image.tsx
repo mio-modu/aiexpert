@@ -8,10 +8,15 @@ export const contentType = "image/png";
 /**
  * The share card. Most of this site's early distribution is a link pasted into a
  * fan community, so the card is the first impression far more often than the
- * home page is.
+ * home page is — and it is seen in a feed, next to posters and photocards,
+ * which is why it is dark and carries the foil rule rather than sitting on
+ * cream like a press release.
  *
  * Latin only, no Hangul: ImageResponse ships a Latin font and would render
  * Korean glyphs as tofu. The Korean belongs on the page, not here.
+ *
+ * satori needs `display` stated on any div with more than one child, so every
+ * flex container below says so even where a browser would not need it.
  */
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -23,8 +28,8 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#f7f4ef",
-          padding: "72px 80px",
+          background: "#0a0a0f",
+          padding: "68px 80px 0",
           fontFamily: "sans-serif",
         }}
       >
@@ -36,9 +41,9 @@ export default function OpengraphImage() {
               justifyContent: "center",
               width: 54,
               height: 54,
-              borderRadius: 12,
-              border: "4px solid #d8341f",
-              color: "#d8341f",
+              borderRadius: 14,
+              background: "#ff3b2e",
+              color: "#0a0a0f",
               fontSize: 30,
               fontWeight: 900,
             }}
@@ -51,10 +56,10 @@ export default function OpengraphImage() {
               fontSize: 34,
               fontWeight: 900,
               letterSpacing: "-0.04em",
-              color: "#14131a",
+              color: "#f6f3ee",
             }}
           >
-            KPOP<span style={{ color: "#d8341f" }}>GO</span>
+            KPOP<span style={{ color: "#ff3b2e" }}>GO</span>
           </div>
         </div>
 
@@ -65,24 +70,38 @@ export default function OpengraphImage() {
             fontWeight: 900,
             lineHeight: 1.02,
             letterSpacing: "-0.04em",
-            color: "#14131a",
-            maxWidth: 940,
+            color: "#f6f3ee",
+            maxWidth: 960,
           }}
         >
           Buying K-pop tickets from outside Korea
         </div>
 
-        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
-          <div style={{ display: "flex", fontSize: 30, color: "rgba(20,19,26,0.66)", maxWidth: 720 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "space-between",
+            paddingBottom: 60,
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              fontSize: 30,
+              color: "rgba(246,243,238,0.66)",
+              maxWidth: 720,
+            }}
+          >
             Which platform. Which identity check. Why your card got declined.
           </div>
           <div
             style={{
               display: "flex",
               padding: "10px 20px",
-              borderRadius: 8,
-              border: "3px solid #d8341f",
-              color: "#d8341f",
+              borderRadius: 999,
+              border: "3px solid #ff3b2e",
+              color: "#ff3b2e",
               fontSize: 22,
               fontWeight: 700,
               letterSpacing: "0.08em",
@@ -91,6 +110,19 @@ export default function OpengraphImage() {
             DATED · SOURCED
           </div>
         </div>
+
+        {/* The foil rule, as a flat three-stop gradient — the one place the
+            whole trio appears, the same rule the site uses on an edge. */}
+        <div
+          style={{
+            display: "flex",
+            height: 12,
+            width: 1200,
+            marginLeft: -80,
+            background:
+              "linear-gradient(90deg, #00e5ff 0%, #b14bff 44%, #ff3b2e 82%, #00e5ff 100%)",
+          }}
+        />
       </div>
     ),
     size,

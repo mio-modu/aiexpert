@@ -14,16 +14,20 @@
  *   · matte clay surfaces — 반짝임 금지, no specular highlight, no gloss
  *   · one soft light from the upper left, for every piece, so the whole site
  *     reads as one photographed set
- *   · transparent background, because the page behind it is paper in the light
- *     theme and ink in the dark one
+ *   · transparent background, because the page behind it is ink in the default
+ *     theme and paper in the light one
  *   · no people, no faces, no hands, no idol likeness of any kind
  *   · no text, no logos, no brand marks — type is set in HTML, not baked in
+ *
+ * One exception to the matte rule, and only one: a photocard's edge really is
+ * iridescent, so the foil border on `pc-foil` and on the card inside `fan-kit`
+ * is describing the object rather than decorating it. The faces stay matte.
  */
 
 export type ArtPiece = {
   /** Stable id, used as the <Artwork name="..."> key. */
   id: string;
-  /** Expected file in public/img/. PNG with alpha. */
+  /** Expected file in public/img/. PNG with alpha for cut-outs. */
   file: string;
   /** Rendered width and height. Used for layout, so it must match the file. */
   width: number;
@@ -36,15 +40,24 @@ export type ArtPiece = {
   prompt: string;
 };
 
+/**
+ * The objects were briefed once in a cream-and-indigo palette, against a
+ * passport, a bank card and a parcel box. It rendered well and it was the
+ * wrong set: it read as a fintech or a shipping service, and a fan arriving
+ * from a fan community saw nothing of their own world in it. The vocabulary is
+ * now fandom — lightstick, photocard, ticket stub, slogan banner — in the
+ * lightstick trio, because no K-pop surface is monochrome.
+ */
 const BASE =
   "Matte clay 3D render, soft studio light from the upper left only, " +
   "no gloss, no specular highlights, no reflections, no rim light, " +
   "no baked shadow — the page draws its own so it can follow the theme, " +
   "transparent background, " +
   "slightly isometric three-quarter view, clean product-shot composition, " +
-  "no people, no hands, no faces, no text, no logos, no lettering. " +
-  "Palette strictly: vermilion #E0432C, deep indigo #334A86, bone white #F3ECE1, " +
-  "near-black ink #1C1B22, muted gold #C9A24A.";
+  "no people, no hands, no faces, no text, no logos, no lettering, " +
+  "no real brand marks and no existing group's lightstick or album design. " +
+  "Palette strictly: vermilion #FF3B2E, electric cyan #00E5FF, " +
+  "hot violet #B14BFF, bone white #F3ECE1, near-black #0A0A0F.";
 
 /**
  * T09 영화 같은 한 장면 has different rules from T13, and they conflict on
@@ -62,14 +75,15 @@ const BASE =
  * preferable for file size. Only the cut-out T13 objects need PNG with alpha.
  */
 const STAGE =
-  "Cinematic concert photograph, strong backlight from behind the subjects, " +
-  "warm haze and visible light beams through atmospheric fog, deep shadow in " +
-  "the foreground, fine film grain, no lens flare starbursts, shallow depth. " +
+  "Cinematic concert photograph, strong backlight from directly behind the " +
+  "subjects, warm haze and visible light beams through atmospheric fog, deep " +
+  "shadow in the foreground, fine film grain, no lens flare starbursts. " +
   "Subjects are ANONYMOUS SILHOUETTES ONLY — fully backlit, no facial features, " +
   "no recognisable individuals, not traced from any photograph. " +
-  "No text, no logos, no brand marks, no readable signage. " +
-  "Warm palette: vermilion #E0432C, amber, deep indigo #334A86 shadows, " +
-  "near-black #0E0D12 foreground.";
+  "No text, no logos, no brand marks, no readable signage, and no placeholder " +
+  "shapes where type will go — the headline is set in HTML over the picture. " +
+  "Vermilion #FF3B2E and amber in the light, hot violet #B14BFF in the shadows, " +
+  "near-black #0A0A0F foreground.";
 
 export const artwork: ArtPiece[] = [
   {
@@ -77,15 +91,14 @@ export const artwork: ArtPiece[] = [
     file: "hero-stage.jpg",
     width: 1800,
     height: 1012,
-    alt: "A backlit concert stage seen from the crowd, with performers in silhouette against warm light beams.",
+    alt: "Five dancers in silhouette across a stage, mid-choreography, against strong backlight and fog.",
     placement: "Home hero — full-bleed background behind the headline",
     prompt:
-      `${STAGE} Subject: a wide concert stage seen from within the crowd. Four or five ` +
-      "performer silhouettes stand mid-pose across the stage, rimmed by strong warm light " +
-      "from directly behind them. Beams cut down through haze. The lower third is a dark " +
-      "crowd silhouette with scattered raised arms and small points of handheld light. " +
-      "Leave the lower-left quarter deep and uncluttered — the headline sits there. " +
-      "16:9, wide.",
+      `${STAGE} Subject: five dancer silhouettes in a line across a stage, ` +
+      "mid-choreography, arms extended in formation, lit hard from behind so they read " +
+      "as flat black shapes. NO instruments, NO guitars, NO drum kit, NO microphone " +
+      "stands — this is a dance stage, not a band. The lower-left quarter stays deep and " +
+      "uncluttered. 16:9, wide.",
   },
   {
     id: "band-crowd",
@@ -101,19 +114,56 @@ export const artwork: ArtPiece[] = [
       "letterbox crop, roughly 24:7. No stage detail, no performers.",
   },
   {
-    id: "hero",
-    file: "hero-still-life.webp",
-    width: 1040,
-    height: 743,
-    alt: "A navy passport, a vermilion concert ticket, a bone-white bank card and a dark phone, arranged as matte clay objects.",
-    placement: "Home page hero, right column",
+    id: "pc-foil",
+    file: "pc-foil.webp",
+    width: 720,
+    height: 1202,
+    alt: "A blank collectible card standing upright, its border a band of iridescent foil.",
+    placement: "Home — beside the guides heading, where the photocard idea is introduced",
     prompt:
-      `${BASE} Subject: four objects arranged loosely overlapping on an invisible surface — ` +
-      "a deep indigo passport booklet with a muted gold embossed emblem, a long vermilion " +
-      "concert ticket with a perforated tear line and a torn stub, a bone-white bank card " +
-      "with a small gold chip, and a dark charcoal smartphone standing slightly upright " +
-      "with a blank bone-white screen. The ticket sits in front and is the largest object. " +
-      "Square-ish composition, generous empty space around the group.",
+      `${BASE} Subject: a single blank collectible card standing upright, portrait ` +
+      "orientation, rounded corners, bone-white face with NOTHING printed on it, and a " +
+      "thin iridescent holographic foil edge running around the border that shifts from " +
+      "cyan through violet to vermilion. The face stays matte; only the 2mm border is " +
+      "iridescent.",
+  },
+  {
+    id: "lightstick",
+    file: "lightstick.webp",
+    width: 560,
+    height: 878,
+    alt: "A generic concert lightstick — a translucent sphere glowing on a straight handle.",
+    placement: "Home hero, lower right — the object that names the subject on sight",
+    prompt:
+      `${BASE} Subject: a single generic concert lightstick — a plain translucent sphere ` +
+      "on a straight handle, glowing warm vermilion from within, with a cyan collar and a " +
+      "violet band near the base. Completely generic shape, NOT based on any existing " +
+      "group's design, no emblem, no character, no logo of any kind.",
+  },
+  {
+    id: "fan-kit",
+    file: "fan-kit.webp",
+    width: 960,
+    height: 620,
+    alt: "A ticket with a perforated stub, a foil-edged collectible card, a string of slogan flags and a fabric wristband.",
+    placement: "Guides index — the header, standing for what a sale actually hands you",
+    prompt:
+      `${BASE} Subject: a flat lay of four blank fandom objects slightly overlapping — a ` +
+      "long vermilion concert ticket with a perforated stub, a blank collectible card with " +
+      "an iridescent edge, a short string of small slogan flags in cyan, violet, bone white " +
+      "and black, and a fabric wristband. All blank, no printing, no text.",
+  },
+  {
+    id: "album-stack",
+    file: "album-stack.webp",
+    width: 820,
+    height: 840,
+    alt: "Three square album cases stacked at slight angles, in vermilion, violet and bone white.",
+    placement: "Guide 05 — buying albums from overseas",
+    prompt:
+      `${BASE} Subject: three square album cases stacked at slight angles, one vermilion, ` +
+      "one deep violet, one bone white, all faces completely blank with no artwork or " +
+      "lettering. A photobook-thick spine on each.",
   },
   {
     id: "guide-tickets",
@@ -132,12 +182,12 @@ export const artwork: ArtPiece[] = [
     file: "guide-nol.webp",
     width: 720,
     height: 590,
-    alt: "A dark phone showing a blank form screen, beside a navy passport, as matte clay objects.",
+    alt: "A dark phone showing a blank form screen, beside a passport, as matte clay objects.",
     placement: "Guide 02 — NOL World ticketing",
     prompt:
       `${BASE} Subject: a dark charcoal smartphone standing upright with a blank bone-white ` +
       "screen showing three empty rounded input fields and one vermilion rounded button at the " +
-      "bottom, with a deep indigo passport booklet lying flat beside it, slightly behind.",
+      "bottom, with a passport booklet lying flat beside it, slightly behind.",
   },
   {
     id: "guide-presale",
@@ -148,8 +198,8 @@ export const artwork: ArtPiece[] = [
     placement: "Guide 03 — fan club presale access",
     prompt:
       `${BASE} Subject: a bone-white membership card with a raised vermilion five-pointed star ` +
-      "on its face, leaning against a small bone-white calendar block whose top band is deep " +
-      "indigo. Both objects blank, no numbers, no text.",
+      "on its face, leaning against a small calendar block whose top band is hot violet. Both " +
+      "objects blank, no numbers, no text.",
   },
   {
     id: "guide-card",
@@ -159,21 +209,9 @@ export const artwork: ArtPiece[] = [
     alt: "A bone-white bank card with a vermilion cross mark resting on its corner, as matte clay objects.",
     placement: "Guide 04 — foreign card declined",
     prompt:
-      `${BASE} Subject: a bone-white bank card with a deep indigo magnetic stripe and a small ` +
-      "gold chip, lying flat, with a thick vermilion three-dimensional cross mark (an X) resting " +
+      `${BASE} Subject: a bone-white bank card with a hot violet magnetic stripe and a small ` +
+      "cyan chip, lying flat, with a thick vermilion three-dimensional cross mark (an X) resting " +
       "on its lower-right corner, slightly raised above the card.",
-  },
-  {
-    id: "guide-albums",
-    file: "guide-albums.webp",
-    width: 720,
-    height: 513,
-    alt: "A small sealed parcel box beside a square album case, as matte clay objects.",
-    placement: "Guide 05 — buying albums from overseas",
-    prompt:
-      `${BASE} Subject: a small bone-white parcel box, closed and sealed with a single vermilion ` +
-      "tape strip across the top, with a square deep indigo album case leaning against it. Both " +
-      "blank, no labels, no printing.",
   },
   {
     id: "seal",

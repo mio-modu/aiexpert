@@ -70,7 +70,7 @@ export function Footer() {
           Research compiled {RESEARCH_DATE} · Not legal, financial or immigration advice
         </p>
         <p className="data-sm dim">
-          © {new Date().getFullYear()} {site.name} · T13 보송한 3D 사물
+          © {new Date().getFullYear()} {site.name} · T09 영화 같은 한 장면 · T13 보송한 3D 사물
         </p>
       </div>
     </footer>

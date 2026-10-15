@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { guides, glossary, platformList } from "@/content/guides";
 import { ObjectMark, StageScene, CrowdScene } from "@/components/Objects";
@@ -45,15 +46,27 @@ const renames = [
   { ko: "개정 공연법 시행", en: "Revised Performances Act in effect", when: "28 Aug 2025" },
 ];
 
+/**
+ * The root is the one page without a canonical of its own, because the layout's
+ * metadataBase only resolves relative ones. Without it an index of
+ * kpopgo.app/?ref=… or a trailing-slash variant competes with the page itself.
+ */
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default function Home() {
   return (
     <>
       {/* ─────────── Hero — T09 영화 같은 한 장면 ─────────── */}
-      <section className="stage band">
+      <section className="stage stage-hero band">
         <div className="stage-media">
           <Artwork name="hero-stage" fallback={<StageScene />} priority drop={false} />
         </div>
         <div className="stage-scrim" />
+        <div className="prop prop-stick float" aria-hidden="true">
+          <Artwork name="lightstick" fallback={null} drop={false} />
+        </div>
         <div className="wrap stage-body py-16 sm:py-24 lg:py-32">
           <p className="data ju">Updated for NOL World · 01 Dec 2025</p>
           <h1 className="px mt-4 max-w-[15ch]">Buying K-pop tickets from outside Korea</h1>
@@ -179,7 +192,10 @@ export default function Home() {
       </section>
 
       {/* ─────────── Guides — photocards ─────────── */}
-      <section id="guides" className="band sect">
+      <section id="guides" className="band sect" style={{ position: "relative" }}>
+        <div className="prop prop-card float-b" aria-hidden="true">
+          <Artwork name="pc-foil" fallback={null} />
+        </div>
         <div className="wrap">
           <p className="data dim">02 / The guides</p>
           <h2 className="pl mt-4">
@@ -310,8 +326,11 @@ export default function Home() {
               <span className="han text-[0.6875rem]">예매 화면에서 보게 될 단어</span>
             </p>
             <ul className="mt-5 flex flex-wrap gap-2.5">
-              {glossary.map((w) => (
-                <li key={w.ko} className="sticker">
+              {glossary.map((w, i) => (
+                <li
+                  key={w.ko}
+                  className={`sticker ${["", "sticker-cy", "sticker-vi"][i % 3]}`}
+                >
                   <span className="ko">{w.ko}</span>
                   <span className="en">{w.en}</span>
                 </li>

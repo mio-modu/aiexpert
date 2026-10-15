@@ -40,8 +40,8 @@ export function ObjectMark({ name }: { name: MarkName }) {
     return (
       <svg {...common}>
         <ellipse cx="26" cy="36" rx="17" ry="3.4" fill="var(--cast-soft)" />
-        <rect x="10" y="9" width="32" height="25" rx="4" fill="var(--o-indigo-s)" />
-        <rect x="10" y="6" width="32" height="25" rx="4" fill="var(--o-indigo)" />
+        <rect x="10" y="9" width="32" height="25" rx="4" fill="var(--o-vi-s)" />
+        <rect x="10" y="6" width="32" height="25" rx="4" fill="var(--o-vi)" />
         <circle cx="20" cy="16" r="4" fill="var(--o-bone)" opacity=".92" />
         <path
           d="M15 26c1.4-2.8 3-4.2 5-4.2s3.6 1.4 5 4.2"
@@ -51,8 +51,8 @@ export function ObjectMark({ name }: { name: MarkName }) {
           strokeLinecap="round"
           opacity=".92"
         />
-        <rect x="29" y="14" width="9" height="2.4" rx="1.2" fill="var(--o-gold)" opacity=".8" />
-        <rect x="29" y="20" width="9" height="2.4" rx="1.2" fill="var(--o-gold)" opacity=".5" />
+        <rect x="29" y="14" width="9" height="2.4" rx="1.2" fill="var(--o-cy)" opacity=".8" />
+        <rect x="29" y="20" width="9" height="2.4" rx="1.2" fill="var(--o-cy)" opacity=".5" />
       </svg>
     );
   }
@@ -77,7 +77,7 @@ export function ObjectMark({ name }: { name: MarkName }) {
         <ellipse cx="26" cy="36" rx="18" ry="3.4" fill="var(--cast-soft)" />
         <rect x="7" y="12" width="38" height="22" rx="4" fill="var(--o-bone-s)" />
         <rect x="7" y="9" width="38" height="22" rx="4" fill="var(--o-bone)" />
-        <rect x="7" y="15" width="38" height="4" fill="var(--o-indigo)" opacity=".85" />
+        <rect x="7" y="15" width="38" height="4" fill="var(--o-vi)" opacity=".85" />
         <circle cx="38" cy="29" r="7.5" fill="var(--o-ju)" />
         <path d="M35 26l6 6M41 26l-6 6" stroke="var(--o-bone)" strokeWidth="2.2" strokeLinecap="round" />
       </svg>
@@ -87,9 +87,9 @@ export function ObjectMark({ name }: { name: MarkName }) {
   return (
     <svg {...common}>
       <ellipse cx="26" cy="36" rx="18" ry="3.4" fill="var(--cast-soft)" />
-      <path d="M8 15l18-8 18 8v14l-18 8-18-8z" fill="var(--o-indigo-s)" />
-      <path d="M8 13l18-8 18 8-18 8z" fill="var(--o-indigo)" />
-      <path d="M26 21v14l18-8V13z" fill="var(--o-indigo-d)" />
+      <path d="M8 15l18-8 18 8v14l-18 8-18-8z" fill="var(--o-vi-s)" />
+      <path d="M8 13l18-8 18 8-18 8z" fill="var(--o-vi)" />
+      <path d="M26 21v14l18-8V13z" fill="var(--o-vi-d)" />
       <rect x="20" y="16" width="12" height="3" rx="1.5" fill="var(--o-ju)" />
     </svg>
   );
@@ -117,17 +117,17 @@ export function HeroScene() {
       <ellipse cx="206" cy="416" rx="152" ry="26" fill="var(--cast-soft)" filter="url(#h-soft)" />
       <ellipse cx="388" cy="438" rx="86" ry="18" fill="var(--cast)" filter="url(#h-soft)" />
 
-      {/* 여권 — 군청 indigo, back of the group */}
+      {/* 여권 — 보라 violet, back of the group */}
       <g transform="rotate(-9 150 210)">
-        <rect x="58" y="112" width="186" height="248" rx="14" fill="var(--o-indigo-d)" />
-        <rect x="58" y="106" width="186" height="248" rx="14" fill="var(--o-indigo-s)" />
-        <rect x="58" y="100" width="186" height="248" rx="14" fill="var(--o-indigo)" />
-        <rect x="84" y="128" width="134" height="1.6" rx="0.8" fill="var(--o-gold)" opacity=".62" />
-        <circle cx="151" cy="208" r="36" fill="none" stroke="var(--o-gold)" strokeWidth="1.6" opacity=".6" />
-        <circle cx="151" cy="208" r="25" fill="none" stroke="var(--o-gold)" strokeWidth="1.2" opacity=".42" />
-        <path d="M151 183v50M126 208h50" stroke="var(--o-gold)" strokeWidth="1.1" opacity=".38" />
-        <rect x="96" y="286" width="110" height="7" rx="3.5" fill="var(--o-gold)" opacity=".5" />
-        <rect x="112" y="304" width="78" height="5" rx="2.5" fill="var(--o-gold)" opacity=".32" />
+        <rect x="58" y="112" width="186" height="248" rx="14" fill="var(--o-vi-d)" />
+        <rect x="58" y="106" width="186" height="248" rx="14" fill="var(--o-vi-s)" />
+        <rect x="58" y="100" width="186" height="248" rx="14" fill="var(--o-vi)" />
+        <rect x="84" y="128" width="134" height="1.6" rx="0.8" fill="var(--o-cy)" opacity=".62" />
+        <circle cx="151" cy="208" r="36" fill="none" stroke="var(--o-cy)" strokeWidth="1.6" opacity=".6" />
+        <circle cx="151" cy="208" r="25" fill="none" stroke="var(--o-cy)" strokeWidth="1.2" opacity=".42" />
+        <path d="M151 183v50M126 208h50" stroke="var(--o-cy)" strokeWidth="1.1" opacity=".38" />
+        <rect x="96" y="286" width="110" height="7" rx="3.5" fill="var(--o-cy)" opacity=".5" />
+        <rect x="112" y="304" width="78" height="5" rx="2.5" fill="var(--o-cy)" opacity=".32" />
       </g>
 
       {/* 티켓 — 주朱 vermilion, the hero object */}
@@ -158,7 +158,7 @@ export function HeroScene() {
       <g className="float-b" transform="rotate(-14 150 352)">
         <rect x="44" y="306" width="196" height="124" rx="14" fill="var(--o-bone-s)" />
         <rect x="44" y="298" width="196" height="124" rx="14" fill="var(--o-bone)" />
-        <rect x="66" y="326" width="34" height="26" rx="5" fill="var(--o-gold)" opacity=".9" />
+        <rect x="66" y="326" width="34" height="26" rx="5" fill="var(--o-cy)" opacity=".9" />
         <path d="M66 339h34M83 326v26" stroke="var(--o-bone-s)" strokeWidth="1.4" opacity=".8" />
         <g fill="var(--o-ink)" opacity=".72">
           <rect x="66" y="372" width="28" height="7" rx="3.5" />
@@ -179,7 +179,7 @@ export function HeroScene() {
         <rect x="310" y="188" width="156" height="248" rx="23" fill="var(--o-ink)" />
         <rect x="318" y="196" width="140" height="232" rx="15" fill="var(--o-bone)" />
         <g clipPath="url(#h-screen)">
-          <rect x="318" y="196" width="140" height="34" fill="var(--o-indigo)" />
+          <rect x="318" y="196" width="140" height="34" fill="var(--o-vi)" />
           <rect x="330" y="208" width="54" height="8" rx="4" fill="var(--o-bone)" opacity=".92" />
           <rect x="330" y="246" width="44" height="6" rx="3" fill="var(--o-ink)" opacity=".4" />
           <rect x="330" y="258" width="116" height="22" rx="6" fill="var(--o-bone-s)" opacity=".7" />
@@ -256,7 +256,7 @@ export function StackedScreens() {
       <rect x="424" y="46" width="298" height="214" rx="14" fill="var(--o-ink)" />
       <rect x="430" y="52" width="286" height="202" rx="11" fill="var(--o-bone)" />
       <g clipPath="url(#kc3)">
-        <rect x="430" y="52" width="286" height="30" fill="var(--o-indigo)" />
+        <rect x="430" y="52" width="286" height="30" fill="var(--o-vi)" />
         <text x="444" y="72" fill="var(--o-bone)" style={{ fontFamily: "var(--font-han)", fontWeight: 700, fontSize: "13px" }}>
           결제
         </text>
@@ -288,7 +288,7 @@ export function StackedScreens() {
       <rect x="226" y="82" width="298" height="214" rx="14" fill="var(--o-ink)" />
       <rect x="232" y="88" width="286" height="202" rx="11" fill="var(--o-bone)" />
       <g clipPath="url(#kc2)">
-        <rect x="232" y="88" width="286" height="30" fill="var(--o-indigo)" />
+        <rect x="232" y="88" width="286" height="30" fill="var(--o-vi)" />
         <text x="246" y="108" fill="var(--o-bone)" style={{ fontFamily: "var(--font-han)", fontWeight: 700, fontSize: "13px" }}>
           좌석 선택
         </text>
@@ -303,7 +303,7 @@ export function StackedScreens() {
           STAGE
         </text>
         <rect x="258" y="156" width="234" height="34" rx="4" fill="var(--o-ju)" opacity=".2" />
-        <rect x="258" y="196" width="234" height="34" rx="4" fill="var(--o-indigo)" opacity=".18" />
+        <rect x="258" y="196" width="234" height="34" rx="4" fill="var(--o-vi)" opacity=".18" />
         <rect x="258" y="236" width="234" height="34" rx="4" fill="var(--o-ink)" opacity=".1" />
         <g fill="var(--o-ju)">
           <rect x="336" y="166" width="13" height="13" rx="3" />
@@ -326,7 +326,7 @@ export function StackedScreens() {
       <rect x="28" y="118" width="298" height="214" rx="14" fill="var(--o-ink)" />
       <rect x="34" y="124" width="286" height="202" rx="11" fill="var(--o-bone)" />
       <g clipPath="url(#kc1)">
-        <rect x="34" y="124" width="286" height="30" fill="var(--o-indigo)" />
+        <rect x="34" y="124" width="286" height="30" fill="var(--o-vi)" />
         <text x="48" y="144" fill="var(--o-bone)" style={{ fontFamily: "var(--font-han)", fontWeight: 700, fontSize: "13px" }}>
           본인인증
         </text>
@@ -373,8 +373,8 @@ export function StepObject({ index }: { index: number }) {
         <svg {...common}>
           <ellipse cx="56" cy="76" rx="38" ry="6" fill="var(--cast-soft)" />
           <rect x="12" y="20" width="44" height="50" rx="6" fill="var(--o-ink)" opacity=".16" />
-          <rect x="34" y="12" width="56" height="56" rx="8" fill="var(--o-indigo-s)" />
-          <rect x="34" y="8" width="56" height="56" rx="8" fill="var(--o-indigo)" />
+          <rect x="34" y="12" width="56" height="56" rx="8" fill="var(--o-vi-s)" />
+          <rect x="34" y="8" width="56" height="56" rx="8" fill="var(--o-vi)" />
           <rect x="42" y="16" width="40" height="11" rx="3" fill="var(--o-bone)" opacity=".92" />
           <rect x="42" y="34" width="26" height="5" rx="2.5" fill="var(--o-bone)" opacity=".5" />
           <rect x="42" y="45" width="34" height="5" rx="2.5" fill="var(--o-bone)" opacity=".35" />
@@ -387,8 +387,8 @@ export function StepObject({ index }: { index: number }) {
       return (
         <svg {...common}>
           <ellipse cx="56" cy="76" rx="36" ry="6" fill="var(--cast-soft)" />
-          <rect x="24" y="14" width="64" height="56" rx="7" fill="var(--o-indigo-d)" />
-          <rect x="24" y="10" width="64" height="56" rx="7" fill="var(--o-indigo)" />
+          <rect x="24" y="14" width="64" height="56" rx="7" fill="var(--o-vi-d)" />
+          <rect x="24" y="10" width="64" height="56" rx="7" fill="var(--o-vi)" />
           <circle cx="46" cy="30" r="10" fill="var(--o-bone)" opacity=".92" />
           <path
             d="M34 50c3-6.4 7-9.6 12-9.6s9 3.2 12 9.6"
@@ -398,9 +398,9 @@ export function StepObject({ index }: { index: number }) {
             strokeLinecap="round"
             opacity=".92"
           />
-          <rect x="62" y="26" width="18" height="4" rx="2" fill="var(--o-gold)" opacity=".85" />
-          <rect x="62" y="36" width="18" height="4" rx="2" fill="var(--o-gold)" opacity=".55" />
-          <rect x="62" y="46" width="12" height="4" rx="2" fill="var(--o-gold)" opacity=".35" />
+          <rect x="62" y="26" width="18" height="4" rx="2" fill="var(--o-cy)" opacity=".85" />
+          <rect x="62" y="36" width="18" height="4" rx="2" fill="var(--o-cy)" opacity=".55" />
+          <rect x="62" y="46" width="12" height="4" rx="2" fill="var(--o-cy)" opacity=".35" />
         </svg>
       );
     case 2:
@@ -408,8 +408,8 @@ export function StepObject({ index }: { index: number }) {
       return (
         <svg {...common}>
           <ellipse cx="56" cy="76" rx="34" ry="6" fill="var(--cast-soft)" />
-          <circle cx="52" cy="40" r="28" fill="var(--o-indigo-d)" />
-          <circle cx="52" cy="36" r="28" fill="var(--o-indigo)" />
+          <circle cx="52" cy="40" r="28" fill="var(--o-vi-d)" />
+          <circle cx="52" cy="36" r="28" fill="var(--o-vi)" />
           <circle cx="52" cy="36" r="20" fill="var(--o-bone)" />
           <path d="M52 36V22M52 36l10 7" stroke="var(--o-ju)" strokeWidth="3.4" strokeLinecap="round" />
           <rect x="80" y="14" width="24" height="24" rx="5" fill="var(--o-ju)" />
@@ -455,7 +455,7 @@ export function StepObject({ index }: { index: number }) {
           <ellipse cx="56" cy="76" rx="36" ry="6" fill="var(--cast-soft)" />
           <rect x="18" y="24" width="72" height="44" rx="7" fill="var(--o-bone-s)" />
           <rect x="18" y="20" width="72" height="44" rx="7" fill="var(--o-bone)" />
-          <rect x="18" y="28" width="72" height="8" fill="var(--o-indigo)" opacity=".85" />
+          <rect x="18" y="28" width="72" height="8" fill="var(--o-vi)" opacity=".85" />
           <rect x="28" y="46" width="16" height="5" rx="2.5" fill="var(--o-ink)" opacity=".5" />
           <rect x="48" y="46" width="16" height="5" rx="2.5" fill="var(--o-ink)" opacity=".5" />
           <circle cx="86" cy="58" r="13" fill="var(--o-ju)" />
@@ -506,7 +506,7 @@ export function StageScene() {
       <defs>
         <radialGradient id="glow" cx="50%" cy="46%" r="54%">
           <stop offset="0%" stopColor="#ffb26b" stopOpacity="0.95" />
-          <stop offset="38%" stopColor="#e0432c" stopOpacity="0.55" />
+          <stop offset="38%" stopColor="#ff3b2e" stopOpacity="0.55" />
           <stop offset="100%" stopColor="#0e0d12" stopOpacity="0" />
         </radialGradient>
         <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
@@ -624,7 +624,7 @@ export function CrowdScene() {
       <defs>
         <radialGradient id="farglow" cx="50%" cy="34%" r="62%">
           <stop offset="0%" stopColor="#ff8a4c" stopOpacity="0.85" />
-          <stop offset="45%" stopColor="#e0432c" stopOpacity="0.38" />
+          <stop offset="45%" stopColor="#ff3b2e" stopOpacity="0.38" />
           <stop offset="100%" stopColor="#0e0d12" stopOpacity="0" />
         </radialGradient>
       </defs>
@@ -681,7 +681,7 @@ export function SingleScreen() {
       <rect x="22" y="18" width="316" height="238" rx="13" fill="var(--o-bone)" />
 
       <g clipPath="url(#mc1)">
-        <rect x="22" y="18" width="316" height="38" fill="var(--o-indigo)" />
+        <rect x="22" y="18" width="316" height="38" fill="var(--o-vi)" />
         <text x="40" y="44" fill="var(--o-bone)" style={{ fontFamily: "var(--font-han)", fontWeight: 700, fontSize: "17px" }}>
           본인인증
         </text>

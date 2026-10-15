@@ -17,7 +17,7 @@
    behind cast progressively lighter.
 
    Korean reading: the palette is obangsaek-derived rather than the
-   usual cream-and-terracotta — 주朱 vermilion, 군청 indigo, 백 bone,
+   usual cream-and-terracotta — 주朱 vermilion, 청 cyan, 보라 violet, 백 bone,
    흑 ink. The verification badge is a 인장 seal, since a seal is a
    mark of authentication and that is this site's whole product.
    Hangul is content, never ornament: every Korean word on the page
@@ -58,17 +58,22 @@
   --cast: rgba(0, 0, 0, 0.55);
   --cast-soft: rgba(0, 0, 0, 0.34);
 
-  /* Objects are physical, so their own tones hold in both themes. */
-  --o-indigo: #334a86;
-  --o-indigo-s: #24355f;
-  --o-indigo-d: #1a2745;
-  --o-ju: #e0432c;
-  --o-ju-s: #b32d1c;
+  /* Objects are physical, so their own tones hold in both themes. These are
+     the matte-clay cousins of the lightstick trio: the same three hues one
+     step down in chroma, because a rendered object catches less light than a
+     lit edge does and a clay surface at full chroma reads as plastic. They
+     were indigo and gold while the palette was, and a drawn fallback sitting
+     next to a rendered image in the new palette made the mismatch obvious. */
+  --o-vi: #5a2f9e;
+  --o-vi-s: #42216f;
+  --o-vi-d: #2e1750;
+  --o-ju: #e8392b;
+  --o-ju-s: #b72a1f;
   --o-bone: #f3ece1;
   --o-bone-s: #d8cdbc;
   --o-ink: #1c1b22;
   --o-ink-s: #121118;
-  --o-gold: #c9a24a;
+  --o-cy: #00b2c8;
 
   color-scheme: dark;
 }
@@ -462,6 +467,10 @@ h4 {
     height: 100%;
     object-fit: cover;
     display: block;
+    /* The subject sits slightly above centre in both frames, and `cover` on a
+       band this wide crops vertically — without this it keeps the empty air
+       above them and cuts the stage floor off. */
+    object-position: center 42%;
   }
   /* T09's own failure is type sinking into the picture, so the corner the
      headline sits in gets darkened — and only that corner. */
@@ -476,6 +485,33 @@ h4 {
       rgba(14, 13, 18, 0.08) 100%
     );
   }
+  /* A phone crops `cover` to the middle third of the frame, which is exactly
+     where the stage light is brightest — so the diagonal scrim that works on a
+     wide screen puts the eyebrow line straight onto the hot spot. Narrow
+     screens get a vertical scrim instead, and the type starts below the clear
+     zone, which is the shape of a poster anyway: picture, then title. */
+  @media (max-width: 639px) {
+    .stage-scrim {
+      background: linear-gradient(
+        to top,
+        rgba(14, 13, 18, 0.97) 38%,
+        rgba(14, 13, 18, 0.84) 62%,
+        rgba(14, 13, 18, 0.3) 100%
+      );
+    }
+    .stage-scrim-soft {
+      background: linear-gradient(
+        to top,
+        rgba(14, 13, 18, 0.92) 30%,
+        rgba(14, 13, 18, 0.6) 70%,
+        rgba(14, 13, 18, 0.12) 100%
+      );
+    }
+    .stage-hero .stage-body {
+      padding-top: 168px;
+    }
+  }
+
   /* Bands with a short line of type need far less darkening than the hero. */
   .stage-scrim-soft {
     background: linear-gradient(
@@ -564,6 +600,10 @@ h4 {
     -webkit-text-stroke: 1.5px var(--rule);
     transition: color 0.4s ease, -webkit-text-stroke-color 0.4s ease;
   }
+  .pc-no-sm {
+    font-size: clamp(1.6rem, 4vw, 2rem);
+    -webkit-text-stroke-width: 1.2px;
+  }
   .pc:hover .pc-no,
   .pc:focus-within .pc-no {
     color: var(--ju);
@@ -624,6 +664,40 @@ h4 {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--ink-46);
+  }
+
+  /* The trio in rotation, so a long run of stickers is never one colour —
+     which is the whole argument for having three. Applied by index, not by
+     meaning: nothing about a word makes it cyan. */
+  .sticker-cy .ko {
+    color: var(--cy);
+  }
+  .sticker-cy:hover {
+    border-color: var(--cy);
+  }
+  .sticker-vi .ko {
+    color: var(--vi);
+  }
+  .sticker-vi:hover {
+    border-color: var(--vi);
+  }
+
+  /* ══ WORD WALL ══
+     Every word on the page at once, before the tables that define them. It is
+     a contents list doing a second job: a reference page made only of tables
+     looks like a document, and the one thing this page is selling is that the
+     Korean on a booking screen is a finite, learnable set — which you can see
+     at a glance here and nowhere else. ══ */
+  .wall {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .wall .sticker {
+    padding: 6px 11px;
+  }
+  .wall .sticker .ko {
+    font-size: 0.875rem;
   }
 
   /* ══ Scanline ══ the texture of a screen a show is watched on ══ */
@@ -744,6 +818,49 @@ h4 {
     display: block;
     max-width: 100%;
   }
+  /* ══ PROP ══
+     A clay object laid over the stage photograph. T13 and T09 are not supposed
+     to meet inside one frame, and here they do on purpose: a matte cut-out
+     sitting on a photograph is a sticker on a poster, which is how this
+     audience already decorates — 포카 꾸미기, diary pages, phone cases. The
+     tilt and the shadow are what make it read as placed rather than composited.
+
+     It is decoration, so it never occupies space the content needs: it is
+     positioned out of flow and hidden outright on a phone, where the hero's
+     height is the thing worth protecting. */
+  .prop {
+    position: absolute;
+    z-index: 2;
+    display: none;
+    pointer-events: none;
+    filter: drop-shadow(0 26px 34px rgba(0, 0, 0, 0.55));
+  }
+  .prop img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  @media (min-width: 1024px) {
+    .prop {
+      display: block;
+    }
+  }
+  .prop-stick {
+    right: clamp(20px, 6vw, 96px);
+    bottom: clamp(44px, 7vh, 88px);
+    width: clamp(112px, 12vw, 180px);
+    transform: rotate(14deg);
+  }
+  /* On the page's own background rather than a photograph, so the shadow is a
+     theme token and the card stands a little straighter. */
+  .prop-card {
+    right: clamp(16px, 4vw, 72px);
+    top: -14px;
+    width: clamp(116px, 12vw, 182px);
+    transform: rotate(-7deg);
+    filter: drop-shadow(0 20px 26px var(--cast-soft));
+  }
+
   .float {
     animation: bob 7s ease-in-out infinite;
   }

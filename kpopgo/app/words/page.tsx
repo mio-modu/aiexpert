@@ -61,6 +61,22 @@ export default function Words() {
         ))}
       </nav>
 
+      {/* The whole set at once. The argument this page makes is that the
+          Korean on a booking screen is finite, and that is something you see
+          rather than read. */}
+      <ul className="wall mt-10" aria-label={`All ${wordCount} words`}>
+        {wordGroups.flatMap((g) => g.words).map((w, i) => (
+          <li
+            key={w.ko}
+            className={`sticker ${["", "sticker-cy", "sticker-vi"][i % 3]}`}
+            title={w.en}
+          >
+            <span className="ko">{w.ko}</span>
+            <span className="en">{w.roman}</span>
+          </li>
+        ))}
+      </ul>
+
       <div className="mt-12 grid gap-10">
         {wordGroups.map((g, gi) => (
           <section key={g.id} id={g.id} className="scroll-mt-24">

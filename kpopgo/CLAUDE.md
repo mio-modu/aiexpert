@@ -106,13 +106,25 @@ its generation brief. `<Artwork>` checks for the file at build time and falls
 back to the drawn SVG in `components/Objects.tsx` when it is missing, so the
 site is complete with zero image assets and gets richer as renders land.
 
+The object vocabulary is **fandom**, not finance. The first set — a passport, a
+bank card, a parcel box — is the single clearest reason an early version read
+as a shipping service. Lightstick, photocard, ticket stub, slogan banner,
+album case. If a brief could as easily illustrate a bank, it is the wrong brief.
+
 Cut-outs ship with **no baked shadow** — a shadow the render chose cannot
 follow the theme. They are hard silhouettes and `.art-drop` draws the shadow
-from `--cast-soft`. Full-bleed frames pass `drop={false}`.
+from `--cast-soft`. Full-bleed frames pass `drop={false}`. A cut-out laid over
+a photograph is a `.prop`: out of flow, `lg` and up only, because it is
+decoration and must never cost the hero its height on a phone.
 
-Export cut-outs as **PNG with alpha**. Recovering alpha from a flattened
-checkerboard works often enough to try and not often enough to rely on — two of
-the six failed that way and are still on their fallbacks.
+Never write *where the headline sits* into a photographic brief. The hero came
+back with a brush mark painted into that corner, as a placeholder for type the
+generator was never going to set. Say the corner stays dark and uncluttered,
+and say no placeholder shapes.
+
+Export cut-outs as **PNG with alpha**. Recovery from a flattened checkerboard
+is in `public/img/README.md` along with the case it fails on — a bone-white
+part touching the checker — which is why guides 03 and 04 are still fallbacks.
 
 ## Advertising
 
@@ -152,8 +164,9 @@ degradation of the wide one:
   silently overrode Tailwind's `hidden`, which put a nav item back on screen
   at phone width — check both when touching it.
 
-Verify at 320, 360, 390 and 414 before pushing. Every tap target should clear
-44px tall.
+Verify at 320, 360, 390 and 414 before pushing — `node scripts/check-layout.mjs`
+walks every route in both themes at five widths and reports horizontal
+overflow. Every tap target should clear 44px tall.
 
 ## Commands
 

@@ -33,7 +33,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#f7f4ef",
+          background: "#0a0a0f",
           padding: "68px 80px",
           fontFamily: "sans-serif",
         }}
@@ -45,19 +45,19 @@ export default async function Image({ params }: { params: Promise<{ slug: string
               fontSize: 30,
               fontWeight: 900,
               letterSpacing: "-0.04em",
-              color: "#14131a",
+              color: "#f6f3ee",
             }}
           >
-            KPOP<span style={{ color: "#d8341f" }}>GO</span>
+            KPOP<span style={{ color: "#ff3b2e" }}>GO</span>
           </div>
           {stamp ? (
             <div
               style={{
                 display: "flex",
                 padding: "9px 18px",
-                borderRadius: 8,
-                border: "3px solid #d8341f",
-                color: "#d8341f",
+                borderRadius: 999,
+                border: "3px solid #ff3b2e",
+                color: "#ff3b2e",
                 fontSize: 20,
                 fontWeight: 700,
                 letterSpacing: "0.08em",
@@ -75,7 +75,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
             fontWeight: 900,
             lineHeight: 1.04,
             letterSpacing: "-0.04em",
-            color: "#14131a",
+            color: "#f6f3ee",
             maxWidth: 1000,
           }}
         >
@@ -83,14 +83,22 @@ export default async function Image({ params }: { params: Promise<{ slug: string
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
-          <div style={{ display: "flex", width: 72, height: 6, background: "#d8341f" }} />
+          <div
+            style={{
+              display: "flex",
+              width: 110,
+              height: 6,
+              background:
+                "linear-gradient(90deg, #00e5ff 0%, #b14bff 48%, #ff3b2e 100%)",
+            }}
+          />
           <div
             style={{
               display: "flex",
               fontSize: 24,
               fontWeight: 700,
               letterSpacing: "0.1em",
-              color: "rgba(20,19,26,0.6)",
+              color: "rgba(246,243,238,0.6)",
             }}
           >
             {steps}

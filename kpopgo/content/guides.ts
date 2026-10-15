@@ -442,7 +442,7 @@ export const guides: Guide[] = [
   {
     slug: "buy-k-pop-albums-from-overseas",
     ko: "앨범",
-    art: "guide-albums",
+    art: "album-stack",
     name: "Albums & goods",
     koLine: "해외 앨범 구매 — 차트 반영되는 곳",
     title: "Buying K-pop albums from overseas so they count toward the charts",
