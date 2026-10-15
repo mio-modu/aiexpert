@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { guides } from "@/content/guides";
-import { Artwork } from "@/components/Artwork";
 import { VerifiedBadge } from "@/components/Badges";
 import { AdSlot } from "@/components/AdSlot";
 
@@ -24,11 +23,6 @@ export default function GuidesIndex() {
         Each one is a sequence you can follow start to finish, with the thing that actually
         goes wrong called out at every step.
       </p>
-
-      {/* What a sale actually hands you, in the site's own objects. */}
-      <div className="mx-auto mt-10 max-w-[480px] sm:mt-12">
-        <Artwork name="fan-kit" fallback={null} priority />
-      </div>
 
       <ul className="mt-12 grid gap-4 sm:grid-cols-2">
         {guides.map((g, i) => (

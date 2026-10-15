@@ -117,7 +117,7 @@ export const artwork: ArtPiece[] = [
     id: "pc-foil",
     file: "pc-foil.webp",
     width: 720,
-    height: 1273,
+    height: 1286,
     alt: "A blank collectible card standing upright, its border a band of iridescent foil.",
     placement: "Home — beside the guides heading, where the photocard idea is introduced",
     prompt:
@@ -131,7 +131,7 @@ export const artwork: ArtPiece[] = [
     id: "lightstick",
     file: "lightstick.webp",
     width: 560,
-    height: 879,
+    height: 881,
     alt: "A generic concert lightstick — a translucent sphere glowing on a straight handle.",
     placement: "Home hero, lower right — the object that names the subject on sight",
     prompt:
@@ -146,7 +146,10 @@ export const artwork: ArtPiece[] = [
     width: 960,
     height: 620,
     alt: "A ticket with a perforated stub, a foil-edged collectible card, a string of slogan flags and a fabric wristband.",
-    placement: "Guides index — the header, standing for what a sale actually hands you",
+    placement:
+      "Guides index — the header, standing for what a sale actually hands you. " +
+      "No file: the flattened export could not be recovered (see public/img/README.md), " +
+      "and the page omits the header until a PNG with alpha arrives.",
     prompt:
       `${BASE} Subject: a flat lay of four blank fandom objects slightly overlapping — a ` +
       "long vermilion concert ticket with a perforated stub, a blank collectible card with " +
@@ -157,7 +160,7 @@ export const artwork: ArtPiece[] = [
     id: "album-stack",
     file: "album-stack.webp",
     width: 820,
-    height: 841,
+    height: 843,
     alt: "Three square album cases stacked at slight angles, in vermilion, violet and bone white.",
     placement: "Guide 05 — buying albums from overseas",
     prompt:

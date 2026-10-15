@@ -8,10 +8,10 @@ back to the SVG when it is missing, so the site builds and ships either way.
 | --- | --- | --- |
 | `hero-stage.jpg` | 1800 × 1012 | Home hero — **in place** |
 | `band-crowd.jpg` | 1800 × 524 | Crowd band — **in place** |
-| `lightstick.webp` | 560 × 879 | Hero, laid over the photograph — **in place** |
-| `pc-foil.webp` | 720 × 1273 | Home, beside the guides heading — **in place** |
-| `fan-kit.webp` | 960 × 620 | Guides index header — **in place** |
-| `album-stack.webp` | 820 × 841 | Guide 05 — **in place** |
+| `lightstick.webp` | 560 × 881 | Hero, laid over the photograph — **in place** |
+| `pc-foil.webp` | 720 × 1286 | Home, beside the guides heading — **in place** |
+| `fan-kit.webp` | 960 × 620 | Guides index header — **not shipped**, see below |
+| `album-stack.webp` | 820 × 843 | Guide 05 — **in place** |
 | `guide-tickets.webp` | 720 × 420 | Guide 01 — **in place** |
 | `guide-nol.webp` | 720 × 590 | Guide 02 — **in place** |
 | `guide-presale.webp` | 720 × 409 | Guide 03 — still on the drawn fallback |
@@ -67,5 +67,22 @@ have to agree. That is strict enough to reject real checker where JPEG smeared
 a square boundary, so a third step removes the stranded crumbs by size:
 erode the object mask, then grow what survives back inside its own outline.
 
-So: export PNG with the alpha channel intact. Recovering it afterwards works,
-and it costs a morning each time it doesn't.
+Three of the four came back clean that way. The fourth, `fan-kit`, did not,
+and it is the case worth knowing because it is not a tuning problem.
+
+Its slogan flags nearly touch, so the background between them is a sliver
+about thirty pixels wide against a checker whose square is twenty. Every test
+in the script asks what a neighbourhood looks like, and in that sliver the
+neighbourhood is mostly flag. The ratio test needs a 25px window and so
+straddles; the level test misses because the sliver sits in the objects' own
+shadow; the periodicity test needs a full period either side and there is not
+room. Cutting hard enough to clear the slivers ate the bone-white flag and the
+wristband's inner band instead, which is worse.
+
+So `fan-kit` ships no file and the guides index omits its header until a PNG
+with real alpha arrives. The brief stays in `content/artwork.ts` and the entry
+stays in this table: drop the file in and the page picks it up.
+
+Which is the whole lesson. Export PNG with the alpha channel intact.
+Recovering it afterwards usually works, and when it doesn't it costs a day and
+still loses.
