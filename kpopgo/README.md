@@ -229,6 +229,17 @@ Vercel issues and renews one automatically. Do not purchase an SSL product from
 the registrar.
 
 1. Import the repo in Vercel and set **Root Directory** to `kpopgo`.
+
+   The repository root holds a different project — a Vite app whose
+   `vercel.json` declares `"framework": "vite"` and `"outputDirectory":
+   "dist"`. Vercel reads that on import and will carry the Vite preset into
+   the project settings, so the Next build runs, succeeds, and then fails with
+   `STATIC_BUILD_NO_OUT_DIR` looking for a `dist` this framework never
+   produces. `kpopgo/vercel.json` names the framework here so the answer lives
+   in the repo rather than in dashboard state. If a project was already
+   imported under the wrong preset, set Framework Preset to **Next.js** and
+   clear any Output Directory override once; `vercel.json` holds it after
+   that.
 2. Add `NEXT_PUBLIC_GA_ID` (GA4) — engagement time is measured there, not in
    Search Console.
 
