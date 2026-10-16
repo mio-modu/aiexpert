@@ -102,7 +102,7 @@ export default function About() {
           <p className="t mt-3">
             Corrections are the most useful thing you can send. If a step has changed, or
             a guide cost you a sale, we want to know:{" "}
-            <span className="ju">hello@{site.url.replace("https://", "")}</span>
+            <span className="ju">hello@{site.host}</span>
           </p>
           <p className="t mt-3">
             See also the <Link href="/privacy" className="ju underline underline-offset-4">privacy policy</Link>.

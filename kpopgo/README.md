@@ -231,6 +231,23 @@ the registrar.
 1. Import the repo in Vercel and set **Root Directory** to `kpopgo`.
 2. Add `NEXT_PUBLIC_GA_ID` (GA4) — engagement time is measured there, not in
    Search Console.
+
+   If you are deploying to the free `*.vercel.app` host first, to collect
+   Search Console data before committing to a domain, also set
+   `NEXT_PUBLIC_SITE_URL` to that host (no trailing slash). It is not
+   optional: `lib/site.ts` builds every canonical tag, the whole sitemap,
+   robots.txt and all the structured data from it, so leaving it at the
+   production domain tells Google each page really lives somewhere that does
+   not resolve. Clear the variable when the domain is attached.
+
+   Note what the free host does and does not cost you. Only Preview and
+   superseded Production deployments carry `X-Robots-Tag: noindex`; the live
+   `*.vercel.app` URL indexes and ranks, and because `vercel.app` is on the
+   Public Suffix List, Google treats it as a site of its own rather than a
+   subdirectory of someone else's. What you lose is the click-through a real
+   domain earns in a results page, the links nobody gives a `*.vercel.app`
+   address, and — this is the one that matters here — AdSense. Approval wants
+   a domain you demonstrably control, which a host subdomain is not.
 3. Add `kpopgo.app` under Domains, then point the registrar's nameservers or add
    the A/CNAME records Vercel shows.
 4. Verify the property in Google Search Console and submit
