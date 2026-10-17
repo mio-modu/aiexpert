@@ -56,6 +56,14 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
+  // Rendered only once a token exists. Next drops an undefined entry, so an
+  // unset variable leaves no tag rather than an empty one.
+  verification: {
+    ...(site.verifyGoogle ? { google: site.verifyGoogle } : {}),
+    ...(site.verifyNaver
+      ? { other: { "naver-site-verification": site.verifyNaver } }
+      : {}),
+  },
 };
 
 export const viewport: Viewport = {
