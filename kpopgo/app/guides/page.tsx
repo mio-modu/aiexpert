@@ -47,7 +47,7 @@ export default function GuidesIndex() {
                 <span className="chip data-sm">
                   {String(g.readMinutes).padStart(2, "0")} min
                 </span>
-                <VerifiedBadge status={g.status} date={g.lastVerified} />
+                <VerifiedBadge guide={g} />
               </div>
             </Link>
           </li>

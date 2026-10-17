@@ -6,7 +6,7 @@ import { guideJsonLd } from "@/lib/jsonld";
 import { JsonLd } from "@/components/JsonLd";
 import { StackedScreens, SingleScreen, StepObject } from "@/components/Objects";
 import { Artwork } from "@/components/Artwork";
-import { VerifiedBadge, DraftNotice } from "@/components/Badges";
+import { VerifiedBadge, StatusNotice } from "@/components/Badges";
 import { AdSlot } from "@/components/AdSlot";
 
 export function generateStaticParams() {
@@ -64,7 +64,7 @@ export default async function GuidePage({
         <p className="t-lg mt-5">{guide.summary}</p>
 
         <div className="mt-6 flex flex-wrap items-center gap-2">
-          <VerifiedBadge status={guide.status} date={guide.lastVerified} />
+          <VerifiedBadge guide={guide} />
           <span className="chip data-sm">
             {String(guide.readMinutes).padStart(2, "0")} min
           </span>
@@ -106,7 +106,7 @@ export default async function GuidePage({
           </p>
           <p className="t-sm mt-3">{guide.scope}</p>
         </div>
-        {guide.status === "draft" ? <DraftNotice /> : null}
+        <StatusNotice guide={guide} />
       </div>
 
       {/* ─────────── Intro ─────────── */}

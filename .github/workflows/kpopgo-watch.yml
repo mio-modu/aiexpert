@@ -1,0 +1,101 @@
+# What rots, and who hears about it.
+#
+# The site competes on not being stale, which means its own staleness is the
+# thing most worth watching — and the least likely to be noticed, because a
+# dead source link and an ageing verification both look exactly like a working
+# page until someone checks.
+#
+# Weekly, on Monday morning Seoul time. Findings become an issue rather than a
+# failed run nobody opens: a red tick in a tab is not a notification.
+name: kpopgo watch
+
+on:
+  schedule:
+    # 23:10 UTC Sunday = 08:10 Monday KST. Off the hour, because every
+    # scheduled job in the world runs at :00 and GitHub queues them.
+    - cron: "10 23 * * 0"
+  workflow_dispatch:
+  push:
+    paths:
+      - "kpopgo/content/guides.ts"
+      - "kpopgo/scripts/watch.mjs"
+      - ".github/workflows/kpopgo-watch.yml"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check links and freshness
+        id: watch
+        working-directory: kpopgo
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          node scripts/watch.mjs 2>&1 | tee /tmp/watch.txt
+
+      - name: Freshness unit tests
+        working-directory: kpopgo
+        run: node --test "scripts/*.test.mjs"
+
+      - name: Open an issue when something needs a person
+        if: steps.watch.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('/tmp/watch.txt', 'utf8');
+            const title = 'kpopgo watch: something needs re-checking';
+
+            // One open issue, updated — not a new one every Monday, which is
+            // how a weekly check turns into noise people filter out.
+            const { data: open } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'kpopgo-watch',
+            });
+
+            const body = [
+              'The weekly watch found something. It verifies nothing — it only',
+              'says where to look.',
+              '',
+              '```',
+              report.trim(),
+              '```',
+              '',
+              '- `✗` a guide cites a source that no longer answers, or a',
+              '  verification has expired and the page has already downgraded itself.',
+              '- `!` worth a look: a verification nearing expiry, or a platform page',
+              '  that stopped mentioning its own brand — these have renamed twice.',
+              '',
+              'Walking a guide again is `kpopgo/VERIFY.md`.',
+              '',
+              `_Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}_`,
+            ].join('\n');
+
+            if (open.length) {
+              await github.rest.issues.update({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: open[0].number, body,
+              });
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: open[0].number,
+                body: 'Still open as of this run — see the updated report above.',
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title, body, labels: ['kpopgo-watch'],
+              });
+            }
