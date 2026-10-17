@@ -325,6 +325,17 @@ h4 {
     font-size: 0.8125rem;
     letter-spacing: 0;
   }
+  /* An expired seal is not a failed one — somebody did walk it. It reads in
+     the dim ink rather than the vermilion, so the page stops asserting without
+     raising its voice. */
+  .seal-stale {
+    border-color: var(--rule);
+    color: var(--ink-46);
+  }
+  .seal-stale .seal-han {
+    background: var(--rule);
+    color: var(--paper);
+  }
 
   .btn {
     display: inline-flex;
@@ -698,6 +709,44 @@ h4 {
   }
   .wall .sticker .ko {
     font-size: 0.875rem;
+  }
+
+  /* ── Carry: where a step continues in another guide ──
+     Set apart from the step's own text but quieter than the pitfall beside
+     it, because leaving the page is an option here, not the instruction. The
+     arrow moves on hover, which is the whole of the animation. ── */
+  .carry {
+    margin-top: 14px;
+  }
+  .carry a {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 11px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--rule-soft);
+    background: var(--paper-2);
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .carry a:hover,
+  .carry a:focus-visible {
+    border-color: var(--ju);
+  }
+  .carry a .data-sm {
+    color: var(--ju);
+    white-space: nowrap;
+  }
+  .carry a .data-sm::after {
+    content: " →";
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+  .carry a:hover .data-sm::after {
+    transform: translateX(3px);
+  }
+  .carry a .t-sm {
+    min-width: 0;
   }
 
   /* ══ Scanline ══ the texture of a screen a show is watched on ══ */
