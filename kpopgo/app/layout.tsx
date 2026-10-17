@@ -86,6 +86,16 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Written here rather than through metadata.alternates: a page that
+            declares its own `alternates` for a canonical replaces the whole
+            object, and every page here declares one — so the feed link would
+            survive on none of them. */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${site.name} — guides, newest verification first`}
+          href="/feed.xml"
+        />
         {/* Applied before paint so a pinned theme never flashes the wrong one. */}
         <script
           dangerouslySetInnerHTML={{

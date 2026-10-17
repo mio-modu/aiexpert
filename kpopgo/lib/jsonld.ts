@@ -1,4 +1,4 @@
-import type { Guide } from "@/content/guides";
+import { RESEARCH_DATE, type Guide, guides } from "@/content/guides";
 import { site } from "./site";
 
 /**
@@ -17,8 +17,16 @@ export function guideJsonLd(guide: Guide) {
     description: guide.summary,
     url,
     totalTime: `PT${guide.readMinutes}M`,
+    // Both dates, not just one. This site's entire claim is that it is not
+    // stale, and a crawler reads that from dateModified — but a page with a
+    // modified date and no published date looks like it was back-dated.
+    datePublished: RESEARCH_DATE,
     dateModified: guide.lastVerified,
-    publisher: { "@type": "Organization", name: site.name, url: site.url },
+    inLanguage: "en",
+    // Pointing at the @id defined in siteJsonLd rather than restating the
+    // publisher inline: one organisation in the graph, referenced twice.
+    publisher: { "@id": `${site.url}#org` },
+    isPartOf: { "@id": `${site.url}#site` },
     step: guide.steps.map((step, i) => ({
       "@type": "HowToStep",
       position: i + 1,
@@ -49,6 +57,32 @@ export function guideJsonLd(guide: Guide) {
   };
 
   return [howTo, faq, breadcrumb];
+}
+
+/**
+ * The guides index, as a list rather than a page that happens to have links on
+ * it. Without this the hub is just another document to a crawler; with it, the
+ * five guides are named, ordered and attributed to the site in one object.
+ */
+export function guidesIndexJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "KPOPGO guides",
+    description:
+      "Every procedure an international K-pop fan has to follow, start to finish.",
+    url: `${site.url}/guides`,
+    numberOfItems: guides.length,
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    isPartOf: { "@id": `${site.url}#site` },
+    itemListElement: guides.map((g, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: g.title,
+      description: g.summary,
+      url: `${site.url}/guides/${g.slug}`,
+    })),
+  };
 }
 
 /**

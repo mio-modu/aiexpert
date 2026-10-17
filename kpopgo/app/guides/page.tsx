@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { guides } from "@/content/guides";
+import { guidesIndexJsonLd } from "@/lib/jsonld";
+import { JsonLd } from "@/components/JsonLd";
 import { VerifiedBadge } from "@/components/Badges";
 import { AdSlot } from "@/components/AdSlot";
 
@@ -14,6 +16,7 @@ export const metadata: Metadata = {
 export default function GuidesIndex() {
   return (
     <div className="wrap sect">
+      <JsonLd data={guidesIndexJsonLd()} />
       <p className="data dim">The guides</p>
       <h1 className="pl mt-4 max-w-[18ch]">
         Five <span className="foil-text">procedures</span>, start to finish

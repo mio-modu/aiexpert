@@ -147,6 +147,16 @@ export default async function GuidePage({
                     <p className="t-sm mt-1.5">{step.pitfall}</p>
                   </div>
                 ) : null}
+                {step.see ? (
+                  <p className="carry">
+                    <Link href={`/guides/${step.see.slug}`}>
+                      <span className="data-sm">
+                        {getGuide(step.see.slug)?.name ?? "Continue"}
+                      </span>
+                      <span className="t-sm">{step.see.text}</span>
+                    </Link>
+                  </p>
+                ) : null}
               </div>
             </li>
           ))}

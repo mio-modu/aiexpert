@@ -30,6 +30,21 @@ export type Step = {
   pitfall?: string;
   /** Rough wall-clock cost, so people can plan around a presale window. */
   takes?: string;
+  /**
+   * Where this step continues, when it continues in another guide.
+   *
+   * These five guides describe one process from five angles, and the same
+   * obstacles recur across them: the identity check appears in three, the
+   * name-matching problem in three, the card refusal in two. Written as five
+   * separate pages with no path between them, a reader who hits the card
+   * problem in the middle of guide 01 has to go back to a menu and guess —
+   * and a crawler reads five unrelated pages instead of one subject covered
+   * from five sides.
+   *
+   * Only where a reader would actually leave. A link on every step teaches
+   * nothing, because then no link means anything.
+   */
+  see?: { slug: string; text: string };
 };
 
 export type Guide = {
@@ -109,6 +124,11 @@ export const guides: Guide[] = [
         pitfall:
           "Treating the mapping as fixed — 'HYBE means Weverse, SM means YES24' — is the single most common error in existing guides. It is wrong often enough to matter.",
         takes: "5 minutes",
+        see: {
+          slug: "nol-world-ticketing-guide",
+          text:
+            "If your show is on NOL World, the route from here is step by step in the NOL World guide.",
+        },
       },
       {
         title: "Work out which identity check you face",
@@ -116,6 +136,11 @@ export const guides: Guide[] = [
         pitfall:
           "Trying to force the Korean-language site to work is wasted effort, and arrangements that borrow someone else's identity for verification are not something we will help with — they put your ticket and your account at risk.",
         takes: "15 minutes",
+        see: {
+          slug: "nol-world-ticketing-guide",
+          text:
+            "What the overseas-facing check actually asks for, and how long it takes to clear.",
+        },
       },
       {
         title: "Create the account with your passport details exactly",
@@ -123,6 +148,11 @@ export const guides: Guide[] = [
         pitfall:
           "Middle names, hyphenated surnames and name order are where this breaks. A membership reading 'Maria Santos' and a passport reading 'Maria Elena Santos Cruz' is a mismatch.",
         takes: "20 minutes",
+        see: {
+          slug: "fan-club-presale-checklist",
+          text:
+            "Where a presale is involved, the same name has to match in a third place as well.",
+        },
       },
       {
         title: "Verify your payment method days ahead, not on the day",
@@ -130,6 +160,11 @@ export const guides: Guide[] = [
         pitfall:
           "A card that declines in the payment step frees your seat back into the pool within minutes. This is the most expensive failure in the whole process and it is entirely preventable.",
         takes: "1-3 days of lead time",
+        see: {
+          slug: "foreign-card-declined-korean-ticketing",
+          text:
+            "If a card has already been refused, the card guide works through the three systems that can refuse it.",
+        },
       },
       {
         title: "Set up for the sale itself",
@@ -219,6 +254,11 @@ export const guides: Guide[] = [
         pitfall:
           "Changing a verified name later is a support-ticket process, not a settings toggle. Get it right the first time.",
         takes: "20 minutes",
+        see: {
+          slug: "fan-club-presale-checklist",
+          text:
+            "The membership record is the third name that has to agree, and it is the one people forget.",
+        },
       },
       {
         title: "Complete overseas-customer verification before you need it",
@@ -226,6 +266,11 @@ export const guides: Guide[] = [
         pitfall:
           "Discovering at the payment step that verification is still pending is the classic way to lose a held seat.",
         takes: "1-3 days including processing",
+        see: {
+          slug: "foreign-card-declined-korean-ticketing",
+          text:
+            "A pending verification looks exactly like a card problem at the payment step.",
+        },
       },
       {
         title: "Check the per-show conditions on the event page",
@@ -321,6 +366,11 @@ export const guides: Guide[] = [
         pitfall:
           "This is the most frequent documented cause of a presale entitlement failing to apply, and it is invisible until the moment it matters.",
         takes: "15 minutes",
+        see: {
+          slug: "buy-k-pop-concert-tickets-from-overseas",
+          text:
+            "The account side of the same problem, with what each field expects.",
+        },
       },
       {
         title: "Confirm the entitlement landed",
@@ -383,6 +433,11 @@ export const guides: Guide[] = [
         pitfall:
           "The payment error will not say 'your verification is pending'. It will look like a card problem.",
         takes: "1-3 days",
+        see: {
+          slug: "nol-world-ticketing-guide",
+          text:
+            "Where that verification lives on NOL World, and how long it takes to process.",
+        },
       },
       {
         title: "Tell your bank before the sale, not after",
@@ -522,6 +577,24 @@ export const guides: Guide[] = [
     ],
   },
 ];
+
+/**
+ * A cross-link that points nowhere renders nothing, which is the quiet kind of
+ * breakage — nobody notices a link that was never there. Checked here, at
+ * module scope, so a mistyped slug fails the build instead.
+ */
+for (const guide of guides) {
+  for (const step of guide.steps) {
+    if (step.see && !guides.some((g) => g.slug === step.see!.slug)) {
+      throw new Error(
+        `${guide.slug} → step "${step.title}" links to an unknown guide: ${step.see.slug}`,
+      );
+    }
+    if (step.see?.slug === guide.slug) {
+      throw new Error(`${guide.slug} → step "${step.title}" links to itself`);
+    }
+  }
+}
 
 export function getGuide(slug: string): Guide | undefined {
   return guides.find((g) => g.slug === slug);
